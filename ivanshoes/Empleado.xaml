@@ -1,0 +1,32 @@
+﻿<Window x:Class="ivanshoes.Empleado"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ivanshoes"
+        mc:Ignorable="d"
+        Title="Empleado" Height="900" Width="1400"
+        WindowStartupLocation="CenterScreen">
+    <Border CornerRadius="20"
+            >
+
+        <Grid Background="#FFFFF9C4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <!-- Contenedor de Navegación -->
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="822" Margin="0,62,0,0" VerticalAlignment="Top" Width="202">
+                <Button x:Name="btnVenta" Content="Ventas" HorizontalAlignment="Left" Height="91" VerticalAlignment="Top" Width="202" Click="btnVenta_Click"/>
+            </Border>
+
+
+            <!-- Contenedor de Navegación -->
+            <Frame x:Name="MainFrame"
+               NavigationUIVisibility="Hidden" Margin="207,0,10,0" />
+            <Label x:Name="lavel1" Content="Ivan shoes" HorizontalAlignment="Left" Margin="18,16,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="MingLiU_HKSCS-ExtB" FontWeight="Bold"/>
+            <Button x:Name="btnPedidos" Content="Pedidos" HorizontalAlignment="Left" Height="91" VerticalAlignment="Top" Width="202" Margin="0,156,0,0" Click="btnPedidos_Click"/>
+
+
+        </Grid>
+    </Border>
+</Window>

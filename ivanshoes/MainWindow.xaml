@@ -1,0 +1,73 @@
+﻿<Window x:Class="ivanshoes.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ivanshoes"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="900" Width="1400"
+        WindowStartupLocation="CenterScreen">
+    <Grid x:Name="presentacion">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFF57F17" Offset="1"/>
+                <GradientStop Color="#FFF57F17"/>
+                <GradientStop Color="#FFFFF9C4" Offset="0.444"/>
+                <GradientStop Color="#FFFFF9C4" Offset="0.511"/>
+                <GradientStop Color="#FFFFF176" Offset="0.74"/>
+                <GradientStop Color="#FFFFF176" Offset="0.243"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="700*"/>
+            <ColumnDefinition Width="700*"/>
+        </Grid.ColumnDefinitions>
+        <Border BorderBrush="Black" BorderThickness="1" Margin="0,-10,0,0">
+            <Border.Background>
+                <ImageBrush ImageSource="/fondoivanshoes.jpg"/>
+            </Border.Background>
+        </Border>
+        <Button x:Name="btnempleado" Grid.Column="1" Content="Empleado&#xD;&#xA;" HorizontalAlignment="Left" Margin="288,0,0,469" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Width="153" Background="#FF3E2F2F" BorderBrush="#FFA9A52B" Foreground="#FFFFD200" FontSize="15" Height="27" Click="btnempleado_Click" FontWeight="Bold">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="1"
+                            CornerRadius="5">
+                        <!-- Cambia este valor para ajustar el radio -->
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="-0.005"/>
+                    <RotateTransform Angle="0.644"/>
+                    <TranslateTransform Y="0.006"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Button x:Name="btnempleado_Copiar" Grid.Column="1" Content="Administrador&#xD;&#xA;&#xA;" HorizontalAlignment="Left" Margin="288,0,0,395" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Width="153" Background="#FF3E2F2F" BorderBrush="#FFA9A52B" Foreground="#FFFFD200" FontSize="15" Height="27" FontWeight="Bold" Click="btnempleado_Copiar_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="5">
+                        <!-- Cambia este valor para ajustar el radio -->
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.644"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+    </Grid>
+</Window>
