@@ -27,7 +27,10 @@
                 <ImageBrush ImageSource="/fondoivanshoes.jpg"/>
             </Border.Background>
         </Border>
-        <Button x:Name="btnempleado" Grid.Column="1" Content="Empleado&#xD;&#xA;" HorizontalAlignment="Left" Margin="288,0,0,469" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Width="153" Background="#FF3E2F2F" BorderBrush="#FFA9A52B" Foreground="#FFFFD200" FontSize="15" Height="27" Click="btnempleado_Click" FontWeight="Bold">
+        <Button x:Name="btnempleado" Grid.Column="1" Content="Empleado&#xD;&#xA;" HorizontalAlignment="Left" Margin="288,0,0,469" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Width="153" BorderBrush="#FFA9A52B" Foreground="#FFFFD200" FontSize="15" Height="27" Click="btnempleado_Click" FontWeight="Bold">
+            <Button.Background>
+                <SolidColorBrush Color="#FF3E2F2F" Opacity="1"/>
+            </Button.Background>
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"

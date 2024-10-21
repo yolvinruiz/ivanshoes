@@ -9,12 +9,12 @@
       d:DesignHeight="900"
       Title="Paginaventa" Width="1200">
 
-    <Grid>
+    <Grid Margin="-1,0,1,0">
         <TextBox x:Name="txtdnicliente" HorizontalAlignment="Left" Margin="15,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Dni cliente" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF57F17"/>
         <Label Content="Dni empleado" HorizontalAlignment="Left" Margin="15,112,0,0" VerticalAlignment="Top" Foreground="#FFF57F17"/>
         <TextBox x:Name="txtdniempleado" HorizontalAlignment="Left" Margin="15,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnverificarcliente" Content="Verficar" HorizontalAlignment="Left" Margin="145,84,0,0" VerticalAlignment="Top" Width="60" Background="#FFFFEB3B" Click="Button_Click" Foreground="#FFF57F17">
+        <Button x:Name="btnverificarcliente" Content="Verficar" HorizontalAlignment="Left" Margin="145,84,0,0" VerticalAlignment="Top" Width="60" Background="#FFFFEB3B" Click="Button_Click" Foreground="#FFF57F17" Height="22">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
@@ -27,7 +27,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button x:Name="dgvgenerarorden" Content="generar orden de venta" HorizontalAlignment="Left" Margin="70,167,0,0" VerticalAlignment="Top" Width="135" Height="20" Foreground="#FFF57F17" Background="#FFFDD835" Click="dgvgenerarorden_Click">
+        <Button x:Name="dgvgenerarorden" Content="generar orden de venta" HorizontalAlignment="Left" Margin="70,167,0,0" VerticalAlignment="Top" Width="135" Height="22" Foreground="#FFF57F17" Background="#FFFDD835" Click="dgvgenerarorden_Click">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
@@ -41,7 +41,7 @@
             </Button.Template>
         </Button>
         <Border BorderBrush="#FFFFAF00" BorderThickness="1" HorizontalAlignment="Left" Height="186" Margin="225,69,0,0" VerticalAlignment="Top" Width="940"/>
-        <Button x:Name="btnbuscarproducto" Content="Buscar" HorizontalAlignment="Left" Margin="470,84,0,0" VerticalAlignment="Top" Height="20" Width="85" Background="#FFFDD835" Foreground="#FFF57F17">
+        <Button x:Name="btnbuscarproducto" Content="Buscar" HorizontalAlignment="Left" Margin="470,84,0,0" VerticalAlignment="Top" Height="22" Width="85" Background="#FFFDD835" Foreground="#FFF57F17">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
@@ -56,7 +56,7 @@
         </Button>
         <DataGrid x:Name="dgvproducto" HorizontalAlignment="Left" Height="130" Margin="235,113,0,0" VerticalAlignment="Top" Width="915" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="dgvproducto_SelectionChanged"/>
         <TextBox x:Name="txtbuscar" HorizontalAlignment="Left" Height="20" Margin="235,85,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="200"/>
-        <Button x:Name="btnmostrarproducto" Content="Mostrar" HorizontalAlignment="Left" Height="21" Margin="630,82,0,0" VerticalAlignment="Top" Width="75" Background="#FFFDD835" Click="btnmostrarproducto_Click" Foreground="#FFF57F17">
+        <Button x:Name="btnmostrarproducto" Content="Mostrar" HorizontalAlignment="Left" Height="22" Margin="630,82,0,0" VerticalAlignment="Top" Width="75" Background="#FFFDD835" Click="btnmostrarproducto_Click" Foreground="#FFF57F17">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
@@ -99,7 +99,7 @@
         <Label Content="Nombre" HorizontalAlignment="Left" Height="25" Margin="246,260,0,0" VerticalAlignment="Top" Width="52" Background="Transparent" Foreground="#FFF57F17" FontWeight="Bold"/>
         <Label Content="Precio" HorizontalAlignment="Left" Height="23" Margin="356,260,0,0" VerticalAlignment="Top" Width="72" Foreground="#FFF57F17" FontWeight="Bold"/>
         <Label Content="Cantidad" HorizontalAlignment="Left" Height="25" Margin="464,260,0,0" VerticalAlignment="Top" Width="98" Foreground="#FFF57F17" FontWeight="Bold"/>
-        <Button x:Name="btnagregarproducto" Content="Agregar a carrito" HorizontalAlignment="Left" Height="24" Margin="719,278,0,0" VerticalAlignment="Top" Width="95" Foreground="#FFF57F17" Background="#FFFDD835">
+        <Button x:Name="btnagregarproducto" Content="Agregar a carrito" HorizontalAlignment="Left" Height="22" Margin="719,278,0,0" VerticalAlignment="Top" Width="95" Foreground="#FFF57F17" Background="#FFFDD835">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
@@ -112,7 +112,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button x:Name="btncancelarventa" Content="Cancelar venta" HorizontalAlignment="Left" Margin="828,278,0,0" VerticalAlignment="Top" Background="#FFFDD835" Foreground="#FFF57F17" Width="95" Height="24">
+        <Button x:Name="btncancelarventa" Content="Cancelar venta" HorizontalAlignment="Left" Margin="828,278,0,0" VerticalAlignment="Top" Background="#FFFDD835" Foreground="#FFF57F17" Width="95" Height="22">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
@@ -125,35 +125,9 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <GroupBox x:Name="grupbox" HorizontalAlignment="Left" Height="525" Header="Detalle de venta" Margin="225,334,0,0" VerticalAlignment="Top" Width="940" Foreground="#FFF57F17" BorderBrush="#FFFF5200"/>
-        <DataGrid HorizontalAlignment="Left" Height="368" Margin="246,467,0,0" VerticalAlignment="Top" Width="650" d:ItemsSource="{d:SampleData ItemCount=5}"/>
-        <Button x:Name="btncancelarventa1" Content="Cancelar venta" HorizontalAlignment="Left" Margin="921,572,0,0" VerticalAlignment="Top" Width="88" Height="24" Background="#FFFDD835" Foreground="#FFF57F17">
-        <Button.Template>
-            <ControlTemplate TargetType="Button">
-                <Border Background="{TemplateBinding Background}"
- BorderBrush="{TemplateBinding BorderBrush}"
- BorderThickness="1"
- CornerRadius="5">
-                    <!-- Cambia este valor para ajustar el radio -->
-                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Border>
-            </ControlTemplate>
-        </Button.Template>
-        </Button>
-        <Button x:Name="btnpagar" Content="Realizar pago" HorizontalAlignment="Left" Margin="921,622,0,0" VerticalAlignment="Top" Width="88" Background="#FFFDD835" Foreground="#FFF57F17" Height="29">
-        <Button.Template>
-            <ControlTemplate TargetType="Button">
-                <Border Background="{TemplateBinding Background}"
- BorderBrush="{TemplateBinding BorderBrush}"
- BorderThickness="1"
- CornerRadius="5">
-                    <!-- Cambia este valor para ajustar el radio -->
-                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Border>
-            </ControlTemplate>
-        </Button.Template>
-        </Button>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="1028,572,0,0" VerticalAlignment="Top" Background="#FFFDD835" Foreground="#FFF57F17" Height="24" Width="69">
+        <GroupBox x:Name="grupbox" HorizontalAlignment="Left" Height="421" Header="Detalle de venta" Margin="228,340,0,0" VerticalAlignment="Top" Width="940" Foreground="#FFF57F17" BorderBrush="#FFFF5200"/>
+        <DataGrid HorizontalAlignment="Left" Height="368" Margin="249,369,0,0" VerticalAlignment="Top" Width="650" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <Button x:Name="btncancelarventa1" Content="Cancelar venta" HorizontalAlignment="Left" Margin="924,474,0,0" VerticalAlignment="Top" Width="88" Height="22" Background="#FFFDD835" Foreground="#FFF57F17">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
@@ -166,7 +140,33 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="1028,622,0,0" VerticalAlignment="Top" Background="#FFFDD835" Foreground="#FFF57F17" Width="69" Height="29">
+        <Button x:Name="btnpagar" Content="Realizar pago" HorizontalAlignment="Left" Margin="924,524,0,0" VerticalAlignment="Top" Width="88" Background="#FFFDD835" Foreground="#FFF57F17" Height="22">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+ BorderBrush="{TemplateBinding BorderBrush}"
+ BorderThickness="1"
+ CornerRadius="5">
+                        <!-- Cambia este valor para ajustar el radio -->
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="1031,474,0,0" VerticalAlignment="Top" Background="#FFFDD835" Foreground="#FFF57F17" Height="22" Width="69">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+ BorderBrush="{TemplateBinding BorderBrush}"
+ BorderThickness="1"
+ CornerRadius="5">
+                        <!-- Cambia este valor para ajustar el radio -->
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="1031,524,0,0" VerticalAlignment="Top" Background="#FFFDD835" Foreground="#FFF57F17" Width="69" Height="22">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
