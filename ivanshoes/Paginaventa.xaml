@@ -9,12 +9,46 @@
       d:DesignHeight="900"
       Title="Paginaventa" Width="1200">
 
+    <Page.Resources>
+        <Style TargetType="GroupBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="GroupBox">
+                        <Grid>
+                            <Border BorderBrush="#FFEA3500" 
+                                    BorderThickness="2" 
+                                    CornerRadius="15" 
+                                    Padding="5"
+                                    Background="{x:Null}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <ContentPresenter Grid.Row="0" 
+                                                      ContentSource="Header" 
+                                                      HorizontalAlignment="Left" 
+                                                      VerticalAlignment="Center"
+                                                      Margin="10,0,0,0"
+                                                       />
+                                    <ContentPresenter Grid.Row="1" 
+                                                      ContentSource="Content" 
+                                                      Margin="5"/>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
     <Grid Margin="-1,0,1,0">
-        <TextBox x:Name="txtdnicliente" HorizontalAlignment="Left" Margin="15,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Dni cliente" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF57F17"/>
-        <Label Content="Dni empleado" HorizontalAlignment="Left" Margin="15,112,0,0" VerticalAlignment="Top" Foreground="#FFF57F17"/>
-        <TextBox x:Name="txtdniempleado" HorizontalAlignment="Left" Margin="15,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnverificarcliente" Content="Verficar" HorizontalAlignment="Left" Margin="145,84,0,0" VerticalAlignment="Top" Width="60" Background="#FFFFEB3B" Click="Button_Click" Foreground="#FFF57F17" Height="22">
+        <TextBox x:Name="txtdnicliente" HorizontalAlignment="Left" Margin="15,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="txtdnicliente_PreviewTextInput" MaxLines="100" MaxLength="8" FontSize="18"/>
+        <Label Content="Dni cliente" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF57F17" FontSize="18"/>
+        <Label Content="Dni empleado" HorizontalAlignment="Left" Margin="10,121,0,0" VerticalAlignment="Top" Foreground="#FFF57F17" FontSize="18"/>
+        <TextBox x:Name="txtdniempleado" HorizontalAlignment="Left" Margin="15,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="txtdniempleado_PreviewTextInput" FontSize="18"/>
+        <Button x:Name="btnverificarcliente" Content="Verficar" HorizontalAlignment="Left" Margin="151,95,0,0" VerticalAlignment="Top" Width="79" Background="#FFFFEB3B" Click="Button_Click" Foreground="#FFF57F17" Height="26" FontWeight="Bold" FontSize="18">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
@@ -27,7 +61,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button x:Name="dgvgenerarorden" Content="generar orden de venta" HorizontalAlignment="Left" Margin="70,167,0,0" VerticalAlignment="Top" Width="135" Height="22" Foreground="#FFF57F17" Background="#FFFDD835" Click="dgvgenerarorden_Click">
+        <Button x:Name="dgvgenerarorden" Content="generar orden de venta" HorizontalAlignment="Left" Margin="15,197,0,0" VerticalAlignment="Top" Width="202" Height="28" Foreground="#FFF57F17" Background="#FFFDD835" Click="dgvgenerarorden_Click" FontWeight="Bold" FontSize="18">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
@@ -40,8 +74,8 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Border BorderBrush="#FFFFAF00" BorderThickness="1" HorizontalAlignment="Left" Height="186" Margin="225,69,0,0" VerticalAlignment="Top" Width="940"/>
-        <Button x:Name="btnbuscarproducto" Content="Buscar" HorizontalAlignment="Left" Margin="470,84,0,0" VerticalAlignment="Top" Height="22" Width="85" Background="#FFFDD835" Foreground="#FFF57F17">
+        <Border BorderBrush="#FFEA3500" BorderThickness="1" HorizontalAlignment="Left" Height="191" Margin="235,69,0,0" VerticalAlignment="Top" Width="930" CornerRadius="15"/>
+        <Button x:Name="btnbuscarproducto" Content="Buscar" HorizontalAlignment="Left" Margin="470,92,0,0" VerticalAlignment="Top" Height="22" Width="86" Background="#FFFDD835" Foreground="#FFF57F17" FontWeight="Bold" Click="btnbuscarproducto_Click">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
@@ -54,9 +88,25 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <DataGrid x:Name="dgvproducto" HorizontalAlignment="Left" Height="130" Margin="235,113,0,0" VerticalAlignment="Top" Width="915" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="dgvproducto_SelectionChanged"/>
-        <TextBox x:Name="txtbuscar" HorizontalAlignment="Left" Height="20" Margin="235,85,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="200"/>
-        <Button x:Name="btnmostrarproducto" Content="Mostrar" HorizontalAlignment="Left" Height="22" Margin="630,82,0,0" VerticalAlignment="Top" Width="75" Background="#FFFDD835" Click="btnmostrarproducto_Click" Foreground="#FFF57F17">
+
+        <DataGrid x:Name="dgvproducto" HorizontalAlignment="Left" Height="121" Margin="242,125,0,0" VerticalAlignment="Top" Width="908" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="dgvproducto_SelectionChanged" ColumnWidth="*" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="Black"
+                  RowBackground="#FFFFF0AB">
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#FF07487B" />
+                    <!-- Fondo del encabezado -->
+                    <Setter Property="Foreground" Value="White" />
+                    <!-- Color del texto del encabezado -->
+                    <Setter Property="FontWeight" Value="ExtraBold" />
+                    <!-- Texto en negrita -->
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <!-- Texto centrado -->
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+        </DataGrid>
+
+        <TextBox x:Name="txtbuscar" HorizontalAlignment="Left" Height="20" Margin="242,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" FontWeight="Bold"/>
+        <Button x:Name="btnmostrarproducto" Content="Mostrar" HorizontalAlignment="Left" Height="22" Margin="620,92,0,0" VerticalAlignment="Top" Width="75" Background="#FFFDD835" Click="btnmostrarproducto_Click" Foreground="#FFF57F17" FontWeight="Bold">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
@@ -69,25 +119,25 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Border BorderBrush="Yellow" BorderThickness="1" HorizontalAlignment="Left" Height="58" Margin="235,260,0,0" VerticalAlignment="Top" Width="457">
+        <Border BorderBrush="Yellow" BorderThickness="1" HorizontalAlignment="Left" Height="58" Margin="235,272,0,0" VerticalAlignment="Top" Width="457">
             <Border.Background>
                 <SolidColorBrush Color="Yellow" Opacity="0.85"/>
             </Border.Background>
-            <TextBox x:Name="txtsubtotal" HorizontalAlignment="Left" Height="42" Margin="333,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="66" FontWeight="Bold"/>
+            <TextBox x:Name="txtsubtotal" HorizontalAlignment="Left" Height="20" Margin="349,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="66" FontWeight="Bold"/>
         </Border>
-        <TextBlock x:Name="txtnompro" HorizontalAlignment="Left" Margin="270,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="Black" Width="48" Text="z" FontWeight="Bold" />
+        <TextBlock x:Name="txtnompro" HorizontalAlignment="Left" Margin="270,298,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="Black" Width="48" Text="z" FontWeight="Bold" />
 
-        <TextBlock x:Name="txtprecpro" HorizontalAlignment="Left" Margin="376,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="Black" Width="50" Text="z" FontWeight="Bold"/>
+        <TextBlock x:Name="txtprecpro" HorizontalAlignment="Left" Margin="376,298,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="Black" Width="50" Text="z" FontWeight="Bold"/>
         <xctk:IntegerUpDown Name="numericUpDown"
                             Minimum="0"
                             Maximum="100"
-                            Value="1"
+                            Value="0"
                             Width="50"
                             Height="20"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Foreground="Black"
-                            Background="#FFFDE7" BorderBrush="#FF9A0000" Margin="468,286,0,0" FontWeight="Bold" ValueChanged="numericUpDown_ValueChanged">
+                            Background="#FFFDE7" BorderBrush="#FF9A0000" Margin="468,298,0,0" FontWeight="Bold" ValueChanged="numericUpDown_ValueChanged">
             <xctk:IntegerUpDown.Resources>
                 <Style TargetType="RepeatButton">
                     <Setter Property="Background" Value="Blue"/>
@@ -96,10 +146,10 @@
                 </Style>
             </xctk:IntegerUpDown.Resources>
         </xctk:IntegerUpDown>
-        <Label Content="Nombre" HorizontalAlignment="Left" Height="25" Margin="246,260,0,0" VerticalAlignment="Top" Width="52" Background="Transparent" Foreground="#FFF57F17" FontWeight="Bold"/>
-        <Label Content="Precio" HorizontalAlignment="Left" Height="23" Margin="356,260,0,0" VerticalAlignment="Top" Width="72" Foreground="#FFF57F17" FontWeight="Bold"/>
-        <Label Content="Cantidad" HorizontalAlignment="Left" Height="25" Margin="464,260,0,0" VerticalAlignment="Top" Width="98" Foreground="#FFF57F17" FontWeight="Bold"/>
-        <Button x:Name="btnagregarproducto" Content="Agregar a carrito" HorizontalAlignment="Left" Height="22" Margin="719,278,0,0" VerticalAlignment="Top" Width="95" Foreground="#FFF57F17" Background="#FFFDD835">
+        <Label Content="Nombre" HorizontalAlignment="Left" Height="25" Margin="242,265,0,0" VerticalAlignment="Top" Width="52" Background="Transparent" Foreground="#FFF57F17" FontWeight="Bold"/>
+        <Label Content="Precio" HorizontalAlignment="Left" Height="23" Margin="354,266,0,0" VerticalAlignment="Top" Width="72" Foreground="#FFF57F17" FontWeight="Bold"/>
+        <Label Content="Cantidad" HorizontalAlignment="Left" Height="25" Margin="464,265,0,0" VerticalAlignment="Top" Width="98" Foreground="#FFF57F17" FontWeight="Bold"/>
+        <Button x:Name="btnagregarproducto" Content="Agregar a carrito" HorizontalAlignment="Left" Height="22" Margin="715,290,0,0" VerticalAlignment="Top" Width="99" Foreground="#FFF57F17" Background="#FFFDD835" FontWeight="Bold" Click="btnagregarproducto_Click">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
@@ -112,7 +162,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button x:Name="btncancelarventa" Content="Cancelar venta" HorizontalAlignment="Left" Margin="828,278,0,0" VerticalAlignment="Top" Background="#FFFDD835" Foreground="#FFF57F17" Width="95" Height="22">
+        <Button x:Name="btncancelarventa" Content="Cancelar venta" HorizontalAlignment="Left" Margin="828,290,0,0" VerticalAlignment="Top" Background="#FFFDD835" Foreground="#FFF57F17" Width="95" Height="22" FontWeight="Bold">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
@@ -125,9 +175,22 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <GroupBox x:Name="grupbox" HorizontalAlignment="Left" Height="421" Header="Detalle de venta" Margin="228,340,0,0" VerticalAlignment="Top" Width="940" Foreground="#FFF57F17" BorderBrush="#FFFF5200"/>
-        <DataGrid HorizontalAlignment="Left" Height="368" Margin="249,369,0,0" VerticalAlignment="Top" Width="650" d:ItemsSource="{d:SampleData ItemCount=5}"/>
-        <Button x:Name="btncancelarventa1" Content="Cancelar venta" HorizontalAlignment="Left" Margin="924,474,0,0" VerticalAlignment="Top" Width="88" Height="22" Background="#FFFDD835" Foreground="#FFF57F17">
+        <GroupBox x:Name="grupbox" HorizontalAlignment="Left" Height="421" Header="Detalle de venta" Margin="228,340,0,0" VerticalAlignment="Top" Width="940" Foreground="#FFD06A0F" BorderBrush="#FFA93B05" Background="#FFD01212" />
+        <DataGrid x:Name="dgvdetalleventa" HorizontalAlignment="Left" Height="368" Margin="249,369,0,0" VerticalAlignment="Top" Width="650" d:ItemsSource="{d:SampleData ItemCount=5}" ColumnWidth="*" RowBackground="#FFFFF0AB" Background="{x:Null}">
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#FF07487B" />
+                    <!-- Fondo del encabezado -->
+                    <Setter Property="Foreground" Value="White" />
+                    <!-- Color del texto del encabezado -->
+                    <Setter Property="FontWeight" Value="ExtraBold" />
+                    <!-- Texto en negrita -->
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <!-- Texto centrado -->
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+        </DataGrid>
+        <Button x:Name="btncancelarventa1" Content="Cancelar venta" HorizontalAlignment="Left" Margin="924,474,0,0" VerticalAlignment="Top" Width="88" Height="22" Background="#FFFDD835" Foreground="#FFF57F17" FontWeight="Bold">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
@@ -140,7 +203,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button x:Name="btnpagar" Content="Realizar pago" HorizontalAlignment="Left" Margin="924,524,0,0" VerticalAlignment="Top" Width="88" Background="#FFFDD835" Foreground="#FFF57F17" Height="22">
+        <Button x:Name="btnpagar" Content="Realizar pago" HorizontalAlignment="Left" Margin="924,524,0,0" VerticalAlignment="Top" Width="88" Background="#FFFDD835" Foreground="#FFF57F17" Height="22" FontWeight="Bold">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
@@ -153,7 +216,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="1031,474,0,0" VerticalAlignment="Top" Background="#FFFDD835" Foreground="#FFF57F17" Height="22" Width="69">
+        <Button x:Name="btnpedido" Content="Programar pedido" HorizontalAlignment="Left" Margin="1031,474,0,0" VerticalAlignment="Top" Background="#FFFDD835" Foreground="#FFF57F17" Height="22" Width="119" FontWeight="Bold">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
@@ -166,7 +229,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="1031,524,0,0" VerticalAlignment="Top" Background="#FFFDD835" Foreground="#FFF57F17" Width="69" Height="22">
+        <Button Content="Button" HorizontalAlignment="Left" Margin="1031,524,0,0" VerticalAlignment="Top" Background="#FFFDD835" Foreground="#FFF57F17" Width="119" Height="22">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
@@ -179,5 +242,6 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
+        <Label Content="Productos" HorizontalAlignment="Left" Height="25" Margin="242,64,0,0" VerticalAlignment="Top" Width="177" Foreground="#FFF57F17" FontWeight="Bold"/>
     </Grid>
 </Page>

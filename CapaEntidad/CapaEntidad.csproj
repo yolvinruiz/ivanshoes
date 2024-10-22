@@ -49,8 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="entCliente.cs" />
+    <Compile Include="entDetalleVenta.cs" />
     <Compile Include="entEmpleado.cs" />
     <Compile Include="entProducto.cs" />
+    <Compile Include="entVenta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

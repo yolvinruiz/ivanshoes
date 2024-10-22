@@ -64,8 +64,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="logCliente.cs" />
+    <Compile Include="logDetalleVenta.cs" />
     <Compile Include="logEmpleado.cs" />
     <Compile Include="logProducto.cs" />
+    <Compile Include="logVenta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
