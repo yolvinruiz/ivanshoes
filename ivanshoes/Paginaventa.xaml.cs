@@ -27,9 +27,11 @@ namespace ivanshoes
     {
         public string idventap;
         public string idproductop;
+        
         public Paginaventa()
         {
             InitializeComponent();
+
         }
         private async void verificarcliente(int dnia)
         {
@@ -77,19 +79,6 @@ namespace ivanshoes
                 }
             }
         }
-
-        private void numericUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            if (numericUpDown != null && numericUpDown.Value != null)
-            {
-                double precio = 0;
-                double.TryParse(txtprecpro.Text.Trim(), out precio);
-                int cantidad = numericUpDown.Value ?? 1;
-                double subtotal = cantidad * precio;
-                txtsubtotal.Text = $"{subtotal:F2}";
-            }
-        }
-
         private void dgvgenerarorden_Click(object sender, RoutedEventArgs e)
         {
             int dni = Convert.ToInt32(txtdniempleado.Text.Trim());
@@ -147,6 +136,7 @@ namespace ivanshoes
                 txtnompro.Text = row.NombreTipoProducto.ToString();
                 txtprecpro.Text = Convert.ToDouble(row.precio).ToString("F2");
                 idproductop = Convert.ToString(row.id_producto).ToString();
+                ActualizarPrecio(Convert.ToDouble(txtprecpro.Text));
             }
         }
 
@@ -191,7 +181,7 @@ namespace ivanshoes
                     id_Producto = Convert.ToInt32(idproductop),
                     Cantidad = Convert.ToInt32(numericUpDown.Value),
                     Preciounitario = Convert.ToDouble(txtprecpro.Text),
-                    Subtotal = Convert.ToDouble(txtsubtotal.Text)
+                    Subtotal = Convert.ToDouble(txtsubtotalpro.Text)
                 });
                 dgvdetalleventa.ItemsSource = detallesVenta;
                 foreach (var column in dgvdetalleventa.Columns)
@@ -203,11 +193,51 @@ namespace ivanshoes
                         column.Visibility = Visibility.Collapsed;
                     }
                 }
+                double totalVenta = CalcularTotal(detallesVenta);
+                txttotalv.Text = totalVenta.ToString("F2");
             }
             catch (Exception ex)
             {
                 System.Windows.MessageBox.Show("Ocurrió un error al cargar los detalles de la venta: " + ex.Message);
             }
+
         }
+        private void CalcularSubtotal()
+        {
+            if (numericUpDown != null && txtprecpro != null && txtsubtotalpro != null)
+            {
+                // Intentar convertir el valor del precio a un número
+                if (double.TryParse(txtprecpro.Text, out double precio) && precio > 0)
+                {
+                    // Obtener la cantidad desde el NumericUpDown
+                    int cantidad = Convert.ToInt32(numericUpDown.Value);
+
+                    // Calcular el subtotal
+                    double subtotal = precio * cantidad;
+
+                    // Actualizar el TextBox del subtotal
+                    txtsubtotalpro.Text = subtotal.ToString("F2");
+                }
+                else
+                {
+                    // Si el precio no es válido, establecer el subtotal a 0.00
+                    txtsubtotalpro.Text = "0.00";
+                }
+            }
+        }
+        private void ActualizarPrecio(double nuevoPrecio)
+        {
+            txtprecpro.Text = nuevoPrecio.ToString("F2");  // Actualiza el TextBlock con el nuevo precio
+            CalcularSubtotal();  // Recalcula el subtotal cada vez que se actualice el precio
+        }
+        private void numericUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            CalcularSubtotal();
+        }
+        public double CalcularTotal(List<entDetalleVenta> detalles)
+        {
+            return detalles.Sum(d => d.Subtotal);  // Suma todos los subtotales de la lista
+        }
+
     }
 }
