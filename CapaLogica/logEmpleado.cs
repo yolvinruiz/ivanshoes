@@ -43,5 +43,13 @@ namespace CapaLogica
         {
             return datEmpleado.Instancia.ExisteEmpleadoPorDNI(dni);
         }
+        public string obtenernombredecargo(int x)
+        {
+            return datEmpleado.Instancia.obtenernombredecargo(x);
+        }
+        public entEmpleado bucarempleadopordni(int dni)
+        {
+            return datEmpleado.Instancia.BuscarEmpleadoPorDNI(dni);
+        }
     }
 }

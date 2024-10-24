@@ -15,23 +15,13 @@ using System.Windows.Shapes;
 namespace ivanshoes
 {
     /// <summary>
-    /// Lógica de interacción para Login.xaml
+    /// Lógica de interacción para Pago.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class Pago : Window
     {
-        public Login()
+        public Pago()
         {
             InitializeComponent();
         }
-
-        private void btnempleado_Click(object sender, RoutedEventArgs e)
-        {
-            Administrador emp = new Administrador();
-            this.Hide();
-            emp.ShowDialog();
-            this.Show();
-        }
-
-
     }
 }

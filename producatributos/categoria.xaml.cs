@@ -10,28 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ivanshoes
+namespace producatributos
 {
     /// <summary>
-    /// Lógica de interacción para Login.xaml
+    /// Lógica de interacción para categoria.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class categoria : Page
     {
-        public Login()
+        public categoria()
         {
             InitializeComponent();
         }
-
-        private void btnempleado_Click(object sender, RoutedEventArgs e)
-        {
-            Administrador emp = new Administrador();
-            this.Hide();
-            emp.ShowDialog();
-            this.Show();
-        }
-
-
     }
 }

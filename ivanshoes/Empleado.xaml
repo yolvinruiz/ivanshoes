@@ -10,36 +10,57 @@
     <Border CornerRadius="20"
             >
 
-        <Grid Background="#FFFFF9C4">
+        <Grid Background="#FF2F2E2E">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="29*"/>
+                <ColumnDefinition Width="171*"/>
             </Grid.ColumnDefinitions>
             <!-- Contenedor de Navegación -->
-            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="822" Margin="0,62,0,0" VerticalAlignment="Top" Width="202">
-                <Button x:Name="btnVenta" Content="Ventas" HorizontalAlignment="Left" Height="91" VerticalAlignment="Top" Width="202" Click="btnVenta_Click" Foreground="White" FontSize="18" BorderBrush="White">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="#FFA5590C"/>
-                            <GradientStop Color="#FFFFD9B2" Offset="1"/>
-                            <GradientStop Color="#FFB78450" Offset="0.52"/>
-                        </LinearGradientBrush>
-                    </Button.Background>
-                </Button>
-            </Border>
 
 
             <!-- Contenedor de Navegación -->
             <Frame x:Name="MainFrame"
-               NavigationUIVisibility="Hidden" Margin="207,0,10,0" />
-            <Label x:Name="lavel1" Content="Ivan shoes" HorizontalAlignment="Left" Margin="18,16,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="MingLiU_HKSCS-ExtB" FontWeight="Bold"/>
-            <Button x:Name="btnPedidos" Content="Pedidos" HorizontalAlignment="Left" Height="91" VerticalAlignment="Top" Width="202" Margin="0,156,0,0" Click="btnPedidos_Click" FontSize="18" BorderBrush="White" Foreground="White">
+               NavigationUIVisibility="Hidden" Margin="4,69,10,10" Grid.Column="1" />
+            <Label x:Name="lavel1" Content="IVAN" HorizontalAlignment="Center" Margin="0,16,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Goudy Stout" FontWeight="Bold" Foreground="Red" Height="47" Width="184"/>
+            <Button x:Name="btnPedidos" Content="Pedidos" HorizontalAlignment="Center" Height="92" VerticalAlignment="Top" Width="202" Margin="0,124,0,0" Click="btnPedidos_Click" FontSize="18" BorderBrush="White" Foreground="White">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FFA5590C"/>
+                        <GradientStop Color="#FFA50C0C"/>
                         <GradientStop Color="#FFF5DFC9" Offset="1"/>
-                        <GradientStop Color="#FFB78450" Offset="0.507"/>
+                        <GradientStop Color="#FFB75050" Offset="0.507"/>
                     </LinearGradientBrush>
                 </Button.Background>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                   BorderBrush="{TemplateBinding BorderBrush}"
+                                   BorderThickness="1"
+                                   CornerRadius="10">
+                            <!-- Cambia este valor para ajustar el radio -->
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Label x:Name="lavel1_Copiar" Content="SHOES" HorizontalAlignment="Left" Margin="0,58,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Goudy Stout" FontWeight="Bold" Foreground="Red" Height="46" Width="184"/>
+            <Button x:Name="btnVenta" Content="Vender" HorizontalAlignment="Center" Height="90" VerticalAlignment="Top" Width="202" Click="btnVenta_Click" Foreground="White" FontSize="18" BorderBrush="White" Margin="0,221,0,0">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFA50C0C"/>
+                        <GradientStop Color="#FFFFD9B2" Offset="1"/>
+                        <GradientStop Color="#FFB75050" Offset="0.52"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+         BorderBrush="{TemplateBinding BorderBrush}"
+         BorderThickness="1"
+         CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
             </Button>
 
 

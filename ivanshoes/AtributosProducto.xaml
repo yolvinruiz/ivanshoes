@@ -1,0 +1,22 @@
+﻿<Window x:Class="ivanshoes.AtributosProducto"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ivanshoes"
+        mc:Ignorable="d"
+        Title="AtributosProducto" Height="350" Width="500"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="btntipoproducto" Content="TipoProducto" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="112" Click="btntipoproducto_Click" FontSize="18" Background="{x:Null}"/>
+        <Frame x:Name="atripro" Content="" NavigationUIVisibility="Hidden" Margin="117,0,0,0"/>
+        <Button x:Name="btnmarca" Content="Marca" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="112" Click="btnmarca_Click" Margin="0,35,0,0" FontSize="18" Background="{x:Null}"/>
+        <Button x:Name="btntalla" Content="Talla" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="112" Click="btntalla_Click" Margin="0,70,0,0" FontSize="18" Background="{x:Null}"/>
+        <Button x:Name="btncolores" Content="Colores" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="112" Click="btncolores_Click" Margin="0,105,0,0" FontSize="18" Background="{x:Null}"/>
+        <Button x:Name="btncategoria" Content="Categorias" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="112" Click="btncategoria_Click" Margin="0,140,0,0" FontSize="18" Background="{x:Null}"/>
+
+    </Grid>
+</Window>

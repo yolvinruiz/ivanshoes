@@ -30,6 +30,7 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("@apellidos", empleado.Apellidos);
                 cmd.Parameters.AddWithValue("@dni", empleado.DNI);
                 cmd.Parameters.AddWithValue("@telefono", empleado.Telefono);
+                cmd.Parameters.AddWithValue("@correo", empleado.correo);
                 cmd.Parameters.AddWithValue("@nombre_cargo", empleado.NombreCargo);
                 cmd.Parameters.AddWithValue("@estado", empleado.Estado);
 
@@ -209,6 +210,55 @@ namespace CapaDatos
                     cmd.Connection.Close();
             }
             return existe;
+        }
+        public entEmpleado BuscarEmpleadoPorDNI(int dni)
+        {
+            SqlCommand cmd = null;
+            entEmpleado empleado = null;
+            try
+            {
+                SqlConnection cn = Conexion.Instancia.Conectar();
+                cmd = new SqlCommand("BuscarEmpleadoPorDNI", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@DNI", dni);
+
+                cn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    empleado = new entEmpleado()
+                    {
+                        ID_Empleado = Convert.ToInt32(dr["ID_Empleado"]),
+                        Nombre = dr["Nombre"].ToString(),
+                        Apellidos = dr["Apellidos"].ToString(),
+                        DNI = Convert.ToInt32(dr["Dni"]),
+                        Telefono = Convert.ToInt32(dr["Telefono"]),
+                        correo = dr["Correo"].ToString(),
+                        id_Cargo = Convert.ToInt32(dr["id_Cargo"]),
+                        Estado = Convert.ToBoolean(dr["Estado"])
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+            return empleado;
+        }
+        public string obtenernombredecargo(int id)
+        {
+            using (SqlConnection cn = Conexion.Instancia.Conectar())
+            {
+                SqlCommand cmd = new SqlCommand("SELECT Nombre FROM Cargo WHERE id_Cargo = @id", cn);
+                cmd.Parameters.AddWithValue("@id", id);
+                cn.Open();
+                object result = cmd.ExecuteScalar();
+                return result != null ? result.ToString() : string.Empty;
+            }
         }
     }
 }

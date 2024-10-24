@@ -194,7 +194,7 @@ namespace ivanshoes
                     }
                 }
                 double totalVenta = CalcularTotal(detallesVenta);
-                txttotalv.Text = totalVenta.ToString("F2");
+                txttotalv.Text = totalVenta.ToString("F2") + "";
             }
             catch (Exception ex)
             {
@@ -204,6 +204,7 @@ namespace ivanshoes
         }
         private void CalcularSubtotal()
         {
+            try { 
             if (numericUpDown != null && txtprecpro != null && txtsubtotalpro != null)
             {
                 // Intentar convertir el valor del precio a un número
@@ -223,12 +224,17 @@ namespace ivanshoes
                     // Si el precio no es válido, establecer el subtotal a 0.00
                     txtsubtotalpro.Text = "0.00";
                 }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show("Ocurrió un error: " + ex.Message);
             }
         }
         private void ActualizarPrecio(double nuevoPrecio)
         {
-            txtprecpro.Text = nuevoPrecio.ToString("F2");  // Actualiza el TextBlock con el nuevo precio
-            CalcularSubtotal();  // Recalcula el subtotal cada vez que se actualice el precio
+            txtprecpro.Text = nuevoPrecio.ToString("F2");
+            CalcularSubtotal();  
         }
         private void numericUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
@@ -236,8 +242,13 @@ namespace ivanshoes
         }
         public double CalcularTotal(List<entDetalleVenta> detalles)
         {
-            return detalles.Sum(d => d.Subtotal);  // Suma todos los subtotales de la lista
+            return detalles.Sum(d => d.Subtotal);
         }
 
+        private void btnpagar_Click(object sender, RoutedEventArgs e)
+        {
+            Pago pago = new Pago();
+            pago.Show();
+        }
     }
 }

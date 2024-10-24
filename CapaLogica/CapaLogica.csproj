@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="logCargo.cs" />
     <Compile Include="logCliente.cs" />
     <Compile Include="logDetalleVenta.cs" />
     <Compile Include="logEmpleado.cs" />

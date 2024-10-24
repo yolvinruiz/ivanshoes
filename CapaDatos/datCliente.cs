@@ -214,6 +214,42 @@ namespace CapaDatos
             }
             return idCliente;
         }
+        public entCliente BuscarClientePorDNI(int dni)
+        {
+            SqlCommand cmd = null;
+            entCliente cliente = null;
+            try
+            {
+                SqlConnection cn = Conexion.Instancia.Conectar();
+                cmd = new SqlCommand("BuscarClientePorDNI", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@DNI", dni);
+
+                cn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    cliente = new entCliente
+                    {
+                        id_Cliente = Convert.ToInt32(dr["id_Cliente"]),
+                        Nombre = dr["Nombre"].ToString(),
+                        Apellido = dr["Apellido"].ToString(),
+                        DNI = Convert.ToInt32(dr["DNI"]),
+                        Telefono = Convert.ToInt32(dr["Telefono"]),
+                        Estado = Convert.ToBoolean(dr["Estado"])
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+            return cliente;
+        }
 
     }
 }
