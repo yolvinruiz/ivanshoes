@@ -250,5 +250,11 @@ namespace ivanshoes
             Pago pago = new Pago();
             pago.Show();
         }
+
+        private void btnpedido_Click(object sender, RoutedEventArgs e)
+        {
+            Pedido pedido = new Pedido(Convert.ToInt32(idventap));
+            pedido.Show();
+        }
     }
 }

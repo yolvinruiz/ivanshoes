@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ivanshoes
 {
     /// <summary>
-    /// Lógica de interacción para Paginapedido.xaml
+    /// Lógica de interacción para VentanaPagoEfectivo.xaml
     /// </summary>
-    public partial class Paginapedido : Page
+    public partial class VentanaPagoEfectivo : Page
     {
-        public Paginapedido()
+        public VentanaPagoEfectivo()
         {
             InitializeComponent();
         }

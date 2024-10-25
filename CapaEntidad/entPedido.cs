@@ -9,7 +9,6 @@ namespace CapaEntidad
     public class entPedido
     {
         public int Id { get; set; }
-        public int idpedido { get; set; }
         public DateTime Fecha { get; set; }
         public DateTime FechaEnvio { get; set; }
         public DateTime FechaEntrega { get; set; }
@@ -17,5 +16,6 @@ namespace CapaEntidad
         public string Direccion { get; set; }
         public string Ciudad { get; set; }
         public string NumeroSeguimiento { get; set; }
+        public int ID_venta { get; set; }
     }
 }

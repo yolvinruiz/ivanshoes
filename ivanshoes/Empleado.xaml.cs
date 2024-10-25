@@ -36,7 +36,7 @@ namespace ivanshoes
 
         private void btnPedidos_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new Paginapedido());
+            
         }
     }
 }

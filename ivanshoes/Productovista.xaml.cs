@@ -17,15 +17,18 @@ using System.Windows.Shapes;
 
 namespace ivanshoes
 {
-    /// <summary>
-    /// Lógica de interacción para Productovista.xaml
-    /// </summary>
     public partial class Productovista : Window
     {
         public Productovista()
         {
             InitializeComponent();
-            listarproducto();
+            this.Loaded += Productovista_Loaded;
+        }
+        private async void Productovista_Loaded(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(500);
+
+            btnActualizar_Click(this, null);
         }
         public void listarproducto()
         {

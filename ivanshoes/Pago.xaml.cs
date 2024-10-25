@@ -23,5 +23,10 @@ namespace ivanshoes
         {
             InitializeComponent();
         }
+
+        private void btnefectivo_Click(object sender, RoutedEventArgs e)
+        {
+            cambio.Navigate(new VentanaPagoEfectivo());
+        }
     }
 }
