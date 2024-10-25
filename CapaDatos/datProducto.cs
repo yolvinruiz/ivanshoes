@@ -166,7 +166,6 @@ namespace CapaDatos
             }
             return elimina;
         }
-        /////////////////////////llenacombobox/////////////////////////
 
         public DataTable Obtenertalla()
         {
