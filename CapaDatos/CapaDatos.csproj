@@ -49,10 +49,18 @@
   <ItemGroup>
     <Compile Include="Conexion.cs" />
     <Compile Include="datCargo.cs" />
+    <Compile Include="datCategoria.cs" />
     <Compile Include="datCliente.cs" />
+    <Compile Include="datColor.cs" />
     <Compile Include="datDetalleVenta.cs" />
     <Compile Include="datEmpleado.cs" />
+    <Compile Include="datLogin.cs" />
+    <Compile Include="datMarca.cs" />
+    <Compile Include="datPago.cs" />
+    <Compile Include="datPedido.cs" />
     <Compile Include="datProducto.cs" />
+    <Compile Include="datTalla.cs" />
+    <Compile Include="datTipo_producto.cs" />
     <Compile Include="datVenta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

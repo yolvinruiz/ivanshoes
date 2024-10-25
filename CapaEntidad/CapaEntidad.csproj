@@ -49,10 +49,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="entCargo.cs" />
+    <Compile Include="entCategoria.cs" />
     <Compile Include="entCliente.cs" />
+    <Compile Include="entColor.cs" />
     <Compile Include="entDetalleVenta.cs" />
     <Compile Include="entEmpleado.cs" />
+    <Compile Include="entMarca.cs" />
+    <Compile Include="entPago.cs" />
+    <Compile Include="entPedido.cs" />
     <Compile Include="entProducto.cs" />
+    <Compile Include="entTalla.cs" />
+    <Compile Include="entTipo_producto.cs" />
     <Compile Include="entVenta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
