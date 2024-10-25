@@ -8,15 +8,18 @@
         Title="AtributosProducto" Height="350" Width="500"
         WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Ivan Shoes (1).png"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="btntipoproducto" Content="TipoProducto" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="112" Click="btntipoproducto_Click" FontSize="18" Background="{x:Null}"/>
+        <Button x:Name="btntipoproducto" Content="TipoProducto" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="112" Click="btntipoproducto_Click" FontSize="18" Background="{x:Null}" BorderBrush="White" Foreground="White"/>
         <Frame x:Name="atripro" Content="" NavigationUIVisibility="Hidden" Margin="117,0,0,0"/>
-        <Button x:Name="btnmarca" Content="Marca" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="112" Click="btnmarca_Click" Margin="0,35,0,0" FontSize="18" Background="{x:Null}"/>
-        <Button x:Name="btntalla" Content="Talla" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="112" Click="btntalla_Click" Margin="0,70,0,0" FontSize="18" Background="{x:Null}"/>
-        <Button x:Name="btncolores" Content="Colores" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="112" Click="btncolores_Click" Margin="0,105,0,0" FontSize="18" Background="{x:Null}"/>
-        <Button x:Name="btncategoria" Content="Categorias" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="112" Click="btncategoria_Click" Margin="0,140,0,0" FontSize="18" Background="{x:Null}"/>
+        <Button x:Name="btnmarca" Content="Marca" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="112" Click="btnmarca_Click" Margin="0,35,0,0" FontSize="18" Background="{x:Null}" Foreground="White" BorderBrush="White"/>
+        <Button x:Name="btntalla" Content="Talla" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="112" Click="btntalla_Click" Margin="0,70,0,0" FontSize="18" Background="{x:Null}" Foreground="White" BorderBrush="White"/>
+        <Button x:Name="btncolores" Content="Colores" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="112" Click="btncolores_Click" Margin="0,105,0,0" FontSize="18" Background="{x:Null}" Foreground="White" BorderBrush="White"/>
+        <Button x:Name="btncategoria" Content="Categorias" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="112" Click="btncategoria_Click" Margin="0,140,0,0" FontSize="18" Background="{x:Null}" Foreground="White" BorderBrush="White"/>
 
     </Grid>
 </Window>

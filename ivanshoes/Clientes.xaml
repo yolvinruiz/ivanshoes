@@ -9,13 +9,7 @@
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FFFFF963"/>
-                <GradientStop Color="#FF95E48A" Offset="1"/>
-                <GradientStop Color="#FFFFD579" Offset="0.247"/>
-                <GradientStop Color="#FFF9D46E" Offset="0.477"/>
-                <GradientStop Color="#FFD9F59E" Offset="0.71"/>
-            </LinearGradientBrush>
+            <ImageBrush ImageSource="/Ivan Shoes (1).png"/>
         </Grid.Background>
         <Button Content="Validar" HorizontalAlignment="Left" Margin="203,47,0,0" VerticalAlignment="Top" FontSize="18" Width="75" Click="Button_Click" Foreground="White" Background="#FF51C11F">
             <Button.Template>
@@ -30,15 +24,15 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Label Content="DNI Cliente" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="DNI Cliente" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
         <TextBox x:Name="txtdnicliente" HorizontalAlignment="Left" Height="28" Margin="18,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" FontSize="18" MaxLength="8" PreviewTextInput="txtdnicliente_PreviewTextInput"/>
-        <Label Content="Nombre" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Nombre" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
         <TextBox x:Name="txtnombrecliente" HorizontalAlignment="Left" Height="28" Margin="18,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" FontSize="18" MaxLength="200" PreviewTextInput="txtnombrecliente_PreviewTextInput"/>
-        <Label Content="Apellidos" HorizontalAlignment="Left" Margin="10,152,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Apellidos" HorizontalAlignment="Left" Margin="10,152,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
         <TextBox x:Name="txtapellidoscliente" HorizontalAlignment="Left" Height="28" Margin="18,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" FontSize="18" MaxLength="199" PreviewTextInput="txtapellidoscliente_PreviewTextInput"/>
-        <Label Content="Telefono" HorizontalAlignment="Left" Margin="10,231,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Telefono" HorizontalAlignment="Left" Margin="10,231,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
         <TextBox x:Name="txttelefonocliente" HorizontalAlignment="Left" Height="28" Margin="18,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" FontSize="18" MaxLength="9" PreviewTextInput="txttelefonocliente_PreviewTextInput"/>
-        <CheckBox x:Name="cbtestadocliente" Content="Estado" HorizontalAlignment="Left" Margin="22,321,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <CheckBox x:Name="cbtestadocliente" Content="Estado" HorizontalAlignment="Left" Margin="22,321,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
         <Button x:Name="btnAgregarcliente" Content="Agregar Cliente" HorizontalAlignment="Left" Margin="18,368,0,0" VerticalAlignment="Top" FontSize="18" Click="Button_Click_1" Foreground="White" Background="#FF2723A2" Width="132">
             <Button.Template>
                 <ControlTemplate TargetType="Button">

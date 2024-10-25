@@ -13,7 +13,7 @@
     <None Remove="cliente.png" />
     <None Remove="clientes.png" />
     <None Remove="fondoivanshoes.jpg" />
-    <None Remove="motivacion.png" />
+    <None Remove="Ivan Shoes %281%29.png" />
     <None Remove="tienda-de-ropa.png" />
     <None Remove="trabajador.png" />
   </ItemGroup>
@@ -35,7 +35,7 @@
     <Resource Include="cliente.png" />
     <Resource Include="clientes.png" />
     <Resource Include="fondoivanshoes.jpg" />
-    <Resource Include="motivacion.png" />
+    <Resource Include="Ivan Shoes (1).png" />
     <Resource Include="tienda-de-ropa.png" />
     <Resource Include="trabajador.png" />
   </ItemGroup>

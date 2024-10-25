@@ -8,6 +8,9 @@
         Title="EmpleadoRegistro" Height="450" Width="600"
         WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Ivan Shoes (1).png"/>
+        </Grid.Background>
         <Button x:Name="btnValidar" Content="Validar" HorizontalAlignment="Left" Margin="203,47,0,0" VerticalAlignment="Top" FontSize="18" Width="75" Click="Button_Click" Foreground="White" Background="#FF51C11F">
             <Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -21,15 +24,15 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Label Content="DNI Empleado" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="DNI Empleado" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="White"/>
         <TextBox x:Name="txtdniempleado" HorizontalAlignment="Left" Height="28" Margin="18,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" FontSize="18" MaxLength="8"/>
-        <Label Content="Nombre" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Nombre" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
         <TextBox x:Name="txtnombreempleado" HorizontalAlignment="Left" Height="28" Margin="18,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" FontSize="18" MaxLength="200"/>
-        <Label Content="Apellidos" HorizontalAlignment="Left" Margin="10,152,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Apellidos" HorizontalAlignment="Left" Margin="10,152,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
         <TextBox x:Name="txtapellidoempleado" HorizontalAlignment="Left" Height="28" Margin="18,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" FontSize="18" MaxLength="199"/>
-        <Label Content="Telefono" HorizontalAlignment="Left" Margin="10,231,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Telefono" HorizontalAlignment="Left" Margin="10,231,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="White"/>
         <TextBox x:Name="txttelefonoempleado" HorizontalAlignment="Left" Height="28" Margin="18,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" FontSize="18" MaxLength="9"/>
-        <CheckBox x:Name="cbestadoempleado" Content="Estado" HorizontalAlignment="Left" Margin="366,199,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <CheckBox x:Name="cbestadoempleado" Content="Estado" HorizontalAlignment="Left" Margin="366,199,0,0" VerticalAlignment="Top" FontSize="18" Background="White" Foreground="White"/>
         <Button x:Name="btnAgregarempleado" Content="Agregar Empleado" HorizontalAlignment="Left" Margin="10,368,0,0" VerticalAlignment="Top" FontSize="18" Click="Button_Click_1" Foreground="White" Background="#FF2723A2" Width="161">
             <Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -74,9 +77,9 @@
         </Button>
 
         <TextBox x:Name="txtdnibuscar" HorizontalAlignment="Left" Height="28" Margin="366,254,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="182" FontSize="18" MaxLength="8"/>
-        <Label Content="Correo" HorizontalAlignment="Left" Margin="358,23,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Correo" HorizontalAlignment="Left" Margin="358,23,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
         <TextBox x:Name="txtcorreoempleado" HorizontalAlignment="Left" Height="28" Margin="366,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" FontSize="18" MaxLength="200"/>
-        <Label Content="Cargo" HorizontalAlignment="Left" Margin="358,104,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Cargo" HorizontalAlignment="Left" Margin="358,104,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
         <ComboBox x:Name="txtcargoempleado" HorizontalAlignment="Left" Margin="366,145,0,0" VerticalAlignment="Top" Width="180" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="18"/>
 
     </Grid>

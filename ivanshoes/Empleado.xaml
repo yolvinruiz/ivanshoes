@@ -10,7 +10,10 @@
     <Border CornerRadius="20"
             >
 
-        <Grid Background="#FF2F2E2E">
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="/Ivan Shoes (1).png"/>
+            </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="29*"/>
                 <ColumnDefinition Width="171*"/>
@@ -22,14 +25,7 @@
             <Frame x:Name="MainFrame"
                NavigationUIVisibility="Hidden" Margin="4,69,10,10" Grid.Column="1" />
             <Label x:Name="lavel1" Content="IVAN" HorizontalAlignment="Center" Margin="0,16,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Goudy Stout" FontWeight="Bold" Foreground="Red" Height="47" Width="184"/>
-            <Button x:Name="btnPedidos" Content="Pedidos" HorizontalAlignment="Center" Height="92" VerticalAlignment="Top" Width="202" Margin="0,124,0,0" Click="btnPedidos_Click" FontSize="18" BorderBrush="White" Foreground="White">
-                <Button.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FFA50C0C"/>
-                        <GradientStop Color="#FFF5DFC9" Offset="1"/>
-                        <GradientStop Color="#FFB75050" Offset="0.507"/>
-                    </LinearGradientBrush>
-                </Button.Background>
+            <Button x:Name="btnPedidos" Content="Pedidos" HorizontalAlignment="Center" Height="92" VerticalAlignment="Top" Width="202" Margin="0,124,0,0" Click="btnPedidos_Click" FontSize="18" BorderBrush="Red" Foreground="White" Background="{x:Null}" FontWeight="Bold">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}"
@@ -43,14 +39,7 @@
                 </Button.Template>
             </Button>
             <Label x:Name="lavel1_Copiar" Content="SHOES" HorizontalAlignment="Left" Margin="0,58,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Goudy Stout" FontWeight="Bold" Foreground="Red" Height="46" Width="184"/>
-            <Button x:Name="btnVenta" Content="Vender" HorizontalAlignment="Center" Height="90" VerticalAlignment="Top" Width="202" Click="btnVenta_Click" Foreground="White" FontSize="18" BorderBrush="White" Margin="0,221,0,0">
-                <Button.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FFA50C0C"/>
-                        <GradientStop Color="#FFFFD9B2" Offset="1"/>
-                        <GradientStop Color="#FFB75050" Offset="0.52"/>
-                    </LinearGradientBrush>
-                </Button.Background>
+            <Button x:Name="btnVenta" Content="Vender" HorizontalAlignment="Center" Height="90" VerticalAlignment="Top" Width="202" Click="btnVenta_Click" Foreground="White" FontSize="18" BorderBrush="Red" Margin="0,221,0,0" Background="{x:Null}" FontWeight="Bold">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}"

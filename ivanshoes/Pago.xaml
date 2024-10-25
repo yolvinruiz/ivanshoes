@@ -8,6 +8,9 @@
         Title="Pago" Height="500" Width="700"
         WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Ivan Shoes (1).png"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="59*"/>
             <RowDefinition Height="425*"/>
