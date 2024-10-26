@@ -116,7 +116,7 @@
         </Button>
         <Label Content="Productos" HorizontalAlignment="Left" Height="40" Margin="236,8,0,0" VerticalAlignment="Top" Width="9" Foreground="White" FontWeight="Bold" FontSize="18"/>
         <TextBlock x:Name="txttotalv" HorizontalAlignment="Left" Height="64" Margin="961,566,0,0" TextWrapping="Wrap" Text="00.00" VerticalAlignment="Top" Width="194" FontWeight="Bold" FontSize="48" Foreground="White"/>
-        <Border BorderBrush="White" BorderThickness="1" HorizontalAlignment="Left" Height="409" Margin="290,106,0,0" VerticalAlignment="Top" Width="865" CornerRadius="20">
+        <Border BorderBrush="White" BorderThickness="2,2,2,2" HorizontalAlignment="Left" Height="409" Margin="290,106,0,0" VerticalAlignment="Top" Width="865" CornerRadius="20">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <ItemsControl x:Name="itemsControlProductos">
                     <ItemsControl.ItemsPanel>
@@ -129,6 +129,7 @@
                             <Border Margin="10" Background="#4A4A4A" CornerRadius="10">
                                 <StackPanel Width="180" HorizontalAlignment="Center">
                                     <Image Source="{Binding Imagen}" Width="120" Height="90" Margin="5"/>
+                                    <TextBlock Text="{Binding NombreTalla}" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="5,0,5,0"/>
                                     <TextBlock Text="{Binding nombre}" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" Margin="5,0,5,0"/>
                                     <TextBlock Text="{Binding precio, StringFormat='{}{0:C}'}" Foreground="White" HorizontalAlignment="Center" Margin="5,0,5,0"/>
                                     <TextBlock Text="Stock: " Foreground="White" HorizontalAlignment="Center" Margin="5,0,0,0"/>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaLogica;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,40 @@ namespace ivanshoes
     /// </summary>
     public partial class VentanaPagoEfectivo : Page
     {
-        public VentanaPagoEfectivo()
+        public string pg;
+        public string idv;
+        public VentanaPagoEfectivo(string pago, string idventa)
         {
             InitializeComponent();
+            pg = pago;
+            idv = idventa;
+            txtpago.Text = pg;
+            btnConfirmarpago.IsEnabled = true;
+        }
+
+        private void btnConfirmarpago_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int idventa = Convert.ToInt32(idv);
+                int idFormaPago = 1;
+                logPago.Instancia.RegistrarPagoYActualizarVenta(idventa, idFormaPago);
+                System.Windows.MessageBox.Show("PAGO REGISTRADO CON EXITO");
+                btnConfirmarpago.IsEnabled = false;
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void txtmontorecibido_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try { 
+            double cambio = Convert.ToDouble(txtmontorecibido.Text) - Convert.ToDouble(txtpago.Text);
+            txtcambio.Text = cambio.ToString();
+                }
+            catch (Exception ex){ System.Windows.MessageBox.Show("Ocurrió un error: " + ex.Message); }
         }
     }
 }

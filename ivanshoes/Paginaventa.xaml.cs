@@ -27,19 +27,20 @@ namespace ivanshoes
     {
         public string idventap;
         public string idproductop;
-        
+        public string pago ;
         public Paginaventa()
         {
             InitializeComponent();
             CargarProductos();
             txtcantidad.Text = "1";
             txtdniempleado.Text = "54962548";
+            
 
         }
         private void CargarProductos()
         {
             // Llama a la capa lógica para obtener los productos
-            List<entProducto> productos = logProducto.Instancia.ListarProducto();
+            List<entProducto> productos = logProducto.Instancia.BuscarProductoConNombres("");
 
             // Asigna la lista de productos al ItemsControl
             itemsControlProductos.ItemsSource = productos;
@@ -73,24 +74,6 @@ namespace ivanshoes
             }
         }
 
-        private void btnmostrarproducto_Click(object sender, RoutedEventArgs e)
-        {
-            /*
-            string termino = "";
-            List<entProducto> productos = logProducto.Instancia.BuscarProductoConNombres(termino);
-            dgvproducto.ItemsSource = productos;
-            foreach (var column in dgvproducto.Columns)
-            {
-                if (column.Header.ToString() == "id_tipo_producto" ||
-                    column.Header.ToString() == "id_marca" ||
-                    column.Header.ToString() == "id_color" ||
-                    column.Header.ToString() == "id_categoria" ||
-                    column.Header.ToString() == "id_talla")
-                {
-                    column.Visibility = Visibility.Collapsed;
-                }
-            }*/
-        }
         private void dgvgenerarorden_Click(object sender, RoutedEventArgs e)
         {
             int dni = Convert.ToInt32(txtdniempleado.Text.Trim());
@@ -136,21 +119,6 @@ namespace ivanshoes
             }
         }
 
-        private void dgvproducto_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {/*
-            // Asegurarse de que hay un elemento seleccionado
-            if (dgvproducto.SelectedItem != null)
-            {
-                // Obtener la fila seleccionada como un objeto dinámico
-                dynamic row = dgvproducto.SelectedItem;
-
-                // Asignar los valores a los TextBox
-                txtnompro.Text = row.NombreTipoProducto.ToString();
-                txtprecpro.Text = Convert.ToDouble(row.precio).ToString("F2");
-                idproductop = Convert.ToString(row.id_producto).ToString();
-                ActualizarPrecio(Convert.ToDouble(txtprecpro.Text));
-            }*/
-        }
 
         private void txtdnicliente_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
@@ -181,8 +149,8 @@ namespace ivanshoes
 
         private void btnpagar_Click(object sender, RoutedEventArgs e)
         {
-            Pago pago = new Pago();
-            pago.Show();
+            Pago pagoss = new Pago(pago, idventap);
+            pagoss.Show();
         }
 
         private void btnpedido_Click(object sender, RoutedEventArgs e)
@@ -217,6 +185,7 @@ namespace ivanshoes
                 }
                 double totalVenta = CalcularTotal(detallesVenta);
                 txttotalv.Text = totalVenta.ToString("F2") + "";
+                pago = txttotalv.Text;
             }
             catch (Exception ex)
             {

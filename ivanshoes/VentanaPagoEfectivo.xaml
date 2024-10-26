@@ -11,11 +11,11 @@
     <Grid>
         <Label Content="Monto recibido" HorizontalAlignment="Left" Margin="21,21,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="White" FontSize="20"/>
         <Label Content="Moto a pagar" HorizontalAlignment="Left" Margin="21,97,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="20"/>
-        <TextBox HorizontalAlignment="Left" Margin="21,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="156" FontSize="20"/>
-        <TextBox HorizontalAlignment="Left" Margin="21,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="156" FontSize="20"/>
-        <TextBox HorizontalAlignment="Left" Margin="21,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="156" FontSize="20"/>
+        <TextBox x:Name="txtmontorecibido" HorizontalAlignment="Left" Margin="21,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="156" FontSize="20" TextChanged="txtmontorecibido_TextChanged"/>
+        <TextBox x:Name="txtpago" HorizontalAlignment="Left" Margin="21,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="156" FontSize="20"/>
+        <TextBox x:Name="txtcambio" HorizontalAlignment="Left" Margin="21,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="156" FontSize="20"/>
         <Label Content="Cambio" HorizontalAlignment="Left" Margin="21,174,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="20"/>
-        <Button x:Name="btnConfirmarpago" Content="Confirmar" HorizontalAlignment="Left" Margin="48,276,0,0" VerticalAlignment="Top" Width="91" BorderBrush="#FF215400" Background="#FF69CE19" FontSize="20"/>
+        <Button x:Name="btnConfirmarpago" Content="Confirmar" HorizontalAlignment="Left" Margin="48,276,0,0" VerticalAlignment="Top" Width="91" BorderBrush="#FF215400" Background="#FF69CE19" FontSize="20" Click="btnConfirmarpago_Click"/>
 
     </Grid>
 </Page>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,14 +20,20 @@ namespace ivanshoes
     /// </summary>
     public partial class Pago : Window
     {
-        public Pago()
+        public string pg;
+        public string idv;
+        public Pago(string pago,string idpedido)
         {
             InitializeComponent();
+            pg = pago;
+            idv= idpedido;
+
+
         }
 
         private void btnefectivo_Click(object sender, RoutedEventArgs e)
         {
-            cambio.Navigate(new VentanaPagoEfectivo());
+            cambio.Navigate(new VentanaPagoEfectivo(pg,idv));
         }
     }
 }
