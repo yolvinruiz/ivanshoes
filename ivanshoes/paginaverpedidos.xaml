@@ -1,0 +1,30 @@
+﻿<Page x:Class="ivanshoes.paginaverpedidos"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ivanshoes"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1200"
+      Title="paginaverpedidos">
+
+    <Grid Margin="-12,0,12,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="13*"/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="21,0,560,116"/>
+        <Label Content="numero de seguimiento de pedido" HorizontalAlignment="Left" Margin="762,227,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" FontSize="18"/>
+        <TextBox HorizontalAlignment="Left" Margin="764,266,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" FontSize="18"/>
+        <Button x:Name="btnRealizarpedido" Content="Registar" HorizontalAlignment="Left" Margin="852,297,0,0" Grid.Row="1" VerticalAlignment="Top" Background="#FF4EDE00" Foreground="Black" FontWeight="Bold" FontSize="18"/>
+        <Label Content="Seleccione y ingrese un numero de seguimiento si ya realizo el envio" HorizontalAlignment="Left" Margin="21,53,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" Foreground="White"/>
+        <Label Content="Pedidos programados para hoy" HorizontalAlignment="Left" Margin="21,-5,0,0" VerticalAlignment="Top" FontSize="36" Foreground="White" FontWeight="Bold"/>
+        <Border BorderBrush="White" BorderThickness="1" HorizontalAlignment="Left" Height="203" Margin="756,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="384"/>
+        <Label Content="Cliente:" HorizontalAlignment="Left" Margin="774,44,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" Width="272" FontSize="18"/>
+        <Label Content="Destino:" HorizontalAlignment="Left" Margin="774,112,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" Width="356" FontSize="18"/>
+        <Label Content="DNI:" HorizontalAlignment="Left" Margin="774,78,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" Width="356" FontSize="18"/>
+        <Label Content="Fecha de envio:" HorizontalAlignment="Left" Margin="774,146,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" Width="356" FontSize="18"/>
+        <Label Content="Datos de pedido" HorizontalAlignment="Left" Margin="756,10,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="18"/>
+
+    </Grid>
+</Page>
