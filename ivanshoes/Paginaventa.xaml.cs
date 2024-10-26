@@ -31,7 +31,18 @@ namespace ivanshoes
         public Paginaventa()
         {
             InitializeComponent();
+            CargarProductos();
+            txtcantidad.Text = "1";
+            txtdniempleado.Text = "54962548";
 
+        }
+        private void CargarProductos()
+        {
+            // Llama a la capa lógica para obtener los productos
+            List<entProducto> productos = logProducto.Instancia.ListarProducto();
+
+            // Asigna la lista de productos al ItemsControl
+            itemsControlProductos.ItemsSource = productos;
         }
         private async void verificarcliente(int dnia)
         {
@@ -64,6 +75,7 @@ namespace ivanshoes
 
         private void btnmostrarproducto_Click(object sender, RoutedEventArgs e)
         {
+            /*
             string termino = "";
             List<entProducto> productos = logProducto.Instancia.BuscarProductoConNombres(termino);
             dgvproducto.ItemsSource = productos;
@@ -77,7 +89,7 @@ namespace ivanshoes
                 {
                     column.Visibility = Visibility.Collapsed;
                 }
-            }
+            }*/
         }
         private void dgvgenerarorden_Click(object sender, RoutedEventArgs e)
         {
@@ -125,7 +137,7 @@ namespace ivanshoes
         }
 
         private void dgvproducto_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        {/*
             // Asegurarse de que hay un elemento seleccionado
             if (dgvproducto.SelectedItem != null)
             {
@@ -137,7 +149,7 @@ namespace ivanshoes
                 txtprecpro.Text = Convert.ToDouble(row.precio).ToString("F2");
                 idproductop = Convert.ToString(row.id_producto).ToString();
                 ActualizarPrecio(Convert.ToDouble(txtprecpro.Text));
-            }
+            }*/
         }
 
         private void txtdnicliente_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -157,31 +169,41 @@ namespace ivanshoes
         {
             string termino = txtbuscar.Text.Trim();
             List<entProducto> productos = logProducto.Instancia.BuscarProductoConNombres(termino);
-            dgvproducto.ItemsSource = productos;
-            foreach (var column in dgvproducto.Columns)
-            {
-                if (column.Header.ToString() == "id_tipo_producto" ||
-                    column.Header.ToString() == "id_marca" ||
-                    column.Header.ToString() == "id_color" ||
-                    column.Header.ToString() == "id_categoria" ||
-                    column.Header.ToString() == "id_talla")
-                {
-                    column.Visibility = Visibility.Collapsed;
-                }
-            }
+            itemsControlProductos.ItemsSource = productos;
+
         }
 
-        private void btnagregarproducto_Click(object sender, RoutedEventArgs e)
+       
+        public double CalcularTotal(List<entDetalleVenta> detalles)
+        {
+            return detalles.Sum(d => d.Subtotal);
+        }
+
+        private void btnpagar_Click(object sender, RoutedEventArgs e)
+        {
+            Pago pago = new Pago();
+            pago.Show();
+        }
+
+        private void btnpedido_Click(object sender, RoutedEventArgs e)
+        {
+            Pedido pedido = new Pedido(Convert.ToInt32(idventap));
+            pedido.Show();
+        }
+
+        private void AgregarProducto_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                var producto = (entProducto)((System.Windows.Controls.Button)sender).DataContext;
                 List<entDetalleVenta> detallesVenta = logDetalleVenta.Instancia.InsertarDetalleVenta(new entDetalleVenta
                 {
+
                     id_Venta = Convert.ToInt32(idventap),
-                    id_Producto = Convert.ToInt32(idproductop),
-                    Cantidad = Convert.ToInt32(numericUpDown.Value),
-                    Preciounitario = Convert.ToDouble(txtprecpro.Text),
-                    Subtotal = Convert.ToDouble(txtsubtotalpro.Text)
+                    id_Producto = Convert.ToInt32(producto.id_producto),
+                    Cantidad = Convert.ToInt32(txtcantidad.Text),
+                    Preciounitario = Convert.ToDouble(producto.precio),
+                    Subtotal = Convert.ToDouble(producto.precio)*Convert.ToDouble(txtcantidad.Text)
                 });
                 dgvdetalleventa.ItemsSource = detallesVenta;
                 foreach (var column in dgvdetalleventa.Columns)
@@ -200,61 +222,11 @@ namespace ivanshoes
             {
                 System.Windows.MessageBox.Show("Ocurrió un error al cargar los detalles de la venta: " + ex.Message);
             }
-
-        }
-        private void CalcularSubtotal()
-        {
-            try { 
-            if (numericUpDown != null && txtprecpro != null && txtsubtotalpro != null)
-            {
-                // Intentar convertir el valor del precio a un número
-                if (double.TryParse(txtprecpro.Text, out double precio) && precio > 0)
-                {
-                    // Obtener la cantidad desde el NumericUpDown
-                    int cantidad = Convert.ToInt32(numericUpDown.Value);
-
-                    // Calcular el subtotal
-                    double subtotal = precio * cantidad;
-
-                    // Actualizar el TextBox del subtotal
-                    txtsubtotalpro.Text = subtotal.ToString("F2");
-                }
-                else
-                {
-                    // Si el precio no es válido, establecer el subtotal a 0.00
-                    txtsubtotalpro.Text = "0.00";
-                }
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Windows.MessageBox.Show("Ocurrió un error: " + ex.Message);
-            }
-        }
-        private void ActualizarPrecio(double nuevoPrecio)
-        {
-            txtprecpro.Text = nuevoPrecio.ToString("F2");
-            CalcularSubtotal();  
-        }
-        private void numericUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            CalcularSubtotal();
-        }
-        public double CalcularTotal(List<entDetalleVenta> detalles)
-        {
-            return detalles.Sum(d => d.Subtotal);
         }
 
-        private void btnpagar_Click(object sender, RoutedEventArgs e)
+        private void btntodo_Click(object sender, RoutedEventArgs e)
         {
-            Pago pago = new Pago();
-            pago.Show();
-        }
-
-        private void btnpedido_Click(object sender, RoutedEventArgs e)
-        {
-            Pedido pedido = new Pedido(Convert.ToInt32(idventap));
-            pedido.Show();
+            CargarProductos();
         }
     }
 }

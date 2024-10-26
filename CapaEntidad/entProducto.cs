@@ -23,5 +23,6 @@ namespace CapaEntidad
         public string NombreMarca { get; set; }
         public string NombreColor { get; set; }
         public string NombreCategoria { get; set; }
+        public string Imagen { get; set; }
     }
 }

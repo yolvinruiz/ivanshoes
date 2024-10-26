@@ -15,11 +15,10 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="GroupBox">
                         <Grid>
-                            <Border BorderBrush="#FFEA3500" 
+                            <Border BorderBrush="White" 
                                     BorderThickness="2" 
                                     CornerRadius="15" 
-                                    Padding="5"
-                                    Background="{x:Null}">
+                                    Padding="5" Margin="-57,0,0,0">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
@@ -44,11 +43,11 @@
     </Page.Resources>
 
     <Grid Margin="-1,0,1,0">
-        <TextBox x:Name="txtdnicliente" HorizontalAlignment="Left" Margin="18,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="txtdnicliente_PreviewTextInput" MaxLines="100" MaxLength="8" FontSize="18"/>
-        <Label Content="Dni cliente" HorizontalAlignment="Left" Margin="13,32,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" FontSize="18"/>
-        <Label Content="Dni empleado" HorizontalAlignment="Left" Margin="13,90,0,0" VerticalAlignment="Top" Foreground="White" FontSize="18"/>
-        <TextBox x:Name="txtdniempleado" HorizontalAlignment="Left" Margin="18,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="txtdniempleado_PreviewTextInput" FontSize="18"/>
-        <Button x:Name="btnverificarcliente" Content="Verficar" HorizontalAlignment="Left" Margin="154,64,0,0" VerticalAlignment="Top" Width="79" Background="#FFFFEB3B" Click="Button_Click" Foreground="Black" Height="26" FontWeight="Bold" FontSize="18">
+        <TextBox x:Name="txtdnicliente" HorizontalAlignment="Left" Margin="18,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="txtdnicliente_PreviewTextInput" MaxLines="100" MaxLength="8" FontSize="18"/>
+        <Label Content="Dni cliente" HorizontalAlignment="Left" Margin="13,14,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" FontSize="18"/>
+        <Label Content="Dni empleado" HorizontalAlignment="Left" Margin="13,72,0,0" VerticalAlignment="Top" Foreground="White" FontSize="18"/>
+        <TextBox x:Name="txtdniempleado" HorizontalAlignment="Left" Margin="18,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="txtdniempleado_PreviewTextInput" FontSize="18"/>
+        <Button x:Name="btnverificarcliente" Content="Verficar" HorizontalAlignment="Left" Margin="154,46,0,0" VerticalAlignment="Top" Width="79" Background="#FFFFEB3B" Click="Button_Click" Foreground="Black" Height="26" FontWeight="Bold" FontSize="18">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
@@ -61,7 +60,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button x:Name="dgvgenerarorden" Content="generar orden de venta" HorizontalAlignment="Left" Margin="18,166,0,0" VerticalAlignment="Top" Width="202" Height="28" Foreground="Black" Background="#FFFDD835" Click="dgvgenerarorden_Click" FontWeight="Bold" FontSize="18">
+        <Button x:Name="dgvgenerarorden" Content="generar orden de venta" HorizontalAlignment="Left" Margin="18,148,0,0" VerticalAlignment="Top" Width="201" Height="28" Foreground="Black" Background="#FFFDD835" Click="dgvgenerarorden_Click" FontWeight="Bold" FontSize="18">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
@@ -74,23 +73,8 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Border BorderBrush="#FFEA3500" BorderThickness="1" HorizontalAlignment="Left" Height="268" Margin="238,26,0,0" VerticalAlignment="Top" Width="930" CornerRadius="15"/>
-        <Button x:Name="btnbuscarproducto" Content="Buscar" HorizontalAlignment="Left" Margin="473,72,0,0" VerticalAlignment="Top" Height="22" Width="86" Background="#FFFDD835" Foreground="Black" FontWeight="Bold" Click="btnbuscarproducto_Click" FontSize="18">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}"
-                 BorderBrush="{TemplateBinding BorderBrush}"
-                 BorderThickness="1"
-                 CornerRadius="5">
-                        <!-- Cambia este valor para ajustar el radio -->
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-
-        <DataGrid x:Name="dgvproducto" HorizontalAlignment="Left" Height="166" Margin="245,104,0,0" VerticalAlignment="Top" Width="908" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="dgvproducto_SelectionChanged" ColumnWidth="*" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="Black"
-                  RowBackground="#FFFFF0AB" FontSize="18">
+        <GroupBox x:Name="grupbox" HorizontalAlignment="Left" Height="230" Header="Detalle de venta" Margin="349,542,0,0" VerticalAlignment="Top" Width="806" Foreground="White" BorderBrush="White" Background="White" />
+        <DataGrid x:Name="dgvdetalleventa" HorizontalAlignment="Left" Height="158" Margin="333,578,0,0" VerticalAlignment="Top" Width="553" d:ItemsSource="{d:SampleData ItemCount=5}" ColumnWidth="*" RowBackground="#FFFFF0AB" Background="{x:Null}" FontSize="18">
             <DataGrid.ColumnHeaderStyle>
                 <Style TargetType="DataGridColumnHeader">
                     <Setter Property="Background" Value="#FF07487B" />
@@ -104,140 +88,101 @@
                 </Style>
             </DataGrid.ColumnHeaderStyle>
         </DataGrid>
+        <Button x:Name="btnpagar" Content="Realizar pago" HorizontalAlignment="Left" Margin="940,658,0,0" VerticalAlignment="Top" Width="172" Background="#FFFDD835" Foreground="Black" Height="34" FontWeight="Bold" FontSize="18" Click="btnpagar_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+ BorderBrush="{TemplateBinding BorderBrush}"
+ BorderThickness="1"
+ CornerRadius="5">
+                        <!-- Cambia este valor para ajustar el radio -->
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="btnpedido" Content="Programar pedido" HorizontalAlignment="Left" Margin="941,706,0,0" VerticalAlignment="Top" Background="#FFFDD835" Foreground="Black" Height="30" Width="171" FontWeight="Bold" FontSize="18" Click="btnpedido_Click" RenderTransformOrigin="0.5,1">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+ BorderBrush="{TemplateBinding BorderBrush}"
+ BorderThickness="1"
+ CornerRadius="5">
+                        <!-- Cambia este valor para ajustar el radio -->
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Label Content="Productos" HorizontalAlignment="Left" Height="40" Margin="236,8,0,0" VerticalAlignment="Top" Width="9" Foreground="White" FontWeight="Bold" FontSize="18"/>
+        <TextBlock x:Name="txttotalv" HorizontalAlignment="Left" Height="64" Margin="961,566,0,0" TextWrapping="Wrap" Text="00.00" VerticalAlignment="Top" Width="194" FontWeight="Bold" FontSize="48" Foreground="White"/>
+        <Border BorderBrush="White" BorderThickness="1" HorizontalAlignment="Left" Height="409" Margin="290,106,0,0" VerticalAlignment="Top" Width="865" CornerRadius="20">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl x:Name="itemsControlProductos">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="10" Background="#4A4A4A" CornerRadius="10">
+                                <StackPanel Width="180" HorizontalAlignment="Center">
+                                    <Image Source="{Binding Imagen}" Width="120" Height="90" Margin="5"/>
+                                    <TextBlock Text="{Binding nombre}" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" Margin="5,0,5,0"/>
+                                    <TextBlock Text="{Binding precio, StringFormat='{}{0:C}'}" Foreground="White" HorizontalAlignment="Center" Margin="5,0,5,0"/>
+                                    <TextBlock Text="Stock: " Foreground="White" HorizontalAlignment="Center" Margin="5,0,0,0"/>
+                                    <TextBlock Text="{Binding stock}" Foreground="White" HorizontalAlignment="Center" Margin="0,0,5,0"/>
 
-        <TextBox x:Name="txtbuscar" HorizontalAlignment="Left" Height="22" Margin="245,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" FontWeight="Bold" FontSize="18"/>
-        <Button x:Name="btnmostrarproducto" Content="Mostrar" HorizontalAlignment="Left" Height="22" Margin="623,72,0,0" VerticalAlignment="Top" Width="75" Background="#FFFDD835" Click="btnmostrarproducto_Click" Foreground="Black" FontWeight="Bold" FontSize="18">
+                                    <!-- Botón con el evento Click -->
+                                    <Button Content="Agregar al Carrito" Margin="5,10,5,0" Background="#FF5722" Foreground="White"
+                                    Click="AgregarProducto_Click" />
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Border>
+        <TextBox x:Name="txtcantidad" HorizontalAlignment="Left" Margin="14,276,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="txtdniempleado_PreviewTextInput" FontSize="18"/>
+        <Label Content="cantidad" HorizontalAlignment="Left" Margin="14,237,0,0" VerticalAlignment="Top" Foreground="White" FontSize="18"/>
+        <TextBox x:Name="txtbuscar" HorizontalAlignment="Left" Margin="372,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="276" MaxLines="100" MaxLength="8" FontSize="18" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.276"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <Button x:Name="btnbuscarproducto" Content="Buscar" HorizontalAlignment="Left" Margin="652,46,0,0" VerticalAlignment="Top" Width="78" Background="#FFFFEB3B" Foreground="Black" Height="26" FontWeight="Bold" FontSize="18" Click="btnbuscarproducto_Click">
             <Button.Template>
-                <ControlTemplate TargetType="Button">
+                <ControlTemplate TargetType="{x:Type Button}">
                     <Border Background="{TemplateBinding Background}"
-                 BorderBrush="{TemplateBinding BorderBrush}"
-                 BorderThickness="1"
-                 CornerRadius="5">
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="5">
                         <!-- Cambia este valor para ajustar el radio -->
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <TextBlock x:Name="txtnompro" HorizontalAlignment="Left" Margin="236,338,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97" FontWeight="Bold" FontSize="18" Foreground="White" />
+        <Button x:Name="btntodo" Content="Todo" HorizontalAlignment="Left" Margin="735,46,0,0" VerticalAlignment="Top" Width="78" Background="#FFFFEB3B" Foreground="Black" Height="26" FontWeight="Bold" FontSize="18" Click="btntodo_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="5">
+                        <!-- Cambia este valor para ajustar el radio -->
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
 
-        <TextBlock x:Name="txtprecpro" HorizontalAlignment="Left" Margin="358,342,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" Width="87" FontWeight="Bold" FontSize="18"/>
-        <xctk:IntegerUpDown Name="numericUpDown"
-                            Minimum="0"
-                            Maximum="100"
-                            Value="0"
-                            Width="50"
-                            Height="28"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            Foreground="White"
-                            Background="Black" BorderBrush="#FF632424" Margin="482,338,0,0" FontSize="20" ValueChanged="numericUpDown_ValueChanged" Cursor="None" TabIndex="2000" IsTabStop="True" FontWeight="Bold">
-            <xctk:IntegerUpDown.Resources>
-                <Style TargetType="RepeatButton">
-                    <Setter Property="Background" Value="Blue"/>
-                    <Setter Property="BorderBrush" Value="Aquamarine"/>
-                    <Setter Property="Foreground" Value="AliceBlue"/>
-                </Style>
-            </xctk:IntegerUpDown.Resources>
-        </xctk:IntegerUpDown>
-        <Label Content="Nombre" HorizontalAlignment="Left" Height="36" Margin="236,298,0,0" VerticalAlignment="Top" Width="88" Background="Transparent" Foreground="White" FontWeight="Bold" FontSize="18"/>
-        <Label Content="Precio" HorizontalAlignment="Left" Height="34" Margin="348,300,0,0" VerticalAlignment="Top" Width="72" Foreground="White" FontWeight="Bold" FontSize="18"/>
-        <Label Content="Cantidad" HorizontalAlignment="Left" Height="36" Margin="458,298,0,0" VerticalAlignment="Top" Width="98" Foreground="White" FontWeight="Bold" FontSize="18"/>
-        <Button x:Name="btnagregarproducto" Content="Agregar a carrito" HorizontalAlignment="Left" Height="28" Margin="708,334,0,0" VerticalAlignment="Top" Width="153" Foreground="Black" Background="#FFFDD835" FontWeight="Bold" Click="btnagregarproducto_Click" FontSize="18">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}"
-                 BorderBrush="{TemplateBinding BorderBrush}"
-                 BorderThickness="1"
-                 CornerRadius="5">
-                        <!-- Cambia este valor para ajustar el radio -->
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <Button x:Name="btncancelarventa" Content="Cancelar venta" HorizontalAlignment="Left" Margin="866,334,0,0" VerticalAlignment="Top" Background="#FFFDD835" Foreground="Black" Width="146" Height="28" FontWeight="Bold" FontSize="18">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}"
-         BorderBrush="{TemplateBinding BorderBrush}"
-         BorderThickness="1"
-         CornerRadius="5">
-                        <!-- Cambia este valor para ajustar el radio -->
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <GroupBox x:Name="grupbox" HorizontalAlignment="Left" Height="384" Header="Detalle de venta" Margin="231,386,0,0" VerticalAlignment="Top" Width="940" Foreground="#FFD06A0F" BorderBrush="#FFA93B05" Background="#FFD01212" />
-        <DataGrid x:Name="dgvdetalleventa" HorizontalAlignment="Left" Height="316" Margin="252,428,0,0" VerticalAlignment="Top" Width="650" d:ItemsSource="{d:SampleData ItemCount=5}" ColumnWidth="*" RowBackground="#FFFFF0AB" Background="{x:Null}" FontSize="18">
-            <DataGrid.ColumnHeaderStyle>
-                <Style TargetType="DataGridColumnHeader">
-                    <Setter Property="Background" Value="#FF07487B" />
-                    <!-- Fondo del encabezado -->
-                    <Setter Property="Foreground" Value="White" />
-                    <!-- Color del texto del encabezado -->
-                    <Setter Property="FontWeight" Value="ExtraBold" />
-                    <!-- Texto en negrita -->
-                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                    <!-- Texto centrado -->
-                </Style>
-            </DataGrid.ColumnHeaderStyle>
-        </DataGrid>
-        <Button x:Name="btncancelarventa1" Content="Cancelar venta" HorizontalAlignment="Left" Margin="927,546,0,0" VerticalAlignment="Top" Width="128" Height="26" Background="#FFFDD835" Foreground="Black" FontWeight="Bold" FontSize="18">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}"
- BorderBrush="{TemplateBinding BorderBrush}"
- BorderThickness="1"
- CornerRadius="5">
-                        <!-- Cambia este valor para ajustar el radio -->
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <Button x:Name="btnpagar" Content="Realizar pago" HorizontalAlignment="Left" Margin="927,586,0,0" VerticalAlignment="Top" Width="128" Background="#FFFDD835" Foreground="Black" Height="30" FontWeight="Bold" FontSize="18" Click="btnpagar_Click">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}"
- BorderBrush="{TemplateBinding BorderBrush}"
- BorderThickness="1"
- CornerRadius="5">
-                        <!-- Cambia este valor para ajustar el radio -->
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <Button x:Name="btnpedido" Content="Programar pedido" HorizontalAlignment="Left" Margin="927,627,0,0" VerticalAlignment="Top" Background="#FFFDD835" Foreground="Black" Height="30" Width="161" FontWeight="Bold" FontSize="18" Click="btnpedido_Click">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}"
- BorderBrush="{TemplateBinding BorderBrush}"
- BorderThickness="1"
- CornerRadius="5">
-                        <!-- Cambia este valor para ajustar el radio -->
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="927,672,0,0" VerticalAlignment="Top" Background="#FFFDD835" Foreground="Black" Width="119" Height="22" FontSize="18">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}"
- BorderBrush="{TemplateBinding BorderBrush}"
- BorderThickness="1"
- CornerRadius="5">
-                        <!-- Cambia este valor para ajustar el radio -->
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <Label Content="Productos" HorizontalAlignment="Left" Height="40" Margin="245,26,0,0" VerticalAlignment="Top" Width="177" Foreground="White" FontWeight="Bold" FontSize="18"/>
-        <TextBox x:Name="txtsubtotalpro" HorizontalAlignment="Left" Height="28" Margin="577,338,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" FontSize="18"/>
-        <TextBlock x:Name="txttotalv" HorizontalAlignment="Left" Height="64" Margin="927,428,0,0" TextWrapping="Wrap" Text="00.00" VerticalAlignment="Top" Width="195" FontWeight="Bold" FontSize="48" Foreground="White"/>
+
     </Grid>
 </Page>

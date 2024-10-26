@@ -38,17 +38,20 @@ namespace CapaDatos
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    entProducto Cli = new entProducto();
-                    Cli.id_producto = Convert.ToInt32(dr["id_producto"]);
-                    Cli.nombre = dr["nombre"].ToString();
-                    Cli.stock = Convert.ToInt32(dr["stock"]);
-                    Cli.precio = Convert.ToDouble(dr["precio"]);
-                    Cli.id_tipo_producto = Convert.ToInt32(dr["id_tipo_producto"]);
-                    Cli.id_marca = Convert.ToInt32(dr["id_marca"]);
-                    Cli.id_talla = Convert.ToInt32(dr["id_talla"]);
-                    Cli.id_color = Convert.ToInt32(dr["id_color"]);
-                    Cli.id_categoria = Convert.ToInt32(dr["id_categoria"]);
-                    lista.Add(Cli);
+                    entProducto producto = new entProducto
+                    {
+                        id_producto = Convert.ToInt32(dr["id_producto"]),
+                        nombre = dr["nombre"].ToString(),
+                        stock = Convert.ToInt32(dr["stock"]),
+                        precio = Convert.ToDouble(dr["precio"]),
+                        id_tipo_producto = Convert.ToInt32(dr["id_tipo_producto"]),
+                        id_marca = Convert.ToInt32(dr["id_marca"]),
+                        id_talla = Convert.ToInt32(dr["id_talla"]),
+                        id_color = Convert.ToInt32(dr["id_color"]),
+                        id_categoria = Convert.ToInt32(dr["id_categoria"]),
+                        Imagen = dr["Imagen"].ToString() // Ruta de la imagen
+                    };
+                    lista.Add(producto);
                 }
 
             }
@@ -58,7 +61,7 @@ namespace CapaDatos
             }
             finally
             {
-                cmd.Connection.Close();
+                cmd?.Connection.Close();
             }
             return lista;
         }
@@ -298,6 +301,7 @@ namespace CapaDatos
                     producto.NombreMarca = dr["Marca"].ToString();
                     producto.NombreColor = dr["Color"].ToString();
                     producto.NombreCategoria = dr["Categoria"].ToString();
+                    producto.Imagen = dr["Imagen"].ToString();
                     lista.Add(producto);
                 }
             }
