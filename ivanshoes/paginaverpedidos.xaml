@@ -13,18 +13,19 @@
             <RowDefinition Height="2*"/>
             <RowDefinition Height="13*"/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="21,0,560,116"/>
+        <DataGrid x:Name="dgvpedidos" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="21,0,504,148" SelectionChanged="dgvpedidos_SelectionChanged"/>
         <Label Content="numero de seguimiento de pedido" HorizontalAlignment="Left" Margin="762,227,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" FontSize="18"/>
-        <TextBox HorizontalAlignment="Left" Margin="764,266,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" FontSize="18"/>
-        <Button x:Name="btnRealizarpedido" Content="Registar" HorizontalAlignment="Left" Margin="852,297,0,0" Grid.Row="1" VerticalAlignment="Top" Background="#FF4EDE00" Foreground="Black" FontWeight="Bold" FontSize="18"/>
+        <TextBox x:Name="txtnumeroseguimiento" HorizontalAlignment="Left" Margin="764,266,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" FontSize="18"/>
+        <Button x:Name="btnRealizarpedido" Content="Registar" HorizontalAlignment="Left" Margin="854,318,0,0" Grid.Row="1" VerticalAlignment="Top" Background="#FF4EDE00" Foreground="Black" FontWeight="Bold" FontSize="18" Click="btnRealizarpedido_Click"/>
         <Label Content="Seleccione y ingrese un numero de seguimiento si ya realizo el envio" HorizontalAlignment="Left" Margin="21,53,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" Foreground="White"/>
         <Label Content="Pedidos programados para hoy" HorizontalAlignment="Left" Margin="21,-5,0,0" VerticalAlignment="Top" FontSize="36" Foreground="White" FontWeight="Bold"/>
         <Border BorderBrush="White" BorderThickness="1" HorizontalAlignment="Left" Height="203" Margin="756,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="384"/>
-        <Label Content="Cliente:" HorizontalAlignment="Left" Margin="774,44,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" Width="272" FontSize="18"/>
-        <Label Content="Destino:" HorizontalAlignment="Left" Margin="774,112,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" Width="356" FontSize="18"/>
-        <Label Content="DNI:" HorizontalAlignment="Left" Margin="774,78,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" Width="356" FontSize="18"/>
-        <Label Content="Fecha de envio:" HorizontalAlignment="Left" Margin="774,146,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" Width="356" FontSize="18"/>
         <Label Content="Datos de pedido" HorizontalAlignment="Left" Margin="756,10,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="18"/>
+        <TextBlock x:Name="txtcliente" HorizontalAlignment="Left" Margin="774,73,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Cliente:" VerticalAlignment="Top" Foreground="White" FontSize="18" Width="307"/>
+        <TextBlock x:Name="txtDni" HorizontalAlignment="Left" Margin="774,102,0,0" Grid.Row="1" TextWrapping="Wrap" Text="DNI:" VerticalAlignment="Top" Foreground="White" FontSize="18" Width="307"/>
+        <TextBlock x:Name="txtDestino" HorizontalAlignment="Left" Margin="774,131,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Destino:" VerticalAlignment="Top" Foreground="White" FontSize="18" Width="307"/>
+        <TextBlock x:Name="txtFechaenvio" HorizontalAlignment="Left" Margin="774,160,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Destino:" VerticalAlignment="Top" Foreground="White" FontSize="18" Width="307"/>
+        <Button Content="Actualizar" HorizontalAlignment="Left" Margin="583,564,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" Foreground="Black" Background="#FF25B734" Width="113" Click="Button_Click"/>
 
     </Grid>
 </Page>

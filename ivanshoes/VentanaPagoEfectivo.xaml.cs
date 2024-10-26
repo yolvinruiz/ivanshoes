@@ -32,6 +32,22 @@ namespace ivanshoes
             btnConfirmarpago.IsEnabled = true;
         }
 
+        private void LimpiarDataGridEnOtrapagina()
+        {
+            // Obtén la referencia a VentanaObjetivo si está abierta
+            var ventanaObjetivo = System.Windows.Application.Current.Windows.OfType<Empleado>().FirstOrDefault();
+
+            if (ventanaObjetivo != null)
+            {
+                // Llama al método para limpiar el DataGrid en VentanaObjetivo
+                ventanaObjetivo.LimpiarDataGridEnPaginaObjetivo();
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("La ventana objetivo no está abierta.");
+            }
+
+        }
         private void btnConfirmarpago_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -41,6 +57,9 @@ namespace ivanshoes
                 logPago.Instancia.RegistrarPagoYActualizarVenta(idventa, idFormaPago);
                 System.Windows.MessageBox.Show("PAGO REGISTRADO CON EXITO");
                 btnConfirmarpago.IsEnabled = false;
+                LimpiarDataGridEnOtrapagina();
+
+
             }
             catch (Exception ex)
             {

@@ -12,37 +12,39 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Ivan Shoes (1).png"/>
         </Grid.Background>
-        <Label Content="Direccion" HorizontalAlignment="Left" Margin="32,55,0,0" VerticalAlignment="Top" Foreground="White" Height="34" FontSize="20">
+        <Label Content="Direccion" HorizontalAlignment="Left" Margin="32,149,0,0" VerticalAlignment="Top" Foreground="White" Height="34" FontSize="20">
             <Label.Background>
                 <ImageBrush/>
             </Label.Background>
         </Label>
-        <Label Content="Ciudad" HorizontalAlignment="Left" Margin="32,128,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20">
+        <Label Content="Ciudad" HorizontalAlignment="Left" Margin="32,79,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20">
             <Label.Background>
                 <ImageBrush/>
             </Label.Background>
         </Label>
-        <Label Content="Numero de seguimiento" HorizontalAlignment="Left" Margin="32,0,0,0" VerticalAlignment="Center" Foreground="White" FontSize="20">
+        <TextBox x:Name="txtDireccion" HorizontalAlignment="Left" Margin="32,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Foreground="White" FontSize="20">
+            <TextBox.Background>
+                <ImageBrush/>
+            </TextBox.Background>
+        </TextBox>
+        <TextBox x:Name="txtCiudad" HorizontalAlignment="Left" Margin="32,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Foreground="White" FontSize="20">
+            <TextBox.Background>
+                <ImageBrush/>
+            </TextBox.Background>
+        </TextBox>
+        <Button x:Name="btnprogramar" Content="Programar" HorizontalAlignment="Left" Margin="453,376,0,0" VerticalAlignment="Top" Background="#FF32C31D" Foreground="White" Width="122" Click="Button_Click" FontSize="20"/>
+        <DatePicker x:Name="dtfechaenvio" HorizontalAlignment="Left" Margin="32,288,0,0" VerticalAlignment="Top" SelectedDateFormat="Short" Width="172"/>
+        <DatePicker x:Name="dtfechamaxentrega" HorizontalAlignment="Left" Margin="37,367,0,0" VerticalAlignment="Top" SelectedDateFormat="Short" Width="172"/>
+        <Label Content="Fecha de envio" HorizontalAlignment="Left" Margin="32,236,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20">
             <Label.Background>
                 <ImageBrush/>
             </Label.Background>
         </Label>
-        <TextBox x:Name="txtDireccion" HorizontalAlignment="Left" Margin="32,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Foreground="White" FontSize="20">
-            <TextBox.Background>
+        <Label Content="Fecha maxima de entrega" HorizontalAlignment="Left" Margin="32,317,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20">
+            <Label.Background>
                 <ImageBrush/>
-            </TextBox.Background>
-        </TextBox>
-        <TextBox x:Name="txtCiudad" HorizontalAlignment="Left" Margin="32,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Foreground="White" FontSize="20">
-            <TextBox.Background>
-                <ImageBrush/>
-            </TextBox.Background>
-        </TextBox>
-        <TextBox x:Name="txtnumero" HorizontalAlignment="Left" Margin="32,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Foreground="White" FontSize="20">
-            <TextBox.Background>
-                <ImageBrush/>
-            </TextBox.Background>
-        </TextBox>
-        <Button Content="Programar" HorizontalAlignment="Left" Margin="121,302,0,0" VerticalAlignment="Top" Background="#FF32C31D" Foreground="White" Width="122" Click="Button_Click" FontSize="20"/>
+            </Label.Background>
+        </Label>
 
     </Grid>
 </Window>

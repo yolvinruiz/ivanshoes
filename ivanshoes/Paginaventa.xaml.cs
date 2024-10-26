@@ -37,6 +37,12 @@ namespace ivanshoes
             
 
         }
+        public void LimpiarDataGrid()
+        {
+            dgvdetalleventa.ItemsSource = null;
+            txttotalv.Text = "00.00";
+            txtcantidad.Text = "1";
+        }
         private void CargarProductos()
         {
             // Llama a la capa lógica para obtener los productos

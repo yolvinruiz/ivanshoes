@@ -17,5 +17,8 @@ namespace CapaEntidad
         public string Ciudad { get; set; }
         public string NumeroSeguimiento { get; set; }
         public int ID_venta { get; set; }
+        public string NombreCliente { get; set; }
+        public int DNI { get; set; }
+        public string Destino { get; set; }
     }
 }

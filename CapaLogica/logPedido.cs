@@ -26,5 +26,17 @@ namespace CapaLogica
         {
             return datPedido.Instancia.InsertarPedido(pedido);
         }
+        public entPedido ObtenerInformacionPedidoCliente(int idPedido)
+        {
+            return datPedido.Instancia.ObtenerInformacionPedidoCliente(idPedido);
+        }
+        public List<entPedido> ListarPedidosHoy()
+        {
+            return datPedido.Instancia.ListarPedidosHoy();
+        }
+        public bool ActualizarNumeroSeguimiento(int idPedido, string nuevoNumeroSeguimiento)
+        {
+            return datPedido.Instancia.ActualizarNumeroSeguimiento(idPedido, nuevoNumeroSeguimiento);
+        }
     }
 }

@@ -25,6 +25,8 @@ namespace ivanshoes
         {
             InitializeComponent();
             IDventa = idVenta;
+            dtfechaenvio.SelectedDate = DateTime.Now.AddDays(3);
+            dtfechamaxentrega.SelectedDate = DateTime.Now.AddDays(7);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -34,12 +36,12 @@ namespace ivanshoes
                 entPedido nuevoPedido = new entPedido
                 {
                     Fecha = DateTime.Now,
-                    FechaEnvio = DateTime.Now.AddDays(3),
-                    FechaEntrega = DateTime.Now.AddDays(7),
+                    FechaEnvio = dtfechaenvio.SelectedDate.Value,
+                    FechaEntrega = dtfechamaxentrega.SelectedDate.Value,
                     Estado = false,
                     Direccion = txtDireccion.Text,
                     Ciudad = txtCiudad.Text,
-                    NumeroSeguimiento = txtDireccion.Text,
+                    NumeroSeguimiento = "0",
                     ID_venta = IDventa
                 };
                 logPedido.Instancia.InsertarPedido(nuevoPedido);
