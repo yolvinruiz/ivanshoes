@@ -250,6 +250,49 @@ namespace CapaDatos
             }
             return cliente;
         }
+        public entCliente BuscarClientePorIdVenta(int idVenta)
+        {
+            SqlCommand cmd = null;
+            entCliente cliente = null;
 
+            try
+            {
+                SqlConnection cn = Conexion.Instancia.Conectar();
+                cmd = new SqlCommand("SELECT c.* FROM Cliente c " +
+                                   "INNER JOIN Venta v ON c.id_Cliente = v.id_Cliente " +
+                                   "WHERE v.ID_venta = @idVenta", cn);
+
+                cmd.Parameters.AddWithValue("@idVenta", idVenta);
+                cn.Open();
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        cliente = new entCliente
+                        {
+                            id_Cliente = Convert.ToInt32(dr["id_Cliente"]),
+                            Nombre = dr["Nombre"].ToString(),
+                            Apellido = dr["Apellido"].ToString(),
+                            DNI = Convert.ToInt32(dr["DNI"]),
+                            Telefono = dr["Telefono"] != DBNull.Value ? Convert.ToInt32(dr["Telefono"]) : 0,
+                            Estado = Convert.ToBoolean(dr["Estado"])
+                        };
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (cmd != null && cmd.Connection != null)
+                {
+                    cmd.Connection.Close();
+                }
+            }
+            return cliente;
+        }
     }
 }

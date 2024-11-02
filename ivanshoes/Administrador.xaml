@@ -19,7 +19,7 @@
             <ColumnDefinition Width="27*"/>
             <ColumnDefinition Width="173*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="btnInventario" Content="Inventario" HorizontalAlignment="Center" Height="57" Margin="0,63,0,0" VerticalAlignment="Top" Width="189" Click="btnInventario_Click" Background="{x:Null}" Grid.RowSpan="2" Foreground="White" BorderBrush="White" BorderThickness="3,3,3,3" FontWeight="Bold">
+        <Button x:Name="btnInventario" Content="Inventario" HorizontalAlignment="Center" Height="57" Margin="0,63,0,0" VerticalAlignment="Top" Width="189" Background="{x:Null}" Grid.RowSpan="2" Foreground="White" BorderBrush="White" BorderThickness="3,3,3,3" FontWeight="Bold">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
@@ -46,13 +46,26 @@
             </Button.Template>
         </Button>
         <Frame x:Name="framecambio" Content="" NavigationUIVisibility="Hidden" Margin="5,1,0,0" Grid.Row="1" Grid.Column="1"/>
-        <Button x:Name="btnReportes" Content="Reportes" HorizontalAlignment="Center" Height="57" Margin="0,59,0,0" VerticalAlignment="Top" Width="189" Grid.Row="1" Background="{x:Null}" Click="btnConfiguracion_Click" Foreground="White" BorderBrush="White" BorderThickness="3,3,3,3" FontWeight="Bold">
+        <Button x:Name="btnReportes" Content="Reportes" HorizontalAlignment="Center" Height="57" Margin="0,59,0,0" VerticalAlignment="Top" Width="189" Grid.Row="1" Background="{x:Null}" Foreground="White" BorderBrush="White" BorderThickness="3,3,3,3" FontWeight="Bold" Click="btnReportes_Click">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
          BorderBrush="{TemplateBinding BorderBrush}"
          BorderThickness="1"
          CornerRadius="10">
+
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="btndashboar" Content="Dashboard" HorizontalAlignment="Center" Height="57" Margin="0,175,0,0" VerticalAlignment="Top" Width="189" Grid.Row="1" Background="{x:Null}" Click="btndashboar_Click" Foreground="White" BorderBrush="White" BorderThickness="3,3,3,3" FontWeight="Bold">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="10">
 
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>

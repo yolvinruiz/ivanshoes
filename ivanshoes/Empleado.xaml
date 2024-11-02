@@ -10,7 +10,7 @@
     <Border CornerRadius="20"
             >
 
-        <Grid Margin="-10,0,10,0">
+        <Grid>
             <Grid.Background>
                 <ImageBrush ImageSource="/Ivan Shoes (1).png"/>
             </Grid.Background>

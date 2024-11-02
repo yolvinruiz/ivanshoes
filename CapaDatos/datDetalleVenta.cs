@@ -68,5 +68,45 @@ namespace CapaDatos
 
             return listaDetalles;
         }
+        public List<entDetalleVenta> ListarDetallesPorVenta(int idVenta)
+        {
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+            List<entDetalleVenta> listaDetalles = new List<entDetalleVenta>();
+            try
+            {
+                SqlConnection cn = Conexion.Instancia.Conectar();
+                cmd = new SqlCommand("ObtenerDetallesVenta", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id_Venta", idVenta);
+
+                cn.Open();
+                dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    entDetalleVenta detalle = new entDetalleVenta
+                    {
+                        ID_Detalle_venta = Convert.ToInt32(dr["ID_Detalle_venta"]),
+                        id_Venta = Convert.ToInt32(dr["id_Venta"]),
+                        id_Producto = Convert.ToInt32(dr["id_Producto"]),
+                        NombreProducto = dr["NombreProducto"].ToString(),
+                        Cantidad = Convert.ToInt32(dr["Cantidad"]),
+                        Preciounitario = Convert.ToDouble(dr["Preciounitario"]),
+                        Subtotal = Convert.ToDouble(dr["Subtotal"])
+                    };
+                    listaDetalles.Add(detalle);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+            return listaDetalles;
+        }
     }
 }

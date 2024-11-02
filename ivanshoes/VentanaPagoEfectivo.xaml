@@ -15,7 +15,18 @@
         <TextBox x:Name="txtpago" HorizontalAlignment="Left" Margin="21,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="156" FontSize="20"/>
         <TextBox x:Name="txtcambio" HorizontalAlignment="Left" Margin="21,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="156" FontSize="20"/>
         <Label Content="Cambio" HorizontalAlignment="Left" Margin="21,174,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="20"/>
-        <Button x:Name="btnConfirmarpago" Content="Confirmar" HorizontalAlignment="Left" Margin="48,276,0,0" VerticalAlignment="Top" Width="91" BorderBrush="#FF215400" Background="#FF69CE19" FontSize="20" Click="btnConfirmarpago_Click"/>
+        <Button x:Name="btnGenerarFactura" Content="Generar comprobante" HorizontalAlignment="Center" Margin="0,318,0,0" VerticalAlignment="Top" Click="Realiza_boleta_Click" Height="31" FontSize="18" Background="#FF3CB711" Foreground="White" FontWeight="Bold"/>
+        <TextBlock x:Name="txtStatus" HorizontalAlignment="Center" Margin="0,362,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontSize="14" Width="136"/>
+        <ComboBox x:Name="cmbTipoIGV" HorizontalAlignment="Left" Margin="289,54,0,0" VerticalAlignment="Top" Width="191" FontSize="20">
+            <ComboBoxItem Content="Precio con igv"/>
+            <ComboBoxItem Content="Precio sin Igv"/>
+        </ComboBox>
+        <ComboBox x:Name="cmbtipocomprovante" HorizontalAlignment="Left" Margin="289,132,0,0" VerticalAlignment="Top" Width="191" FontSize="20" SelectionChanged="cmbtipocomprovante_SelectionChanged">
+            <ComboBoxItem Content="Boleta"/>
+            <ComboBoxItem Content="Factura"/>
+        </ComboBox>
+        <TextBox x:Name="txtRuc" HorizontalAlignment="Left" Margin="289,216,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191" FontSize="20"/>
+        <Label Content="RUC" HorizontalAlignment="Left" Margin="289,0,0,0" VerticalAlignment="Center" FontSize="18" Foreground="White" FontWeight="Bold"/>
 
     </Grid>
 </Page>

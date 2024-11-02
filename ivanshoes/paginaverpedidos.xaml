@@ -13,7 +13,21 @@
             <RowDefinition Height="2*"/>
             <RowDefinition Height="13*"/>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="dgvpedidos" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="21,0,504,148" SelectionChanged="dgvpedidos_SelectionChanged"/>
+        <DataGrid x:Name="dgvpedidos" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="21,0,504,148" RowBackground="#FFFFF0AB" SelectionChanged="dgvpedidos_SelectionChanged" Background="{x:Null}">
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#FF07487B" />
+                    <!-- Fondo del encabezado -->
+                    <Setter Property="Foreground" Value="#FFF9F9F9" />
+                    <!-- Color del texto del encabezado -->
+                    <Setter Property="FontWeight" Value="ExtraBold" />
+                    <!-- Texto en negrita -->
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <!-- Texto centrado -->
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+        </DataGrid>
+
         <Label Content="numero de seguimiento de pedido" HorizontalAlignment="Left" Margin="762,227,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" FontSize="18"/>
         <TextBox x:Name="txtnumeroseguimiento" HorizontalAlignment="Left" Margin="764,266,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" FontSize="18"/>
         <Button x:Name="btnRealizarpedido" Content="Registar" HorizontalAlignment="Left" Margin="854,318,0,0" Grid.Row="1" VerticalAlignment="Top" Background="#FF4EDE00" Foreground="Black" FontWeight="Bold" FontSize="18" Click="btnRealizarpedido_Click"/>

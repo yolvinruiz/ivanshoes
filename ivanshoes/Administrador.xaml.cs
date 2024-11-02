@@ -33,5 +33,15 @@ namespace ivanshoes
         {
             framecambio.Navigate(new Paginaconfiguracion());
         }
+
+        private void btndashboar_Click(object sender, RoutedEventArgs e)
+        {
+            framecambio.Navigate(new Dashboard());
+        }
+
+        private void btnReportes_Click(object sender, RoutedEventArgs e)
+        {
+            framecambio.Navigate(new Reporte());
+        }
     }
 }

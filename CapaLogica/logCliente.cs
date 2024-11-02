@@ -49,5 +49,9 @@ namespace CapaLogica
         {
             return datCliente.Instancia.BuscarClientePorDNI(dni);
         }
+        public entCliente BuscarClientePorIdVenta(int idVenta)
+        {
+            return datCliente.Instancia.BuscarClientePorIdVenta(idVenta);
+        }
     }
 }

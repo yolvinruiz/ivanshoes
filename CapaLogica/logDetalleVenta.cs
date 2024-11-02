@@ -24,5 +24,9 @@ namespace CapaLogica
             // Llamamos al método de la capa de datos y retornamos la lista de detalles
             return datDetalleVenta.Instancia.InsertarDetalleVenta(detalle);
         }
+        public List<entDetalleVenta> ListarDetallesPorVenta(int idVenta)
+        {
+            return datDetalleVenta.Instancia.ListarDetallesPorVenta(idVenta);
+        }
     }
 }
