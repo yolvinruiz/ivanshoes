@@ -47,7 +47,7 @@ namespace ivanshoes
 
         private void btnVenta_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new Paginaventa());
+            MainFrame.Navigate(new PageVentas());
         }
 
         private void btnPedidos_Click(object sender, RoutedEventArgs e)

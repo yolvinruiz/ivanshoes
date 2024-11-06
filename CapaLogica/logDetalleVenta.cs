@@ -19,14 +19,24 @@ namespace CapaLogica
             }
         }
 
-        public List<entDetalleVenta> InsertarDetalleVenta(entDetalleVenta detalle)
+        public void InsertarDetalleVenta(entDetalleVenta detalle)
         {
-            // Llamamos al método de la capa de datos y retornamos la lista de detalles
-            return datDetalleVenta.Instancia.InsertarDetalleVenta(detalle);
+            try
+            {
+                datDetalleVenta.Instancia.InsertarDetalleVenta(detalle);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
         public List<entDetalleVenta> ListarDetallesPorVenta(int idVenta)
         {
             return datDetalleVenta.Instancia.ListarDetallesPorVenta(idVenta);
+        }
+        public List<entDetalleVenta> MostrarDetallesVenta(int idVenta)
+        {
+            return datDetalleVenta.Instancia.MostrarDetallesVenta(idVenta);
         }
     }
 }

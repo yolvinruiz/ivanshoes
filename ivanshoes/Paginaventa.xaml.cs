@@ -111,7 +111,6 @@ namespace ivanshoes
                 {
                     System.Windows.MessageBox.Show("No se encontró el cliente para registrar la venta.");
                 }
-                txtdnicliente.Text = "";
             }
         }
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -166,7 +165,7 @@ namespace ivanshoes
         }
 
         private void AgregarProducto_Click(object sender, RoutedEventArgs e)
-        {
+        {/*
             try
             {
                 var producto = (entProducto)((System.Windows.Controls.Button)sender).DataContext;
@@ -175,7 +174,7 @@ namespace ivanshoes
 
                     id_Venta = Convert.ToInt32(idventap),
                     id_Producto = Convert.ToInt32(producto.id_producto),
-                    Cantidad = Convert.ToInt32(txtcantidad.Text),
+                    Cantidad = 1,
                     Preciounitario = Convert.ToDouble(producto.precio),
                     Subtotal = Convert.ToDouble(producto.precio)*Convert.ToDouble(txtcantidad.Text)
                 });
@@ -196,7 +195,7 @@ namespace ivanshoes
             catch (Exception ex)
             {
                 System.Windows.MessageBox.Show("Ocurrió un error al cargar los detalles de la venta: " + ex.Message);
-            }
+            }*/
         }
 
         private void btntodo_Click(object sender, RoutedEventArgs e)
