@@ -315,5 +315,46 @@ namespace CapaDatos
             }
             return lista;
         }
+        public entProducto BuscarProductoPorId(int idProducto)
+        {
+            SqlCommand cmd = null;
+            entProducto producto = null;
+            try
+            {
+                SqlConnection cn = Conexion.Instancia.Conectar();
+                cmd = new SqlCommand("BuscarProductoPorId", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id_producto", idProducto);
+
+                cn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    producto = new entProducto
+                    {
+                        id_producto = Convert.ToInt32(dr["id_producto"]),
+                        nombre = dr["nombre"].ToString(),
+                        stock = Convert.ToInt32(dr["stock"]),
+                        precio = Convert.ToDouble(dr["precio"]),
+                        id_tipo_producto = Convert.ToInt32(dr["id_tipo_producto"]),
+                        id_marca = Convert.ToInt32(dr["id_marca"]),
+                        id_talla = Convert.ToInt32(dr["id_talla"]),
+                        id_color = Convert.ToInt32(dr["id_color"]),
+                        id_categoria = Convert.ToInt32(dr["id_categoria"]),
+                        Imagen = dr["Imagen"].ToString()
+                    };
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+            return producto;
+        }
     }
 }

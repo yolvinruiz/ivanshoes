@@ -20,8 +20,6 @@ namespace CapaLogica
             }
         }
         #endregion singleton
-
-        // Método para insertar un pedido
         public bool InsertarPedido(entPedido pedido)
         {
             return datPedido.Instancia.InsertarPedido(pedido);

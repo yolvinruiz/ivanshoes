@@ -90,5 +90,16 @@ namespace CapaLogica
         {
             return datProducto.Instancia.BuscarProductoConNombres(termino);
         }
+        public entProducto BuscarProductoPorId(int idProducto)
+        {
+            try
+            {
+                return datProducto.Instancia.BuscarProductoPorId(idProducto);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

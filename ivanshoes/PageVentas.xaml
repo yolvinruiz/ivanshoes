@@ -150,28 +150,72 @@
                 <TextBlock Text="Carrito de Compras"
                          FontSize="20"
                          FontWeight="Bold"
-                         Margin="0,0,0,20"/>
+                         Margin="0,-3,0,24"/>
 
                 <!-- Datos del Cliente -->
                 <StackPanel Grid.Row="1" Margin="0,0,0,20">
                     <TextBlock Text="Datos del Cliente"
                              FontSize="16"
                              FontWeight="Bold"
-                             Margin="0,0,0,10"/>
+                             Margin="0,0,0,10" RenderTransformOrigin="0.5,0.5" Height="22">
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-2.46"/>
+                                <RotateTransform/>
+                                <TranslateTransform X="0.457"/>
+                            </TransformGroup>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
 
                     <!-- DNI -->
                     <TextBlock Text="DNI del Cliente"
-                             Margin="0,0,0,5"/>
+                                   Margin="0,0,0,5"/>
                     <TextBox x:Name="txtDniCliente"
-                            MaxLength="8"
-                            Margin="0,0,0,10"
-                            Padding="5"
-                            PreviewTextInput="ValidarNumeros">
+                                   MaxLength="8"
+                                   Margin="0,0,0,10"
+                                   Padding="5"
+                                   PreviewTextInput="ValidarNumeros"
+                                   Tag="Ingrese DNI de cliente" Height="35">
                         <TextBox.Style>
                             <Style TargetType="TextBox">
                                 <Setter Property="Background" Value="#F5F5F5"/>
                                 <Setter Property="BorderThickness" Value="1"/>
                                 <Setter Property="BorderBrush" Value="#DDDDDD"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TextBox">
+                                            <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4">
+                                                <Grid>
+                                                    <ScrollViewer x:Name="PART_ContentHost"
+                                            Margin="{TemplateBinding Padding}"
+                                            VerticalAlignment="Center"/>
+                                                    <TextBlock IsHitTestVisible="False"
+                                         Text="{TemplateBinding Tag}"
+                                         VerticalAlignment="Center"
+                                         HorizontalAlignment="Left"
+                                         Margin="10,0,0,0"
+                                         Foreground="Gray">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock">
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource Mode=TemplatedParent}}" 
+                                                            Value="">
+                                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                                <Setter Property="Visibility" Value="Hidden"/>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+                                                </Grid>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
                                 <Style.Triggers>
                                     <Trigger Property="IsFocused" Value="True">
                                         <Setter Property="BorderBrush" Value="#FFFDD835"/>
@@ -180,13 +224,13 @@
                             </Style>
                         </TextBox.Style>
                     </TextBox>
-
                     <!-- Nombre -->
                     <TextBlock Text="Nombre del Cliente"
                              Margin="0,0,0,5"/>
                     <TextBox x:Name="txtNombreCliente"
                             Margin="0,0,0,10"
-                            Padding="5">
+                            Padding="5"
+                            Height="35">
                         <TextBox.Style>
                             <Style TargetType="TextBox">
                                 <Setter Property="Background" Value="#F5F5F5"/>

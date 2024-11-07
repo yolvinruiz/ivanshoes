@@ -6,71 +6,139 @@
         xmlns:local="clr-namespace:ivanshoes"
         mc:Ignorable="d"
         Title="MainWindow" Height="900" Width="1400"
-        WindowStartupLocation="CenterScreen">
-    <Grid x:Name="presentacion">
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FFF57F17" Offset="1"/>
-                <GradientStop Color="#FFF57F17"/>
-                <GradientStop Color="#FFFFF9C4" Offset="0.444"/>
-                <GradientStop Color="#FFFFF9C4" Offset="0.511"/>
-                <GradientStop Color="#FFFFF176" Offset="0.74"/>
-                <GradientStop Color="#FFFFF176" Offset="0.243"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="700*"/>
-            <ColumnDefinition Width="700*"/>
-        </Grid.ColumnDefinitions>
-        <Border BorderBrush="Black" BorderThickness="1" Margin="0,-10,0,0">
+        WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow">
+
+    <Window.Background>
+        <ImageBrush ImageSource="/pexels-8moments-1323550.jpg" Opacity="0.9"/>
+    </Window.Background>
+    <Grid>
+        <Border 
+            Width="350"
+            VerticalAlignment="Center" 
+            Padding="30"
+            CornerRadius="10" BorderBrush="Black">
             <Border.Background>
-                <ImageBrush ImageSource="/fondoivanshoes.jpg"/>
+                <SolidColorBrush Color="#FFEAFCFD" Opacity="0.6"/>
             </Border.Background>
+            <StackPanel>
+                <TextBlock Text="Iniciar Sesión"
+                     FontSize="24"
+                     FontWeight="Bold"
+                     HorizontalAlignment="Center"
+                     Margin="0,0,0,30"/>
+
+                <!-- DNI -->
+                <TextBlock Text="DNI"
+                     FontWeight="Medium"
+                     Margin="0,0,0,5"/>
+                <TextBox x:Name="txtDNI"
+                    Tag="Ingrese su DNI"
+                    MaxLength="8"
+                    Padding="10"
+                    Margin="0,0,0,15" FontSize="14" Height="25">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Background" Value="#F5F5F5"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="BorderBrush" Value="#DDDDDD"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TextBox">
+                                        <Border Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            CornerRadius="5">
+                                            <Grid>
+                                                <TextBox Text="{Binding Path=Text,
+                                                     RelativeSource={RelativeSource TemplatedParent}, 
+                                                     Mode=TwoWay,
+                                                     UpdateSourceTrigger=PropertyChanged}"
+                                                     Background="Transparent" 
+                                                     Panel.ZIndex="2" 
+                                                     BorderThickness="0"/>
+                                                <TextBlock Text="{TemplateBinding Tag}"
+                                                     Foreground="Gray"
+                                                     Margin="10,0,0,0"
+                                                     VerticalAlignment="Center">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="Visibility" Value="Hidden"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource Mode=TemplatedParent}}" Value="">
+                                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                            </Grid>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+                <!-- Contraseña -->
+                <TextBlock Text="Contraseña"
+         FontWeight="Medium"
+         Margin="0,0,0,5"/>
+                <Border Background="#F5F5F5"
+        BorderThickness="1"
+        BorderBrush="#DDDDDD"
+        Margin="0,0,0,20"
+        CornerRadius="5" Height="25">
+                    <Canvas Margin="0,0,0,-1">
+                        <PasswordBox x:Name="txtPassword"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Padding="10"
+                    Height="35"
+                    Width="300"
+                    PasswordChanged="PasswordBox_PasswordChanged"
+                    VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Top="-7" Canvas.Left="-10"/>
+                        <TextBlock x:Name="PlaceholderText"
+                  Text="Ingrese su contraseña"
+                  Foreground="Gray"
+                  IsHitTestVisible="False"
+                  Canvas.Left="10" RenderTransformOrigin="0.507,0.193" HorizontalAlignment="Center" VerticalAlignment="Top" Height="20" Canvas.Top="4"/>
+                    </Canvas>
+                </Border>
+                <!-- Botón Ingresar -->
+                <Button Content="Ingresar"
+                    Height="40"
+                    Background="Black"
+                    Foreground="White"
+                    BorderThickness="0"
+                    Click="Button_Click" FontSize="14">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="5">
+                                            <ContentPresenter HorizontalAlignment="Center" 
+                                                        VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#333333"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <!-- Botón Ingresar -->
+
+                <TextBlock Text="¿Olvidó su contraseña? Contacte al administrador"
+                     HorizontalAlignment="Center"
+                     Margin="0,20,0,0"
+                     Foreground="#666666"/>
+            </StackPanel>
         </Border>
-        <Button x:Name="btnempleado" Grid.Column="1" Content="Empleado&#xD;&#xA;" HorizontalAlignment="Left" Margin="288,0,0,469" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Width="153" BorderBrush="#FFA9A52B" Foreground="#FFFFD200" FontSize="15" Height="27" Click="btnempleado_Click" FontWeight="Bold">
-            <Button.Background>
-                <SolidColorBrush Color="#FF3E2F2F" Opacity="1"/>
-            </Button.Background>
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="1"
-                            CornerRadius="5">
-                        <!-- Cambia este valor para ajustar el radio -->
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleY="-0.005"/>
-                    <RotateTransform Angle="0.644"/>
-                    <TranslateTransform Y="0.006"/>
-                </TransformGroup>
-            </Button.RenderTransform>
-        </Button>
-        <Button x:Name="btnempleado_Copiar" Grid.Column="1" Content="Administrador&#xD;&#xA;&#xA;" HorizontalAlignment="Left" Margin="288,0,0,395" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Width="153" Background="#FF3E2F2F" BorderBrush="#FFA9A52B" Foreground="#FFFFD200" FontSize="15" Height="27" FontWeight="Bold" Click="btnempleado_Copiar_Click">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}"
-                BorderBrush="{TemplateBinding BorderBrush}"
-                BorderThickness="1"
-                CornerRadius="5">
-                        <!-- Cambia este valor para ajustar el radio -->
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.644"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Button.RenderTransform>
-        </Button>
     </Grid>
 </Window>

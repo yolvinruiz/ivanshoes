@@ -38,5 +38,29 @@ namespace CapaLogica
         {
             return datDetalleVenta.Instancia.MostrarDetallesVenta(idVenta);
         }
+        public void EliminarDetalleVenta(int idDetalle)
+        {
+            try
+            {
+                datDetalleVenta.Instancia.EliminarDetalleVenta(idDetalle);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        public void ModificarCantidadDetalle(int idDetalle, int cantidad, double precio)
+        {
+            try
+            {
+                double subtotal = precio * cantidad;
+                datDetalleVenta.Instancia.ModificarCantidadDetalle(idDetalle, cantidad, subtotal);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        
     }
 }

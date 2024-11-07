@@ -20,20 +20,19 @@ namespace ivanshoes
     /// </summary>
     public partial class Pago : Window
     {
-        public string pg;
+        public string pg, dniclie, nombreclie;
         public string idv;
-        public Pago(string pago,string idpedido)
+        public Pago(string idventa,string dnicliente, string nombrecliente, string montototal)
         {
             InitializeComponent();
-            pg = pago;
-            idv= idpedido;
+            pg = montototal;
+            idv= idventa ;
+            dniclie = dnicliente;
+            nombreclie = nombrecliente; 
+            
+            cambio.Navigate(new PagePagoEfectivo(idv, dniclie, nombreclie, pg));
 
 
-        }
-
-        private void btnefectivo_Click(object sender, RoutedEventArgs e)
-        {
-            cambio.Navigate(new VentanaPagoEfectivo(pg,idv));
         }
     }
 }

@@ -16,6 +16,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Windows.Threading;
+using System.Windows.Media;
+using System.Net.Http;
 
 namespace ivanshoes
 {
@@ -31,7 +33,12 @@ namespace ivanshoes
         private const int SEARCH_DELAY = 300; // milisegundos
         public string pago;
         public string cantidadv = "1";
-        public PageVentas()
+        public string pg;
+        public static string idv;
+        private readonly string API_URL = "https://facturaciondirecta.com/API_SUNAT/post.php";
+        private readonly HttpClient client;
+        private List<entDetalleVenta> detallesVenta;
+        public PageVentas(string dniemp)
         {
             InitializeComponent();
             CargarProductos();
@@ -45,25 +52,10 @@ namespace ivanshoes
             try
             {
                 var detalles = logDetalleVenta.Instancia.MostrarDetallesVenta(Convert.ToInt32(idventap));
-
-                // Convertir los detalles al formato que espera tu ItemsControl
-                var detallesVista = detalles.Select(d => new
-                {
-                    ID_Detalle_venta = d.ID_Detalle_venta,
-                    id_Venta = d.id_Venta,
-                    id_Producto = d.id_Producto,
-                    nombre = d.NombreProducto,
-                    NombreTalla = d.NombreTalla,
-                    Imagen = d.Imagen,
-                    precio = d.Preciounitario,
-                    Cantidad = d.Cantidad,
-                    Subtotal = d.Subtotal
-                }).ToList();
-
-                itemsControlCarrito.ItemsSource = detallesVista;
+                itemsControlCarrito.ItemsSource = detalles;
 
                 // Actualizar el total
-                double total = detalles.Sum(d => d.Subtotal);
+                decimal total = detalles.Sum(d => Convert.ToDecimal(d.Subtotal));
                 txtTotal.Text = total.ToString("N2");
                 pago = txtTotal.Text;
             }
@@ -97,7 +89,8 @@ namespace ivanshoes
 
         private void RealizarCompra_Click(object sender, RoutedEventArgs e)
         {
-
+            Pago pagoss = new Pago( idventap, txtDniCliente.Text,txtNombreCliente.Text,pago);
+            pagoss.Show();
         }
 
         private void AgregarAlCarrito_Click(object sender, RoutedEventArgs e)
@@ -143,7 +136,7 @@ namespace ivanshoes
                     id_Venta = Convert.ToInt32(idventap),
                     id_Producto = producto.id_producto,
                     Cantidad = cantidad,
-                    Preciounitario = precioUnitario,
+                    precio = precioUnitario,
                     Subtotal = subtotal
                 };
 
@@ -205,6 +198,7 @@ namespace ivanshoes
                     logCliente.Instancia.InsertarCliente(cliente);
                     System.Windows.MessageBox.Show("Cliente agregado correctamente.",
                         "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+
                 }
 
                 // Obtener datos del cliente (sea nuevo o existente)
@@ -232,7 +226,7 @@ namespace ivanshoes
 
                     System.Windows.MessageBox.Show("Orden de venta generada correctamente.",
                         "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
-
+                    ActualizarVistaCarrito();
                     // Habilitar controles para agregar productos
                     // Aquí puedes habilitar los controles necesarios para agregar productos
                     habilitarControlesProductos(); // Deberás implementar este método
@@ -252,17 +246,130 @@ namespace ivanshoes
 
         private void DisminuirCantidad_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                var button = sender as System.Windows.Controls.Button;
+                if (button == null) return;
 
+                var parent = VisualTreeHelper.GetParent(button);
+                while (parent != null && !(parent is FrameworkElement element && element.DataContext is entDetalleVenta))
+                {
+                    parent = VisualTreeHelper.GetParent(parent);
+                }
+
+                if (parent is FrameworkElement parentElement)
+                {
+                    var detalle = parentElement.DataContext as entDetalleVenta;
+                    if (detalle != null && detalle.Cantidad > 1)
+                    {
+                        logDetalleVenta.Instancia.ModificarCantidadDetalle(
+                            detalle.ID_Detalle_venta,
+                            detalle.Cantidad - 1,
+                            detalle.precio
+                        );
+                        ActualizarVistaCarrito();
+                    }
+                    else if (detalle.Cantidad == 1)
+                    {
+                        // Opcional: preguntar si desea eliminar el producto
+                        var result = System.Windows.MessageBox.Show(
+                            "La cantidad llegará a 0. ¿Desea eliminar el producto del carrito?",
+                            "Confirmar eliminación",
+                            MessageBoxButton.YesNo,
+                            MessageBoxImage.Question
+                        );
+
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            logDetalleVenta.Instancia.EliminarDetalleVenta(detalle.ID_Detalle_venta);
+                            ActualizarVistaCarrito();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show($"Error al disminuir cantidad: {ex.Message}",
+                    "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void AumentarCantidad_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                var button = sender as System.Windows.Controls.Button;
+                if (button == null) return;
 
+                var parent = VisualTreeHelper.GetParent(button);
+                while (parent != null && !(parent is FrameworkElement element && element.DataContext is entDetalleVenta))
+                {
+                    parent = VisualTreeHelper.GetParent(parent);
+                }
+
+                if (parent is FrameworkElement parentElement)
+                {
+                    var detalle = parentElement.DataContext as entDetalleVenta;
+                    if (detalle != null)
+                    {
+                        // Validar stock antes de aumentar
+                        var producto = logProducto.Instancia.BuscarProductoPorId(detalle.id_Producto);
+                        if (producto != null && detalle.Cantidad < producto.stock)
+                        {
+                            logDetalleVenta.Instancia.ModificarCantidadDetalle(
+                                detalle.ID_Detalle_venta,
+                                detalle.Cantidad + 1,
+                                detalle.precio
+                            );
+                            ActualizarVistaCarrito();
+                        }
+                        else
+                        {
+                            System.Windows.MessageBox.Show("No hay suficiente stock disponible",
+                                "Stock insuficiente", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show($"Error al aumentar cantidad: {ex.Message}",
+                    "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void EliminarProducto_Click(object sender, RoutedEventArgs e)
-        {
 
+        {
+            try
+            {
+                var button = sender as System.Windows.Controls.Button;
+                if (button == null) return;
+
+                var detalle = button.DataContext as entDetalleVenta;
+                if (detalle == null)
+                {
+                    System.Windows.MessageBox.Show("No se pudo obtener la información del producto",
+                        "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                var result = System.Windows.MessageBox.Show("¿Está seguro que desea eliminar este producto?",
+                    "Confirmar eliminación",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    logDetalleVenta.Instancia.EliminarDetalleVenta(detalle.ID_Detalle_venta);
+                    ActualizarVistaCarrito(); // Usar el método que ya tienes
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show($"Error al eliminar el producto: {ex.Message}",
+                    "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void txtBuscarProducto_TextChanged(object sender, TextChangedEventArgs e)
@@ -288,4 +395,5 @@ namespace ivanshoes
         }
 
     }
+
 }

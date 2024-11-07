@@ -248,6 +248,7 @@
     <Compile Include="logProducto.cs" />
     <Compile Include="logTalla.cs" />
     <Compile Include="logTipo_producto.cs" />
+    <Compile Include="logUsuario.cs" />
     <Compile Include="logVenta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

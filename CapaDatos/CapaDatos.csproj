@@ -223,6 +223,7 @@
     <Compile Include="datCategoria.cs" />
     <Compile Include="datCliente.cs" />
     <Compile Include="datColor.cs" />
+    <Compile Include="datCuentas.cs" />
     <Compile Include="datDashboard.cs" />
     <Compile Include="datDetalleVenta.cs" />
     <Compile Include="datEmpleado.cs" />

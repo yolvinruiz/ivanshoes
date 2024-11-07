@@ -5,20 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ivanshoes"
         mc:Ignorable="d"
-        Title="Pago" Height="500" Width="700"
-        WindowStartupLocation="CenterScreen">
+        Title="Pago" Height="600" Width="600"
+        WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Ivan Shoes (1).png"/>
         </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="59*"/>
-            <RowDefinition Height="425*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button x:Name="btnTarjeta" Content="Pago tarjeta" HorizontalAlignment="Left" Height="58" VerticalAlignment="Center" Width="145" Background="#FF1D3BB7" Foreground="White"/>
-        <Button x:Name="btnefectivo" Content="Pago efectivo" HorizontalAlignment="Left" Height="58" VerticalAlignment="Center" Width="145" Margin="145,0,0,0" Foreground="White" Background="#FF489220" Click="btnefectivo_Click"/>
-        <Button x:Name="btncelular" Content="Pago Yape" HorizontalAlignment="Left" Height="58" VerticalAlignment="Center" Width="145" Margin="290,0,0,0" Background="#FFA222D4" Foreground="White"/>
-        <Frame x:Name="cambio" Content="" Grid.Row="1" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="cambio" Content="" NavigationUIVisibility="Hidden"/>
 
     </Grid>
 </Window>

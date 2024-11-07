@@ -25,7 +25,7 @@
                 </Style>
             </DataGrid.ColumnHeaderStyle>
         </DataGrid>
-        <Label Content="Empleados" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Background="{x:Null}" Foreground="White"/>
+        <Label Content="Empleados" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Background="{x:Null}" Foreground="White" FontFamily="Calibri"/>
         <Label Content="Listado de empleados" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.491,-0.409" FontSize="20" Foreground="White"/>
         <Button x:Name="btnActualizar" Content="Actualizar" HorizontalAlignment="Left" Margin="12,83,0,0" VerticalAlignment="Top" Width="100" FontSize="18" Click="btnActualizar_Click" Foreground="White" Background="#FF09AB0C">
             <Button.Template>

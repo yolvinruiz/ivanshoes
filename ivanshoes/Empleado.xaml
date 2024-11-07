@@ -12,49 +12,26 @@
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="94*"/>
-                <RowDefinition Height="791*"/>
+                <RowDefinition Height="26*"/>
+                <RowDefinition Height="21*"/>
+                <RowDefinition Height="395*"/>
             </Grid.RowDefinitions>
             <Grid.Background>
                 <ImageBrush ImageSource="/Ivan Shoes (1).png"/>
             </Grid.Background>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="29*"/>
-                <ColumnDefinition Width="171*"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <!-- Contenedor de Navegación -->
 
 
             <!-- Contenedor de Navegación -->
             <Frame x:Name="MainFrame"
-               NavigationUIVisibility="Hidden" Margin="10,69,10,10" Grid.Column="1" Grid.RowSpan="2" />
-            <Label x:Name="lavel1" Content="IVAN" HorizontalAlignment="Center" Margin="0,16,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Goudy Stout" FontWeight="Bold" Foreground="Red" Height="47" Width="184"/>
-            <Button x:Name="btnPedidos" Content="Pedidos" HorizontalAlignment="Center" Height="92" Width="202" Margin="0,27,0,0" Click="btnPedidos_Click" FontSize="36" BorderBrush="Red" Foreground="White" Background="{x:Null}" FontWeight="Bold" VerticalAlignment="Top" BorderThickness="2,2,2,2" Grid.Row="1">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}"
-                                   BorderBrush="{TemplateBinding BorderBrush}"
-                                   BorderThickness="1"
-                                   CornerRadius="10">
-                            <!-- Cambia este valor para ajustar el radio -->
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Label x:Name="lavel1_Copiar" Content="SHOES" HorizontalAlignment="Left" Margin="0,58,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Goudy Stout" FontWeight="Bold" Foreground="Red" Height="46" Width="184" Grid.RowSpan="2"/>
-            <Button x:Name="btnVenta" Content="Vender" HorizontalAlignment="Center" Height="90" VerticalAlignment="Top" Width="202" Click="btnVenta_Click" Foreground="White" FontSize="36" BorderBrush="Red" Margin="0,127,0,0" Background="{x:Null}" FontWeight="Bold" Grid.Row="1">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}"
-         BorderBrush="{TemplateBinding BorderBrush}"
-         BorderThickness="1"
-         CornerRadius="10">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
+               NavigationUIVisibility="Hidden" Margin="10,42,10,10" Grid.Row="1" Grid.RowSpan="2" />
+            <Label x:Name="lavel1" Content="IVAN" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Goudy Stout" FontWeight="Bold" Foreground="White" Height="47" Width="184" Grid.RowSpan="2"/>
+            <Label x:Name="lavel1_Copiar" Content="SHOES" HorizontalAlignment="Left" Margin="0,48,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Goudy Stout" FontWeight="Bold" Foreground="White" Height="46" Width="184" Grid.RowSpan="2"/>
+            <TextBlock x:Name="txtnombreempleado" HorizontalAlignment="Left" Height="45" Margin="301,14,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="710" Foreground="White" FontSize="36" FontWeight="Bold" FontFamily="Calibri" Grid.RowSpan="2"/>
+            <TextBlock x:Name="txtdniempleadoo" HorizontalAlignment="Left" Height="45" Margin="1016,14,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="345" Foreground="White" FontSize="36" FontWeight="Bold" FontFamily="Calibri" Grid.RowSpan="2"/>
 
 
         </Grid>
