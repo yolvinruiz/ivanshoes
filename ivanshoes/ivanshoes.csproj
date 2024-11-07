@@ -10,11 +10,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="cliente.png" />
-    <None Remove="clientes.png" />
-    <None Remove="fondoivanshoes.jpg" />
+    <None Remove="cuenta.png" />
+    <None Remove="empleados.png" />
+    <None Remove="fondo.png" />
+    <None Remove="fondo2 - copia.png" />
+    <None Remove="fondo2.png" />
+    <None Remove="icons8-crowd-80.png" />
+    <None Remove="imagen.png" />
+    <None Remove="istockphoto-1351989267-612x612.jpg" />
     <None Remove="Ivan Shoes %281%29.png" />
-    <None Remove="pexels-8moments-1323550.jpg" />
     <None Remove="tienda-de-ropa.png" />
     <None Remove="trabajador.png" />
   </ItemGroup>
@@ -36,13 +40,32 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="cliente.png" />
-    <Resource Include="clientes.png" />
-    <Resource Include="fondoivanshoes.jpg" />
+    <Resource Include="cuenta.png" />
+    <Resource Include="empleados.png" />
+    <Resource Include="fondo.png" />
+    <Resource Include="fondo2 - copia.png" />
+    <Resource Include="fondo2.png" />
+    <Resource Include="icons8-crowd-80.png" />
+    <Resource Include="imagen.png" />
+    <Resource Include="istockphoto-1351989267-612x612.jpg" />
     <Resource Include="Ivan Shoes (1).png" />
-    <Resource Include="pexels-8moments-1323550.jpg" />
     <Resource Include="tienda-de-ropa.png" />
     <Resource Include="trabajador.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="Administrador" Height="900" Width="1400"
         WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/fondo.png"/>
+    </Window.Background>
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/Ivan Shoes (1).png"/>
-        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="63*"/>
             <RowDefinition Height="821*"/>
@@ -19,7 +19,10 @@
             <ColumnDefinition Width="27*"/>
             <ColumnDefinition Width="173*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="btnInventario" Content="Inventario" HorizontalAlignment="Center" Height="57" Margin="0,63,0,0" VerticalAlignment="Top" Width="189" Background="{x:Null}" Grid.RowSpan="2" Foreground="White" BorderBrush="White" BorderThickness="3,3,3,3" FontWeight="Bold">
+        <Button x:Name="btnInventario" Content="Inventario" HorizontalAlignment="Center" Height="57" Margin="0,63,0,0" VerticalAlignment="Top" Width="189" Grid.RowSpan="2" Foreground="White" BorderBrush="White" BorderThickness="3,3,3,3" FontWeight="Bold">
+            <Button.Background>
+                <ImageBrush/>
+            </Button.Background>
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"

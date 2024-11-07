@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.IO;
 namespace ivanshoes
 {
     /// <summary>
@@ -22,6 +22,18 @@ namespace ivanshoes
         public Administrador()
         {
             InitializeComponent();
+            // Cargar el fondo guardado si existe
+            string fondoGuardado = Properties.Settings.Default.FondoPantalla;
+            if (!string.IsNullOrEmpty(fondoGuardado) && File.Exists(fondoGuardado))
+            {
+                try
+                {
+                    ImageBrush brush = new ImageBrush(new BitmapImage(new Uri(fondoGuardado)));
+                    brush.Stretch = Stretch.UniformToFill;
+                    this.Background = brush;
+                }
+                catch { }
+            }
         }
 
         private void btnInventario_Click(object sender, RoutedEventArgs e)

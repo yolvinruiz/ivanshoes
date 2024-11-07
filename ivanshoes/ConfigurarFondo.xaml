@@ -1,0 +1,72 @@
+﻿<Window x:Class="ivanshoes.ConfigurarFondo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ivanshoes"
+        mc:Ignorable="d"
+        Title="ConfigurarFondo" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Grid Background="#F5F6FA">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Título -->
+        <TextBlock Text="Configurar Fondo de Pantalla"
+                  FontSize="24"
+                  FontWeight="Bold"
+                  Margin="20"/>
+
+        <!-- Vista previa de la imagen -->
+        <Border Grid.Row="1" 
+                Margin="20"
+                Background="White"
+                BorderBrush="#DDDDDD"
+                BorderThickness="1"
+                CornerRadius="8">
+            <Grid>
+                <Image x:Name="imgPreview"
+                       Stretch="Uniform"
+                       Margin="10"/>
+                <TextBlock x:Name="txtNoImage"
+                          Text="No se ha seleccionado ninguna imagen"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          Foreground="#666666"/>
+            </Grid>
+        </Border>
+
+        <!-- Botones -->
+        <StackPanel Grid.Row="2" 
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="20">
+            <Button Content="Seleccionar Imagen"
+                    Width="150"
+                    Height="35"
+                    Margin="10,0"
+                    Background="Black"
+                    Foreground="White"
+                    Click="SeleccionarImagen_Click"/>
+
+            <Button Content="Aplicar"
+                    Width="150"
+                    Height="35"
+                    Margin="10,0"
+                    Background="#4CAF50"
+                    Foreground="White"
+                    Click="AplicarFondo_Click"/>
+
+            <Button Content="Restaurar Default"
+                    Width="150"
+                    Height="35"
+                    Margin="10,0"
+                    Background="#F44336"
+                    Foreground="White"
+                    Click="RestaurarDefault_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

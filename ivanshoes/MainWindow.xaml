@@ -9,7 +9,7 @@
         WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow">
 
     <Window.Background>
-        <ImageBrush ImageSource="/pexels-8moments-1323550.jpg" Opacity="0.9"/>
+        <ImageBrush ImageSource="/fondo.png" Opacity="0.9"/>
     </Window.Background>
     <Grid>
         <Border 

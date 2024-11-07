@@ -25,22 +25,34 @@ namespace ivanshoes
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        private void IrAClientes_Click(object sender, RoutedEventArgs e)
         {
             ClientesVista clientes = new ClientesVista();
             clientes.Show();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void IrAProductos_Click(object sender, RoutedEventArgs e)
+        {
+            Productovista productovista = new Productovista();
+            productovista.Show();
+        }
+
+        private void IrAEmpleados_Click(object sender, RoutedEventArgs e)
         {
             Empleados0 empleados0 = new Empleados0();
             empleados0.Show();
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void IrACuentas_Click(object sender, RoutedEventArgs e)
         {
-            Productovista productovista = new Productovista();
-            productovista.Show();
+
+        }
+
+        private void ConfigurarFondo_Click(object sender, RoutedEventArgs e)
+        {
+            ConfigurarFondo empleados0 = new ConfigurarFondo();
+            empleados0.Show();
         }
     }
 }

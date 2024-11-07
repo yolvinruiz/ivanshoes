@@ -10,21 +10,193 @@
       Title="Paginaconfiguracion">
 
     <Grid>
-        <Button Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="121" Width="168" Click="Button_Click">
-            <Button.Background>
-                <ImageBrush ImageSource="/clientes.png"/>
-            </Button.Background>
-        </Button>
-        <Button Content="" HorizontalAlignment="Left" Margin="183,10,0,0" VerticalAlignment="Top" Height="121" Width="168" Click="Button_Click_2">
-            <Button.Background>
-                <ImageBrush ImageSource="/tienda-de-ropa.png"/>
-            </Button.Background>
-        </Button>
-        <Button Content="" HorizontalAlignment="Left" Margin="10,136,0,0" VerticalAlignment="Top" Width="168" Height="121" Click="Button_Click_1">
-            <Button.Background>
-                <ImageBrush ImageSource="/trabajador.png"/>
-            </Button.Background>
-        </Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="538.077"/>
+        </Grid.RowDefinitions>
 
+        <!-- Título -->
+        <TextBlock Text="Configuración del Sistema"
+                  FontSize="24"
+                  FontWeight="Bold"
+                  Margin="20,20,20,10" Foreground="White"/>
+
+        <!-- Tabs -->
+        <StackPanel Grid.Row="1" 
+                    Orientation="Horizontal"
+                    Margin="20,0,20,512"/>
+
+        <!-- Tarjetas de Mantenedores -->
+        <WrapPanel Grid.Row="1" 
+                   Margin="10,46,10,20">
+
+            <!-- Mantenedor de Clientes -->
+            <Border Background="White"
+                    Width="300"
+                    Height="200"
+                    Margin="10"
+                    CornerRadius="8"
+                    BorderThickness="1"
+                    BorderBrush="#EEEEEE">
+                <StackPanel Margin="20">
+                    <Path Data="M20 3H4a1 1 0 00-1 1v16a1 1 0 001 1h16a1 1 0 001-1V4a1 1 0 00-1-1z"
+                          Width="40"
+                          Height="40"
+                          Stretch="Uniform"
+                          Margin="0,0,0,10">
+                        <Path.Fill>
+                            <ImageBrush ImageSource="/icons8-crowd-80.png"/>
+                        </Path.Fill>
+                    </Path>
+                    <TextBlock Text="Clientes"
+                             FontSize="18"
+                             FontWeight="SemiBold"
+                             Margin="0,0,0,10"/>
+                    <TextBlock Text="Gestione la información de los clientes del sistema."
+                             TextWrapping="Wrap"
+                             Foreground="#666666"
+                             Margin="0,0,0,15"/>
+                    <Button Content="Ir a Clientes"
+                            Height="26"
+                            Background="Black"
+                            Foreground="White"
+                            Click="IrAClientes_Click"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Mantenedor de Productos -->
+            <Border Background="White"
+                    Width="300"
+                    Height="200"
+                    Margin="10"
+                    CornerRadius="8"
+                    BorderThickness="1"
+                    BorderBrush="#EEEEEE">
+                <StackPanel Margin="20">
+                    <Path Data="M20 3H4a1 1 0 00-1 1v16a1 1 0 001 1h16a1 1 0 001-1V4a1 1 0 00-1-1z"
+                          Width="40"
+                          Height="40"
+                          Stretch="Uniform"
+                          Margin="0,0,0,10">
+                        <Path.Fill>
+                            <ImageBrush ImageSource="/istockphoto-1351989267-612x612.jpg"/>
+                        </Path.Fill>
+                    </Path>
+                    <TextBlock Text="Productos"
+                             FontSize="18"
+                             FontWeight="SemiBold"
+                             Margin="0,0,0,10"/>
+                    <TextBlock Text="Administre el catálogo de productos disponibles."
+                             TextWrapping="Wrap"
+                             Foreground="#666666"
+                             Margin="0,0,0,15"/>
+                    <Button Content="Ir a Productos"
+                            Height="28"
+                            Background="Black"
+                            Foreground="White"
+                            Click="IrAProductos_Click"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Mantenedor de Empleados -->
+            <Border Background="White"
+                    Width="300"
+                    Height="200"
+                    Margin="10"
+                    CornerRadius="8"
+                    BorderThickness="1"
+                    BorderBrush="#EEEEEE">
+                <StackPanel Margin="20">
+                    <Path Data="M20 3H4a1 1 0 00-1 1v16a1 1 0 001 1h16a1 1 0 001-1V4a1 1 0 00-1-1z"
+                            Width="40"
+                            Height="40"
+                            Stretch="Uniform"
+                            Margin="0,0,0,10">
+                        <Path.Fill>
+                            <ImageBrush ImageSource="/empleados.png"/>
+                        </Path.Fill>
+                    </Path>
+                    <TextBlock Text="Empleados"
+                             FontSize="18"
+                             FontWeight="SemiBold"
+                             Margin="0,0,0,10"/>
+                    <TextBlock Text="Gestione la información de los empleados del sistema."
+                             TextWrapping="Wrap"
+                             Foreground="#666666"
+                             Margin="0,0,0,15"/>
+                    <Button Content="Ir a Empleados"
+                            Height="28"
+                            Background="Black"
+                            Foreground="White"
+                            Click="IrAEmpleados_Click"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Mantenedor de Cuentas -->
+            <Border Background="White"
+                    Width="300"
+                    Height="200"
+                    Margin="10"
+                    CornerRadius="8"
+                    BorderThickness="1"
+                    BorderBrush="#EEEEEE">
+                <StackPanel Margin="20">
+                    <Path Data="M20 3H4a1 1 0 00-1 1v16a1 1 0 001 1h16a1 1 0 001-1V4a1 1 0 00-1-1z"
+                            Width="40"
+                            Height="40"
+                            Stretch="Uniform"
+                            Margin="0,0,0,10">
+                        <Path.Fill>
+                            <ImageBrush ImageSource="/cuenta.png"/>
+                        </Path.Fill>
+                    </Path>
+                    <TextBlock Text="Cuentas"
+                             FontSize="18"
+                             FontWeight="SemiBold"
+                             Margin="0,0,0,10"/>
+                    <TextBlock Text="Administre las cuentas de usuario y sus permisos."
+                             TextWrapping="Wrap"
+                             Foreground="#666666"
+                             Margin="0,0,0,15"/>
+                    <Button Content="Ir a Cuentas"
+                            Height="27"
+                            Background="Black"
+                            Foreground="White"
+                            Click="IrACuentas_Click"/>
+                </StackPanel>
+            </Border>
+            <Border Background="White"
+        Width="300"
+        Height="200"
+        Margin="10"
+        CornerRadius="8"
+        BorderThickness="1"
+        BorderBrush="#EEEEEE">
+                <StackPanel Margin="20">
+                    <Path Data="M20 3H4a1 1 0 00-1 1v16a1 1 0 001 1h16a1 1 0 001-1V4a1 1 0 00-1-1z"
+                            Width="40"
+                            Height="40"
+                            Stretch="Uniform"
+                            Margin="0,0,0,10">
+                        <Path.Fill>
+                            <ImageBrush ImageSource="/imagen.png"/>
+                        </Path.Fill>
+                    </Path>
+                    <TextBlock Text="Fondo de Pantalla"
+                  FontSize="18"
+                  FontWeight="SemiBold"
+                  Margin="0,0,0,10"/>
+                    <TextBlock Text="Personaliza el fondo de pantalla del sistema."
+                  TextWrapping="Wrap"
+                  Foreground="#666666"
+                  Margin="0,0,0,15"/>
+                    <Button Content="Configurar Fondo"
+                Height="35"
+                Background="Black"
+                Foreground="White"
+                Click="ConfigurarFondo_Click"/>
+                </StackPanel>
+            </Border>
+        </WrapPanel>
     </Grid>
 </Page>

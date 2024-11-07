@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace ivanshoes
 {
@@ -21,13 +22,27 @@ namespace ivanshoes
         public MainWindow()
         {
             InitializeComponent();
-        
+            // Cargar el fondo guardado si existe
+            string fondoGuardado = Properties.Settings.Default.FondoPantalla;
+            if (!string.IsNullOrEmpty(fondoGuardado) && File.Exists(fondoGuardado))
+            {
+                try
+                {
+                    ImageBrush brush = new ImageBrush(new BitmapImage(new Uri(fondoGuardado)));
+                    brush.Stretch = Stretch.UniformToFill;
+                    this.Background = brush;
+                }
+                catch { }
+            }
+
         }
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             // Mostrar el login cuando se cierre esta ventana
             loginWindow = new MainWindow();
             loginWindow.Show();
+
+
         }
 
         private void txtDNI_TextChanged(object sender, TextChangedEventArgs e)
@@ -111,6 +126,22 @@ namespace ivanshoes
         {
             PlaceholderText.Visibility = string.IsNullOrEmpty(txtPassword.Password) ?
                 Visibility.Visible : Visibility.Hidden;
+        }
+        public void ActualizarFondo(string imagePath)
+        {
+            try
+            {
+                ImageBrush brush = new ImageBrush(new BitmapImage(new Uri(imagePath)));
+                brush.Stretch = Stretch.UniformToFill;
+                this.Background = brush;
+            }
+            catch { }
+        }
+
+        public void RestaurarFondoDefault()
+        {
+            // Establecer el fondo predeterminado
+            this.Background = new SolidColorBrush(Colors.White); // O el color que prefieras
         }
     }
 }
