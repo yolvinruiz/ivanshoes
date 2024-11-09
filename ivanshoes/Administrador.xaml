@@ -15,7 +15,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="btnInventario" Content="Inventario" HorizontalAlignment="Left" Height="57" Margin="0,63,0,0" VerticalAlignment="Top" Width="189" Grid.RowSpan="2" Foreground="Black" BorderBrush="Black" BorderThickness="3,3,3,3" FontWeight="Bold" FontSize="16" FontFamily="Arial">
+        <Button x:Name="btnIconprobantes" Content="Comprobantes" HorizontalAlignment="Left" Height="57" Margin="0,63,0,0" VerticalAlignment="Top" Width="189" Grid.RowSpan="2" Foreground="Black" BorderBrush="Black" BorderThickness="3,3,3,3" FontWeight="Bold" FontSize="16" FontFamily="Arial" Click="btnIconprobantes_Click">
             <Button.Background>
                 <SolidColorBrush Color="#FF4CC1FF" Opacity="0.5"/>
             </Button.Background>

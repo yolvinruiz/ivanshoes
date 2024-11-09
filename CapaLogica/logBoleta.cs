@@ -23,6 +23,37 @@ namespace CapaLogica
         {
             datBoleta.Instancia.InsertarBoleta(boleta);
         }
+        public List<entBoleta> ListarComprobantes(DateTime fechaInicio, DateTime fechaFin)
+        {
+            try
+            {
+                return datBoleta.Instancia.ListarComprobantes(fechaInicio, fechaFin);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la capa lógica: " + ex.Message);
+            }
+        }
+        public string ObtenerTipoComprobante(string serie)
+        {
+            if (string.IsNullOrEmpty(serie))
+                return "Desconocido";
+
+            return serie.StartsWith("BB01") ? "Boleta" :
+                   serie.StartsWith("FF03") ? "Factura" :
+                   "Desconocido";
+        }
+        public List<entBoleta> ListarTodasBoletas()
+        {
+            try
+            {
+                return datBoleta.Instancia.ListarTodasBoletas();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la capa lógica: " + ex.Message);
+            }
+        }
 
     }
  }

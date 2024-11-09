@@ -7,6 +7,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon>Imagen de WhatsApp 2024-11-08 a las 15.52.00_4785de2a.ico</ApplicationIcon>
+    <AssemblyName>Tienda Easy</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,6 +21,10 @@
     <None Remove="istockphoto-1351989267-612x612.jpg" />
     <None Remove="tienda-de-ropa.png" />
     <None Remove="trabajador.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Imagen de WhatsApp 2024-11-08 a las 15.52.00_4785de2a.ico" />
   </ItemGroup>
 
   <ItemGroup>

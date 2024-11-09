@@ -1,0 +1,182 @@
+﻿<Page x:Class="ivanshoes.Pagecomprobantes"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ivanshoes"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="900"
+      Title="Pagecomprobantes">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Título -->
+        <TextBlock Text="Comprobantes de Venta"
+              FontSize="24"
+              FontWeight="Bold"
+              Margin="20,15" Foreground="White"/>
+
+        <!-- Filtros -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="20,0,20,15">
+            <TextBlock Text="Tipo:" 
+                   VerticalAlignment="Center"
+                   Margin="0,0,10,0"/>
+            <ComboBox x:Name="cmbTipo" 
+                  Width="150" 
+                  Margin="0,0,20,0"
+                  SelectionChanged="CmbTipo_SelectionChanged">
+                <ComboBoxItem Content="Todos"/>
+                <ComboBoxItem Content="Boletas"/>
+                <ComboBoxItem Content="Facturas"/>
+            </ComboBox>
+
+            <TextBlock Text="Desde:" 
+                   VerticalAlignment="Center"
+                   Margin="0,0,10,0"/>
+            <DatePicker x:Name="dpFechaInicio" 
+                    Width="120"
+                    Margin="0,0,20,0"/>
+
+            <TextBlock Text="Hasta:" 
+                   VerticalAlignment="Center"
+                   Margin="0,0,10,0"/>
+            <DatePicker x:Name="dpFechaFin" 
+                    Width="120"
+                    Margin="0,0,20,0"/>
+
+            <Button x:Name="btnbuscar" Content="Buscar"
+                 Width="100"
+                 Height="30"
+                 Click="BuscarComprobantes_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#2196F3"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                         CornerRadius="5">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                     VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#1976D2"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
+
+        <!-- Tabla de Comprobantes -->
+        <DataGrid x:Name="dgComprobantes"
+          Grid.Row="2"
+          Margin="20"
+          AutoGenerateColumns="False"
+          IsReadOnly="True"
+          AlternatingRowBackground="#F5F5F5"
+          RowHeight="35">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="N°" 
+                          Binding="{Binding id_Boleta}"
+                          Width="80"/>
+                <DataGridTextColumn Header="N° Venta" 
+                          Binding="{Binding id_Venta}"
+                          Width="80"/>
+                <DataGridTextColumn Header="Serie" 
+                          Binding="{Binding Serie}"
+                          Width="100"/>
+                <DataGridTextColumn Header="Estado SUNAT" 
+                          Binding="{Binding Estado_sunat}"
+                          Width="120"/>
+                <DataGridTextColumn Header="Mensaje SUNAT" 
+                          Binding="{Binding Mensaje_sunat}"
+                          Width="200"/>
+                <DataGridTextColumn Header="DigestValue" 
+                          Binding="{Binding DigestValueon}"
+                          Width="150"/>
+                <DataGridTextColumn Header="Fecha" 
+                          Binding="{Binding Fecha, StringFormat={}{0:dd/MM/yyyy HH:mm}}"
+                          Width="150"/>
+                <DataGridTextColumn Header="Cliente" 
+                          Binding="{Binding Cliente}"
+                          Width="200"/>
+                <DataGridTextColumn Header="Total" 
+                          Binding="{Binding Total, StringFormat=S/{0:N2}}"
+                          Width="100"/>
+                <DataGridTemplateColumn Header="XML" Width="60">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="XML" 
+                            Click="VerXML_Click"
+                            Margin="2"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="PDF" Width="60">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="PDF" 
+                            Click="VerPDF_Click"
+                            Margin="2"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="CDR" Width="60">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="CDR" 
+                            Click="VerCDR_Click"
+                            Margin="2"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <!-- Botones de acción -->
+        <StackPanel Grid.Row="3" 
+                 Orientation="Horizontal"
+                 HorizontalAlignment="Right"
+                 Margin="20">
+            <Button Content="Ver Todas las Boletas"
+            Width="150"
+            Height="30"
+            Margin="20,0,0,0"
+            Click="VerTodasBoletas_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FF7043"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                    CornerRadius="5">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#F4511E"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>

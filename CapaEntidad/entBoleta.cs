@@ -17,5 +17,11 @@ namespace CapaEntidad
         public string Xml_filename { get; set; }
         public string Pdf_filename { get; set; }
         public string Cdr_filename { get; set; }
+
+        public string TipoComprobante { get; set; }
+        public DateTime Fecha { get; set; }
+        public string Cliente { get; set; }
+        public decimal Total { get; set; }
+        public string NroDocCliente { get; set; }
     }
 }

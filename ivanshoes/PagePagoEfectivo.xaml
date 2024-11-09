@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:ivanshoes"
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="600"
-      Title="PagePagoEfectivo">
+      Title="PagePagoEfectivo"
+      >
 
     <Grid Background="#FF70B76E">
         <Grid.RowDefinitions>

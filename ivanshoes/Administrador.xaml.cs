@@ -54,5 +54,10 @@ namespace ivanshoes
         {
             framecambio.Navigate(new Reporte());
         }
+
+        private void btnIconprobantes_Click(object sender, RoutedEventArgs e)
+        {
+            framecambio.Navigate(new Pagecomprobantes()); 
+        }
     }
 }

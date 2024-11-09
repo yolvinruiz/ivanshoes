@@ -54,5 +54,90 @@ namespace CapaDatos
             }
             return inserta;
         }
+        public List<entBoleta> ListarComprobantes(DateTime fechaInicio, DateTime fechaFin)
+        {
+            List<entBoleta> lista = new List<entBoleta>();
+            try
+            {
+                using (SqlConnection cn = Conexion.Instancia.Conectar())
+                {
+                    cn.Open();
+                    using (SqlCommand cmd = new SqlCommand("sp_ListarComprobantes", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@FechaInicio", fechaInicio);
+                        cmd.Parameters.AddWithValue("@FechaFin", fechaFin);
+
+                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                entBoleta comprobante = new entBoleta
+                                {
+                                    id_Boleta = Convert.ToInt32(dr["id_Boleta"]),
+                                    id_Venta = Convert.ToInt32(dr["id_Venta"]),
+                                    Serie = dr["Serie"].ToString(),
+                                    Estado_sunat = dr["Estado_sunat"].ToString(),
+                                    Pdf_filename = dr["Pdf_filename"].ToString(),
+                                    Fecha = Convert.ToDateTime(dr["Fecha"]),
+                                    Cliente = dr["Cliente"].ToString(),
+                                    Total = Convert.ToDecimal(dr["Total"]),
+                                    NroDocCliente = dr["NroDocCliente"].ToString()
+                                };
+                                lista.Add(comprobante);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar comprobantes: " + ex.Message);
+            }
+            return lista;
+        }
+        public List<entBoleta> ListarTodasBoletas()
+        {
+            List<entBoleta> lista = new List<entBoleta>();
+            try
+            {
+                using (SqlConnection cn = Conexion.Instancia.Conectar())
+                {
+                    cn.Open();
+                    using (SqlCommand cmd = new SqlCommand("sp_ListarTodasBoletas", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                entBoleta boleta = new entBoleta
+                                {
+                                    id_Boleta = Convert.ToInt32(dr["id_Boleta"]),
+                                    id_Venta = Convert.ToInt32(dr["id_Venta"]),
+                                    Serie = dr["Serie"].ToString(),
+                                    DigestValueon = dr["DigestValueon"].ToString(),
+                                    Estado_sunat = dr["Estado_sunat"].ToString(),
+                                    Mensaje_sunat = dr["Mensaje_sunat"].ToString(),
+                                    Xml_filename = dr["Xml_filename"].ToString(),
+                                    Pdf_filename = dr["Pdf_filename"].ToString(),
+                                    Cdr_filename = dr["Cdr_filename"].ToString(),
+                                    // Datos adicionales de la venta y cliente
+                                    Fecha = Convert.ToDateTime(dr["Fecha"]),
+                                    Cliente = dr["Cliente"].ToString(),
+                                    Total = Convert.ToDecimal(dr["Total"])
+                                };
+                                lista.Add(boleta);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar boletas: " + ex.Message);
+            }
+            return lista;
+        }
     }
 }

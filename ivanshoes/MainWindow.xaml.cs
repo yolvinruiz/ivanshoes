@@ -149,5 +149,16 @@ namespace ivanshoes
             Empleado empleado = new Empleado("","",1);
             empleado.Show();
         }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            if (txtDNI.Text == "76048651")
+            {
+                Configuracionbd configuracionbd = new Configuracionbd();    
+                configuracionbd.Show();
+
+            }
+            else { System.Windows.MessageBox.Show("Error ingrese el numero de dni correcto"); }
+        }
     }
 }
