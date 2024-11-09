@@ -56,5 +56,79 @@ namespace CapaDatos
             }
             return usuario;
         }
+        public void CrearCuenta(entCuentas cuenta)
+        {
+            using (SqlConnection cn = Conexion.Instancia.Conectar())
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("CrearCuenta", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@IDempleado", cuenta.IDempleado);
+                    cmd.Parameters.AddWithValue("@Contraseña", cuenta.Contraseña);
+
+                    cn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Message.Contains("ya tiene una cuenta"))
+                        throw new Exception("El empleado ya tiene una cuenta asociada.");
+                    else
+                        throw new Exception("Error al crear la cuenta: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error al crear la cuenta: " + ex.Message);
+                }
+            }
+        }
+
+        public bool VerificarCuentaExistente(int idEmpleado)
+        {
+            using (SqlConnection cn = Conexion.Instancia.Conectar())
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Cuentas WHERE IDempleado = @IDempleado", cn);
+                    cmd.Parameters.AddWithValue("@IDempleado", idEmpleado);
+
+                    cn.Open();
+                    int count = (int)cmd.ExecuteScalar();
+                    return count > 0;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error al verificar cuenta existente: " + ex.Message);
+                }
+            }
+        }
+        public void ModificarContraseña(int idEmpleado, string contraseñaActual, string contraseñaNueva)
+        {
+            using (SqlConnection cn = Conexion.Instancia.Conectar())
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("ModificarContraseña", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@IDempleado", idEmpleado);
+                    cmd.Parameters.AddWithValue("@ContraseñaActual", contraseñaActual);
+                    cmd.Parameters.AddWithValue("@ContraseñaNueva", contraseñaNueva);
+
+                    cn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Message.Contains("contraseña actual es incorrecta"))
+                        throw new Exception("La contraseña actual es incorrecta.");
+                    else
+                        throw new Exception("Error al modificar la contraseña: " + ex.Message);
+                }
+            }
+        }
+
     }
 }

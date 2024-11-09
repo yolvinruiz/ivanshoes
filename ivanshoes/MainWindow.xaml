@@ -111,26 +111,57 @@
                     Foreground="White"
                     BorderThickness="0"
                     Click="Button_Click" FontSize="14">
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type Button}">
-                                        <Border Background="{TemplateBinding Background}"
-                                            CornerRadius="5">
-                                            <ContentPresenter HorizontalAlignment="Center" 
-                                                        VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#333333"/>
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border x:Name="border"
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="1"
+            CornerRadius="10">
+                                <ContentPresenter x:Name="contentPresenter"
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <!-- Animación y color al presionar -->
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetName="border"
+                                      Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                      To="#666666"
+                                      Duration="0:0:0.1"/>
+                                                <ThicknessAnimation Storyboard.TargetName="border"
+                                          Storyboard.TargetProperty="Margin"
+                                          To="2,2,0,0"
+                                          Duration="0:0:0.1"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetName="border"
+                                      Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                      
+                                      Duration="0:0:0.1"/>
+                                                <ThicknessAnimation Storyboard.TargetName="border"
+                                          Storyboard.TargetProperty="Margin"
+                                          To="0"
+                                          Duration="0:0:0.1"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
                                 </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
+
+                                <!-- Efecto hover -->
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Opacity" TargetName="border" Value="0.8"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
                 </Button>
                 <!-- Botón Ingresar -->
 

@@ -13,18 +13,17 @@
     <None Remove="cuenta.png" />
     <None Remove="empleados.png" />
     <None Remove="fondo.png" />
-    <None Remove="fondo2 - copia.png" />
     <None Remove="fondo2.png" />
     <None Remove="icons8-crowd-80.png" />
     <None Remove="imagen.png" />
     <None Remove="istockphoto-1351989267-612x612.jpg" />
-    <None Remove="Ivan Shoes %281%29.png" />
     <None Remove="tienda-de-ropa.png" />
     <None Remove="trabajador.png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="ClosedXML" Version="0.104.1" />
+    <PackageReference Include="EPPlus" Version="7.4.2" />
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.6.1" />
     <PackageReference Include="LiveCharts" Version="0.9.7" />
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
@@ -43,12 +42,10 @@
     <Resource Include="cuenta.png" />
     <Resource Include="empleados.png" />
     <Resource Include="fondo.png" />
-    <Resource Include="fondo2 - copia.png" />
     <Resource Include="fondo2.png" />
     <Resource Include="icons8-crowd-80.png" />
     <Resource Include="imagen.png" />
     <Resource Include="istockphoto-1351989267-612x612.jpg" />
-    <Resource Include="Ivan Shoes (1).png" />
     <Resource Include="tienda-de-ropa.png" />
     <Resource Include="trabajador.png" />
   </ItemGroup>

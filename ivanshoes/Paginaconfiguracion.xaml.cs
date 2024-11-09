@@ -46,7 +46,8 @@ namespace ivanshoes
 
         private void IrACuentas_Click(object sender, RoutedEventArgs e)
         {
-
+            Cuentas cuentas = new Cuentas();
+            cuentas.Show();
         }
 
         private void ConfigurarFondo_Click(object sender, RoutedEventArgs e)

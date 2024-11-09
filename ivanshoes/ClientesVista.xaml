@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="ClientesVista" Height="750" Width="1200"
         WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/fondo.png"/>
+    </Window.Background>
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/Ivan Shoes (1).png"/>
-        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="121*"/>
             <RowDefinition Height="613*"/>
@@ -29,7 +29,7 @@
                 </Style>
             </DataGrid.ColumnHeaderStyle>
         </DataGrid>
-        <Label Content="Clientes" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Foreground="White"/>
+        <Label Content="Clientes" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Foreground="White" Background="{x:Null}" BorderThickness="1,1,1,1" OpacityMask="Black"/>
         <Label Content="Listado de clientes" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="-1.491,-0.409" FontSize="20" Foreground="White"/>
         <Button x:Name="btnActualizar" Content="Actualizar" HorizontalAlignment="Left" Margin="12,83,0,0" VerticalAlignment="Top" Width="100" FontSize="18" Click="btnActualizar_Click" Foreground="White" Background="#FF09AB0C">
             <Button.Template>

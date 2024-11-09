@@ -5,78 +5,320 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ivanshoes"
         mc:Ignorable="d"
-        Title="Clientes" Height="450" Width="600"
+        Title="Clientes" Height="600" Width="800"
         WindowStartupLocation="CenterScreen">
-    <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/Ivan Shoes (1).png"/>
-        </Grid.Background>
-        <Button Content="Validar" HorizontalAlignment="Left" Margin="203,47,0,0" VerticalAlignment="Top" FontSize="18" Width="75" Click="Button_Click" Foreground="White" Background="#FF51C11F">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}"
+    <Window.Background>
+        <ImageBrush ImageSource="/fondo.png"/>
+    </Window.Background>
+    <ScrollViewer Margin="10,10,10,8" VerticalScrollBarVisibility="Disabled">
+        <Grid Height="584" Width="800">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+            <Button Content="Validar" HorizontalAlignment="Left" Margin="258,176,0,0" VerticalAlignment="Top" FontSize="18" Width="75" Click="Button_Click" Foreground="White" Background="#FF51C11F" Height="25" BorderBrush="{x:Null}">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}"
          BorderBrush="{TemplateBinding BorderBrush}"
          BorderThickness="1"
          CornerRadius="5">
-                        <!-- Cambia este valor para ajustar el radio -->
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <Label Content="DNI Cliente" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
-        <TextBox x:Name="txtdnicliente" HorizontalAlignment="Left" Height="28" Margin="18,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" FontSize="18" MaxLength="8" PreviewTextInput="txtdnicliente_PreviewTextInput"/>
-        <Label Content="Nombre" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
-        <TextBox x:Name="txtnombrecliente" HorizontalAlignment="Left" Height="28" Margin="18,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" FontSize="18" MaxLength="200" PreviewTextInput="txtnombrecliente_PreviewTextInput"/>
-        <Label Content="Apellidos" HorizontalAlignment="Left" Margin="10,152,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
-        <TextBox x:Name="txtapellidoscliente" HorizontalAlignment="Left" Height="28" Margin="18,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" FontSize="18" MaxLength="199" PreviewTextInput="txtapellidoscliente_PreviewTextInput"/>
-        <Label Content="Telefono" HorizontalAlignment="Left" Margin="10,231,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
-        <TextBox x:Name="txttelefonocliente" HorizontalAlignment="Left" Height="28" Margin="18,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" FontSize="18" MaxLength="9" PreviewTextInput="txttelefonocliente_PreviewTextInput"/>
-        <CheckBox x:Name="cbtestadocliente" Content="Estado" HorizontalAlignment="Left" Margin="22,321,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
-        <Button x:Name="btnAgregarcliente" Content="Agregar Cliente" HorizontalAlignment="Left" Margin="18,368,0,0" VerticalAlignment="Top" FontSize="18" Click="Button_Click_1" Foreground="White" Background="#FF2723A2" Width="132">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}"
+                            <!-- Cambia este valor para ajustar el radio -->
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Label Content="DNI Cliente" HorizontalAlignment="Left" Margin="30,142,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White" Height="34" Width="102"/>
+            <TextBox x:Name="txtdnicliente" HorizontalAlignment="Left" Height="25" Margin="31,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="215" FontSize="18" MaxLength="8" PreviewTextInput="txtdnicliente_PreviewTextInput" Tag="Ingrese Dni de cliente">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Background" Value="#F5F5F5"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="BorderBrush" Value="#DDDDDD"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TextBox}">
+                                    <Border Background="{TemplateBinding Background}"
+    BorderBrush="{TemplateBinding BorderBrush}"
+    BorderThickness="{TemplateBinding BorderThickness}"
+    CornerRadius="4">
+                                        <Grid>
+                                            <ScrollViewer x:Name="PART_ContentHost"
+                Margin="{TemplateBinding Padding}"
+                VerticalAlignment="Center"/>
+                                            <TextBlock IsHitTestVisible="False"
+             Text="{TemplateBinding Tag}"
+             VerticalAlignment="Center"
+             HorizontalAlignment="Left"
+             Margin="10,0,0,0"
+             Foreground="Gray">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="{x:Type TextBlock}">
+                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource Mode=TemplatedParent}}" 
+                                Value="">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </Grid>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="#FFFDD835"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <Label Content="Nombre" HorizontalAlignment="Left" Margin="34,218,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White" Height="34" Width="76"/>
+            <TextBox x:Name="txtnombrecliente" HorizontalAlignment="Left" Height="25" Margin="31,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="304" FontSize="18" MaxLength="200" PreviewTextInput="txtnombrecliente_PreviewTextInput" Tag="Ingrese Nombres de cliente">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Background" Value="#F5F5F5"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="BorderBrush" Value="#DDDDDD"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TextBox}">
+                                    <Border Background="{TemplateBinding Background}"
+    BorderBrush="{TemplateBinding BorderBrush}"
+    BorderThickness="{TemplateBinding BorderThickness}"
+    CornerRadius="4">
+                                        <Grid>
+                                            <ScrollViewer x:Name="PART_ContentHost"
+                Margin="{TemplateBinding Padding}"
+                VerticalAlignment="Center"/>
+                                            <TextBlock IsHitTestVisible="False"
+             Text="{TemplateBinding Tag}"
+             VerticalAlignment="Center"
+             HorizontalAlignment="Left"
+             Margin="10,0,0,0"
+             Foreground="Gray">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="{x:Type TextBlock}">
+                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource Mode=TemplatedParent}}" 
+                                Value="">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </Grid>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="#FFFDD835"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <Label Content="Apellidos" HorizontalAlignment="Left" Margin="31,296,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White" Height="34" Width="83"/>
+            <TextBox x:Name="txtapellidoscliente" HorizontalAlignment="Left" Height="25" Margin="31,335,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="304" FontSize="18" MaxLength="199" PreviewTextInput="txtapellidoscliente_PreviewTextInput" Tag="Ingrese apellidos de cliente">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Background" Value="#F5F5F5"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="BorderBrush" Value="#DDDDDD"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TextBox}">
+                                    <Border Background="{TemplateBinding Background}"
+    BorderBrush="{TemplateBinding BorderBrush}"
+    BorderThickness="{TemplateBinding BorderThickness}"
+    CornerRadius="4">
+                                        <Grid>
+                                            <ScrollViewer x:Name="PART_ContentHost"
+                Margin="{TemplateBinding Padding}"
+                VerticalAlignment="Center"/>
+                                            <TextBlock IsHitTestVisible="False"
+             Text="{TemplateBinding Tag}"
+             VerticalAlignment="Center"
+             HorizontalAlignment="Left"
+             Margin="10,0,0,0"
+             Foreground="Gray">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="{x:Type TextBlock}">
+                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource Mode=TemplatedParent}}" 
+                                Value="">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </Grid>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="#FFFDD835"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <Label Content="Telefono" HorizontalAlignment="Left" Margin="410,142,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White" Height="34" Width="78"/>
+            <CheckBox x:Name="cbtestadocliente" Content="Estado" HorizontalAlignment="Left" Margin="414,252,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White" Height="23" Width="74"/>
+            <Button x:Name="btnAgregarcliente" Content="Agregar Cliente" HorizontalAlignment="Left" Margin="463,330,0,0" VerticalAlignment="Top" FontSize="18" Click="Button_Click_1" Foreground="White" Background="#FF2723A2" Width="200" Height="35" BorderBrush="{x:Null}">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}"
          BorderBrush="{TemplateBinding BorderBrush}"
          BorderThickness="1"
          CornerRadius="5">
-                        <!-- Cambia este valor para ajustar el radio -->
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
+                            <!-- Cambia este valor para ajustar el radio -->
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
 
-        <Button x:Name="btnModificar" Content="Modificar" HorizontalAlignment="Left" Height="28" Margin="155,368,0,0" VerticalAlignment="Top" Width="88" FontSize="18" RenderTransformOrigin="2.773,1.43" Click="btnModificar_Click" Foreground="White" Background="#FFC5B617">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}"
+            <Button x:Name="btnModificar" Content="Modificar" HorizontalAlignment="Left" Height="35" Margin="463,386,0,0" VerticalAlignment="Top" Width="200" FontSize="18" RenderTransformOrigin="2.773,1.43" Click="btnModificar_Click" Foreground="White" Background="#FFC5B617" BorderBrush="{x:Null}">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}"
          BorderBrush="{TemplateBinding BorderBrush}"
          BorderThickness="1"
          CornerRadius="5">
-                        <!-- Cambia este valor para ajustar el radio -->
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="103" Margin="351,47,0,0" VerticalAlignment="Top" Width="217"/>
-        <Button x:Name="btnBuscar" Content="Buscar" HorizontalAlignment="Left" Margin="424,105,0,0" VerticalAlignment="Top" FontSize="18" Width="76" Click="btnBuscar_Click" Background="#FF3DCA0C" Foreground="White">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}"
+                            <!-- Cambia este valor para ajustar el radio -->
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="btnBuscar" Content="Buscar" HorizontalAlignment="Left" Margin="258,112,0,0" VerticalAlignment="Top" FontSize="18" Width="76" Click="btnBuscar_Click" Background="#FF3DCA0C" Foreground="White" Height="25" BorderBrush="{x:Null}">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}"
          BorderBrush="{TemplateBinding BorderBrush}"
          BorderThickness="1"
          CornerRadius="5">
-                        <!-- Cambia este valor para ajustar el radio -->
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
+                            <!-- Cambia este valor para ajustar el radio -->
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
 
-        <TextBox x:Name="txtdnibuscar" HorizontalAlignment="Left" Height="28" Margin="368,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="182" FontSize="18" MaxLength="8" PreviewTextInput="txtdnibuscar_PreviewTextInput"/>
+            <TextBox x:Name="txtdnibuscar" HorizontalAlignment="Left" Height="25" Margin="34,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" FontSize="18" MaxLength="8" PreviewTextInput="txtdnibuscar_PreviewTextInput" Tag="Ingrese dni para buscar">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Background" Value="#F5F5F5"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="BorderBrush" Value="#DDDDDD"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TextBox}">
+                                    <Border Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="4">
+                                        <Grid>
+                                            <ScrollViewer x:Name="PART_ContentHost"
+                        Margin="{TemplateBinding Padding}"
+                        VerticalAlignment="Center"/>
+                                            <TextBlock IsHitTestVisible="False"
+                     Text="{TemplateBinding Tag}"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Left"
+                     Margin="10,0,0,0"
+                     Foreground="Gray">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="{x:Type TextBlock}">
+                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource Mode=TemplatedParent}}" 
+                                        Value="">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </Grid>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="#FFFDD835"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <Label Content="Datos de cliente" HorizontalAlignment="Left" Margin="19,35,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Arial" FontSize="24" Width="204" FontWeight="Bold" RenderTransformOrigin="0.485,0.054" Height="38"/>
+            <TextBox x:Name="txttelefonocliente" TextWrapping="Wrap" FontSize="18" MaxLength="9" PreviewTextInput="txttelefonocliente_PreviewTextInput" RenderTransformOrigin="0.633,0.001" Tag="Ingrese Telefono de cliente(Opcional)" Margin="410,176,92,382">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Background" Value="#F5F5F5"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="BorderBrush" Value="#DDDDDD"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TextBox}">
+                                    <Border Background="{TemplateBinding Background}"
+    BorderBrush="{TemplateBinding BorderBrush}"
+    BorderThickness="{TemplateBinding BorderThickness}"
+    CornerRadius="4">
+                                        <Grid>
+                                            <ScrollViewer x:Name="PART_ContentHost"
+                Margin="{TemplateBinding Padding}"
+                VerticalAlignment="Center"/>
+                                            <TextBlock IsHitTestVisible="False"
+             Text="{TemplateBinding Tag}"
+             VerticalAlignment="Center"
+             HorizontalAlignment="Left"
+             Margin="10,0,0,0"
+             Foreground="Gray">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="{x:Type TextBlock}">
+                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource Mode=TemplatedParent}}" 
+                                Value="">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </Grid>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="#FFFDD835"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
 
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 </Window>

@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="Empleado" Height="900" Width="1400"
         WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/fondo.png"/>
+    </Window.Background>
     <Border CornerRadius="20"
             >
 
@@ -16,9 +19,6 @@
                 <RowDefinition Height="21*"/>
                 <RowDefinition Height="395*"/>
             </Grid.RowDefinitions>
-            <Grid.Background>
-                <ImageBrush ImageSource="/Ivan Shoes (1).png"/>
-            </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>

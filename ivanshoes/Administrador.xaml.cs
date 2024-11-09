@@ -22,7 +22,6 @@ namespace ivanshoes
         public Administrador()
         {
             InitializeComponent();
-            // Cargar el fondo guardado si existe
             string fondoGuardado = Properties.Settings.Default.FondoPantalla;
             if (!string.IsNullOrEmpty(fondoGuardado) && File.Exists(fondoGuardado))
             {

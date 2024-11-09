@@ -143,5 +143,11 @@ namespace ivanshoes
             // Establecer el fondo predeterminado
             this.Background = new SolidColorBrush(Colors.White); // O el color que prefieras
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Empleado empleado = new Empleado("","",1);
+            empleado.Show();
+        }
     }
 }

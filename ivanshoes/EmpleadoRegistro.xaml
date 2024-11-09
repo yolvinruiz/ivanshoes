@@ -5,82 +5,92 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ivanshoes"
         mc:Ignorable="d"
-        Title="EmpleadoRegistro" Height="450" Width="600"
+        Title="EmpleadoRegistro" Height="600" Width="800"
         WindowStartupLocation="CenterScreen">
-    <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/Ivan Shoes (1).png"/>
-        </Grid.Background>
-        <Button x:Name="btnValidar" Content="Validar" HorizontalAlignment="Left" Margin="203,47,0,0" VerticalAlignment="Top" FontSize="18" Width="75" Click="Button_Click" Foreground="White" Background="#FF51C11F">
-            <Button.Template>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}"
+    <Window.Background>
+        <ImageBrush ImageSource="/fondo.png"/>
+    </Window.Background>
+    <ScrollViewer Foreground="{x:Null}" VerticalScrollBarVisibility="Auto">
+        <Grid Height="584" Width="800">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.Background>
+                <ImageBrush ImageSource="/fondo.png"/>
+            </Grid.Background>
+            <Button x:Name="btnValidar" Content="Validar" HorizontalAlignment="Left" Margin="315,133,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click" Foreground="White" Background="#FF51C11F" Height="25" FontFamily="Arial" FontWeight="Bold">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="1"
                         CornerRadius="5">
-                        <!-- Cambia este valor para ajustar el radio -->
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <Label Content="DNI Empleado" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="White"/>
-        <TextBox x:Name="txtdniempleado" HorizontalAlignment="Left" Height="28" Margin="18,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" FontSize="18" MaxLength="8"/>
-        <Label Content="Nombre" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
-        <TextBox x:Name="txtnombreempleado" HorizontalAlignment="Left" Height="28" Margin="18,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" FontSize="18" MaxLength="200"/>
-        <Label Content="Apellidos" HorizontalAlignment="Left" Margin="10,152,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
-        <TextBox x:Name="txtapellidoempleado" HorizontalAlignment="Left" Height="28" Margin="18,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" FontSize="18" MaxLength="199"/>
-        <Label Content="Telefono" HorizontalAlignment="Left" Margin="10,231,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="White"/>
-        <TextBox x:Name="txttelefonoempleado" HorizontalAlignment="Left" Height="28" Margin="18,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" FontSize="18" MaxLength="9"/>
-        <CheckBox x:Name="cbestadoempleado" Content="Estado" HorizontalAlignment="Left" Margin="366,199,0,0" VerticalAlignment="Top" FontSize="18" Background="White" Foreground="White"/>
-        <Button x:Name="btnAgregarempleado" Content="Agregar Empleado" HorizontalAlignment="Left" Margin="10,368,0,0" VerticalAlignment="Top" FontSize="18" Click="Button_Click_1" Foreground="White" Background="#FF2723A2" Width="161">
-            <Button.Template>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}"
+                            <!-- Cambia este valor para ajustar el radio -->
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Label Content="DNI Empleado" HorizontalAlignment="Left" Margin="40,98,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="White" Height="34" Width="125"/>
+            <TextBox x:Name="txtdniempleado" HorizontalAlignment="Left" Height="28" Margin="40,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="270" FontSize="18" MaxLength="8"/>
+            <Label Content="Nombre" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Foreground="White" Height="34" Width="76" Margin="40,160,0,0"/>
+            <TextBox x:Name="txtnombreempleado" HorizontalAlignment="Left" Height="28" Margin="40,194,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" FontSize="18" MaxLength="200"/>
+            <Label Content="Apellidos" HorizontalAlignment="Left" Margin="42,222,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White" Height="34" Width="83"/>
+            <TextBox x:Name="txtapellidoempleado" HorizontalAlignment="Left" Height="28" Margin="42,256,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="348" FontSize="18" MaxLength="199"/>
+            <Label Content="Telefono" HorizontalAlignment="Left" Margin="40,284,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" Foreground="White" Height="34" Width="78"/>
+            <TextBox x:Name="txttelefonoempleado" HorizontalAlignment="Left" Height="28" Margin="40,318,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" FontSize="18" MaxLength="9"/>
+            <CheckBox x:Name="cbestadoempleado" Content="Activo" HorizontalAlignment="Left" Margin="417,256,0,0" VerticalAlignment="Top" FontSize="18" Background="White" Foreground="White" Height="23" Width="73"/>
+            <Button x:Name="btnAgregarempleado" Content="Agregar" HorizontalAlignment="Left" Margin="558,336,0,0" VerticalAlignment="Top" FontSize="18" Click="Button_Click_1" Foreground="White" Background="#FF4AA223" Width="200" Height="35">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="1"
                         CornerRadius="5">
-                        <!-- Cambia este valor para ajustar el radio -->
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
+                            <!-- Cambia este valor para ajustar el radio -->
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
 
-        <Button x:Name="btnModificar" Content="Modificar" HorizontalAlignment="Left" Height="28" Margin="176,368,0,0" VerticalAlignment="Top" Width="88" FontSize="18" RenderTransformOrigin="2.773,1.43" Click="btnModificar_Click" Foreground="White" Background="#FFC5B617">
-            <Button.Template>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}"
+            <Button x:Name="btnModificar" Content="Modificar" HorizontalAlignment="Left" Height="35" Margin="558,384,0,0" VerticalAlignment="Top" Width="200" FontSize="18" RenderTransformOrigin="2.773,1.43" Click="btnModificar_Click" Foreground="White" Background="#FFC5B617">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="1"
                         CornerRadius="5">
-                        <!-- Cambia este valor para ajustar el radio -->
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="103" Margin="349,241,0,0" VerticalAlignment="Top" Width="217"/>
-        <Button x:Name="btnBuscar" Content="Buscar" HorizontalAlignment="Left" Margin="422,299,0,0" VerticalAlignment="Top" FontSize="18" Width="76" Click="btnBuscar_Click" Background="#FF3DCA0C" Foreground="White">
-            <Button.Template>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}"
+                            <!-- Cambia este valor para ajustar el radio -->
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="btnBuscar" Content="Buscar" HorizontalAlignment="Left" Margin="638,28,0,0" VerticalAlignment="Top" Width="80" Click="btnBuscar_Click" Background="#FF3DCA0C" Foreground="White" Height="24" RenderTransformOrigin="0.882,0.578" FontFamily="Arial" FontWeight="Bold">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="1"
                         CornerRadius="5">
-                        <!-- Cambia este valor para ajustar el radio -->
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
+                            <!-- Cambia este valor para ajustar el radio -->
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
 
-        <TextBox x:Name="txtdnibuscar" HorizontalAlignment="Left" Height="28" Margin="366,254,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="182" FontSize="18" MaxLength="8"/>
-        <Label Content="Correo" HorizontalAlignment="Left" Margin="358,23,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
-        <TextBox x:Name="txtcorreoempleado" HorizontalAlignment="Left" Height="28" Margin="366,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" FontSize="18" MaxLength="200"/>
-        <Label Content="Cargo" HorizontalAlignment="Left" Margin="358,104,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
-        <ComboBox x:Name="txtcargoempleado" HorizontalAlignment="Left" Margin="366,145,0,0" VerticalAlignment="Top" Width="180" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="18"/>
+            <TextBox x:Name="txtdnibuscar" HorizontalAlignment="Left" Height="28" Margin="451,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="182" FontSize="18" MaxLength="8"/>
+            <Label Content="Correo" HorizontalAlignment="Left" Margin="40,361,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White" Height="34" Width="64"/>
+            <TextBox x:Name="txtcorreoempleado" HorizontalAlignment="Left" Height="28" Margin="42,395,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="348" FontSize="18" MaxLength="200"/>
+            <Label Content="Cargo" HorizontalAlignment="Left" Margin="410,160,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White" Height="34" Width="58"/>
+            <ComboBox x:Name="txtcargoempleado" HorizontalAlignment="Left" Margin="417,192,0,0" VerticalAlignment="Top" Width="261" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="18" Height="30"/>
+            <Label Content="Datos de Empleado" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="24" FontWeight="Bold" FontFamily="Arial" Margin="42,21,0,0"/>
 
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 </Window>

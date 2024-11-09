@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.IO;
 namespace ivanshoes
 {
     /// <summary>
@@ -25,12 +25,26 @@ namespace ivanshoes
             MainFrame.Navigate(new PageVentas(dnie.ToString()));
             txtnombreempleado.Text = "Usuario: "+ nombre +" "+ apellidos;
             txtdniempleadoo.Text = "DNI: " + dnie.ToString();
+            string fondoGuardado = Properties.Settings.Default.FondoPantalla;
+            if (!string.IsNullOrEmpty(fondoGuardado) && File.Exists(fondoGuardado))
+            {
+                try
+                {
+                    ImageBrush brush = new ImageBrush(new BitmapImage(new Uri(fondoGuardado)));
+                    brush.Stretch = Stretch.UniformToFill;
+                    this.Background = brush;
+                }
+                catch { }
+            }
+
+
         }
         public void LimpiarDataGridEnPaginaObjetivo()
         {
             // Asegúrate de que el Frame existe y contiene la página objetivo
 
         }
+
 
     }
 }

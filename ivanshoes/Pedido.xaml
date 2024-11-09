@@ -10,7 +10,7 @@
         >
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Ivan Shoes (1).png"/>
+            <ImageBrush ImageSource="/fondo.png"/>
         </Grid.Background>
         <Label Content="Direccion" HorizontalAlignment="Left" Margin="32,149,0,0" VerticalAlignment="Top" Foreground="White" Height="34" FontSize="20">
             <Label.Background>

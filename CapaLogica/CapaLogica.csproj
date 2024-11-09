@@ -238,6 +238,7 @@
     <Compile Include="logCategoria.cs" />
     <Compile Include="logCliente.cs" />
     <Compile Include="logColor.cs" />
+    <Compile Include="logCuentas.cs" />
     <Compile Include="logDashboard.cs" />
     <Compile Include="logDetalleVenta.cs" />
     <Compile Include="logEmpleado.cs" />

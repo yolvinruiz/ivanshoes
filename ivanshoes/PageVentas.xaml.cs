@@ -24,6 +24,18 @@ namespace ivanshoes
     /// <summary>
     /// Lógica de interacción para PageVentas.xaml
     /// </summary>
+    public class ServicioActualizacion
+    {
+        private static readonly ServicioActualizacion _instancia = new ServicioActualizacion();
+        public static ServicioActualizacion Instancia => _instancia;
+
+        public event Action ActualizarProductos;
+
+        public void NotificarActualizacion()
+        {
+            ActualizarProductos?.Invoke();
+        }
+    }
     public partial class PageVentas : Page
     {
 
@@ -32,7 +44,7 @@ namespace ivanshoes
         private DispatcherTimer searchTimer;
         private const int SEARCH_DELAY = 300; // milisegundos
         public string pago;
-        public string cantidadv = "1";
+        public string cantidadv="1";
         public string pg;
         public static string idv;
         private readonly string API_URL = "https://facturaciondirecta.com/API_SUNAT/post.php";
@@ -45,7 +57,12 @@ namespace ivanshoes
             searchTimer = new DispatcherTimer();
             searchTimer.Interval = TimeSpan.FromMilliseconds(SEARCH_DELAY);
             searchTimer.Tick += SearchTimer_Tick;
-            
+            ServicioActualizacion.Instancia.ActualizarProductos += CargarProductos;
+
+        }
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            ServicioActualizacion.Instancia.ActualizarProductos -= CargarProductos;
         }
         private void ActualizarVistaCarrito()
         {
@@ -89,8 +106,12 @@ namespace ivanshoes
 
         private void RealizarCompra_Click(object sender, RoutedEventArgs e)
         {
-            Pago pagoss = new Pago( idventap, txtDniCliente.Text,txtNombreCliente.Text,pago);
-            pagoss.Show();
+            Pago formPago = new Pago(idventap, txtDniCliente.Text, txtNombreCliente.Text, pago);
+            if (formPago.ShowDialog() == true)  // Si el pago fue exitoso
+            {
+                CargarProductos();
+
+            }
         }
 
         private void AgregarAlCarrito_Click(object sender, RoutedEventArgs e)

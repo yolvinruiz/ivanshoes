@@ -51,5 +51,23 @@ namespace CapaLogica
         {
             return datEmpleado.Instancia.BuscarEmpleadoPorDNI(dni);
         }
+        public int ObtenerIdPorNombre(string nombreCompleto)
+        {
+            if (string.IsNullOrWhiteSpace(nombreCompleto))
+                throw new Exception("El nombre del empleado es requerido");
+
+            // Dividir y validar el formato del nombre
+            string[] partes = nombreCompleto.Split(new char[] { ' ' }, 2);
+            if (partes.Length < 2)
+                throw new Exception("El formato del nombre no es válido. Debe incluir nombre y apellidos");
+
+            // Obtener el ID
+            int idEmpleado = datEmpleado.Instancia.ObtenerIdPorNombre(nombreCompleto);
+
+            if (idEmpleado == 0)
+                throw new Exception("No se encontró el empleado con el nombre especificado");
+
+            return idEmpleado;
+        }
     }
 }

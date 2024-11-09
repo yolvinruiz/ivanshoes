@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace ivanshoes
 {
@@ -24,6 +25,17 @@ namespace ivanshoes
         {
             InitializeComponent();
             listarClientes();
+            string fondoGuardado = Properties.Settings.Default.FondoPantalla;
+            if (!string.IsNullOrEmpty(fondoGuardado) && File.Exists(fondoGuardado))
+            {
+                try
+                {
+                    ImageBrush brush = new ImageBrush(new BitmapImage(new Uri(fondoGuardado)));
+                    brush.Stretch = Stretch.UniformToFill;
+                    this.Background = brush;
+                }
+                catch { }
+            }
         }
         public void listarClientes()
         {

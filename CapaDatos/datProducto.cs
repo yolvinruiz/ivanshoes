@@ -11,19 +11,229 @@ namespace CapaDatos
 {
     public class datProducto
     {
-        #region sigleton
-        //Patron Singleton
-        // Variable estática para la instancia
-        public static readonly datProducto _instancia = new datProducto();
-        //privado para evitar la instanciación directa
+        #region singleton
+        private static readonly datProducto _instancia = new datProducto();
         public static datProducto Instancia
         {
-            get
-            {
-                return datProducto._instancia;
-            }
+            get { return datProducto._instancia; }
         }
         #endregion singleton
+
+        // Obtener listas para ComboBox
+        public List<KeyValuePair<int, string>> ListarTiposProducto()
+        {
+            SqlCommand cmd = null;
+            List<KeyValuePair<int, string>> lista = new List<KeyValuePair<int, string>>();
+            try
+            {
+                SqlConnection cn = Conexion.Instancia.Conectar();
+                cmd = new SqlCommand("ObtenerTiposProducto", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    lista.Add(new KeyValuePair<int, string>(
+                        Convert.ToInt32(dr["id_tipo_producto"]),
+                        dr["Nombre"].ToString()
+                    ));
+                }
+            }
+            catch (Exception e) { throw e; }
+            finally { cmd.Connection.Close(); }
+            return lista;
+        }
+        public List<KeyValuePair<int, string>> ListarMarcas()
+        {
+            SqlCommand cmd = null;
+            List<KeyValuePair<int, string>> lista = new List<KeyValuePair<int, string>>();
+            try
+            {
+                SqlConnection cn = Conexion.Instancia.Conectar();
+                cmd = new SqlCommand("ObtenerMarcas", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    lista.Add(new KeyValuePair<int, string>(
+                        Convert.ToInt32(dr["id_Marca"]),
+                        dr["Nombre"].ToString()
+                    ));
+                }
+            }
+            catch (Exception e) { throw e; }
+            finally { cmd.Connection.Close(); }
+            return lista;
+        }
+
+        public List<KeyValuePair<int, string>> ListarTallas()
+        {
+            SqlCommand cmd = null;
+            List<KeyValuePair<int, string>> lista = new List<KeyValuePair<int, string>>();
+            try
+            {
+                SqlConnection cn = Conexion.Instancia.Conectar();
+                cmd = new SqlCommand("ObtenerTallas", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    lista.Add(new KeyValuePair<int, string>(
+                        Convert.ToInt32(dr["id_Talla"]),
+                        dr["Nombre"].ToString()
+                    ));
+                }
+            }
+            catch (Exception e) { throw e; }
+            finally { cmd.Connection.Close(); }
+            return lista;
+        }
+
+        public List<KeyValuePair<int, string>> ListarColores()
+        {
+            SqlCommand cmd = null;
+            List<KeyValuePair<int, string>> lista = new List<KeyValuePair<int, string>>();
+            try
+            {
+                SqlConnection cn = Conexion.Instancia.Conectar();
+                cmd = new SqlCommand("ObtenerColores", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    lista.Add(new KeyValuePair<int, string>(
+                        Convert.ToInt32(dr["id_Color"]),
+                        dr["Nombre"].ToString()
+                    ));
+                }
+            }
+            catch (Exception e) { throw e; }
+            finally { cmd.Connection.Close(); }
+            return lista;
+        }
+
+        public List<KeyValuePair<int, string>> ListarCategorias()
+        {
+            SqlCommand cmd = null;
+            List<KeyValuePair<int, string>> lista = new List<KeyValuePair<int, string>>();
+            try
+            {
+                SqlConnection cn = Conexion.Instancia.Conectar();
+                cmd = new SqlCommand("ObtenerCategorias", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    lista.Add(new KeyValuePair<int, string>(
+                        Convert.ToInt32(dr["id_Categoria"]),
+                        dr["Nombre"].ToString()
+                    ));
+                }
+            }
+            catch (Exception e) { throw e; }
+            finally { cmd.Connection.Close(); }
+            return lista;
+        }
+    
+    // Implementar métodos similares para Marcas, Tallas, Colores y Categorías...
+
+    public void InsertarProducto(entProducto producto)
+        {
+            SqlCommand cmd = null;
+            try
+            {
+                SqlConnection cn = Conexion.Instancia.Conectar();
+                cmd = new SqlCommand("InsertarProducto", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@nombre", producto.nombre);
+                cmd.Parameters.AddWithValue("@precio", producto.precio);
+                cmd.Parameters.AddWithValue("@stock", producto.stock);
+                cmd.Parameters.AddWithValue("@NombreTipoProducto", producto.NombreTipoProducto);
+                cmd.Parameters.AddWithValue("@NombreMarca", producto.NombreMarca);
+                cmd.Parameters.AddWithValue("@NombreTalla", producto.NombreTalla);
+                cmd.Parameters.AddWithValue("@NombreColor", producto.NombreColor);
+                cmd.Parameters.AddWithValue("@NombreCategoria", producto.NombreCategoria);
+                cmd.Parameters.AddWithValue("@Imagen", producto.Imagen ?? "");
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e) { throw e; }
+            finally { cmd.Connection.Close(); }
+        }
+
+        public entProducto BuscarProductoPorId(int idProducto)
+        {
+            SqlCommand cmd = null;
+            entProducto producto = null;
+            try
+            {
+                SqlConnection cn = Conexion.Instancia.Conectar();
+                cmd = new SqlCommand("BuscarProductoPorId", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id_producto", idProducto);
+
+                cn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    producto = new entProducto
+                    {
+                        id_producto = Convert.ToInt32(dr["id_producto"]),
+                        nombre = dr["nombre"].ToString(),
+                        precio = Convert.ToDouble(dr["precio"]),
+                        stock = Convert.ToInt32(dr["stock"]),
+                        id_tipo_producto = Convert.ToInt32(dr["id_tipo_producto"]),
+                        id_marca = Convert.ToInt32(dr["id_marca"]),
+                        id_talla = Convert.ToInt32(dr["id_talla"]),
+                        id_color = Convert.ToInt32(dr["id_color"]),
+                        id_categoria = Convert.ToInt32(dr["id_categoria"]),
+                        NombreTipoProducto = dr["NombreTipoProducto"].ToString(),
+                        NombreMarca = dr["NombreMarca"].ToString(),
+                        NombreTalla =dr["NombreTalla"].ToString(),
+                        NombreColor = dr["NombreColor"].ToString(),
+                        NombreCategoria = dr["NombreCategoria"].ToString(),
+                        Imagen = dr["Imagen"].ToString(),
+                    };
+                }
+            }
+            catch (Exception e) { throw e; }
+            finally { cmd.Connection.Close(); }
+            return producto;
+        }
+
+        public void ModificarProducto(entProducto producto)
+        {
+            SqlCommand cmd = null;
+            try
+            {
+                SqlConnection cn = Conexion.Instancia.Conectar();
+                cmd = new SqlCommand("ModificarProducto", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id_producto", producto.id_producto);
+                cmd.Parameters.AddWithValue("@nombre", producto.nombre);
+                cmd.Parameters.AddWithValue("@precio", producto.precio);
+                cmd.Parameters.AddWithValue("@stock", producto.stock);
+                cmd.Parameters.AddWithValue("@NombreTipoProducto", producto.NombreTipoProducto);
+                cmd.Parameters.AddWithValue("@NombreMarca", producto.NombreMarca);
+                cmd.Parameters.AddWithValue("@NombreTalla", producto.NombreTalla);
+                cmd.Parameters.AddWithValue("@NombreColor", producto.NombreColor);
+                cmd.Parameters.AddWithValue("@NombreCategoria", producto.NombreCategoria);
+                cmd.Parameters.AddWithValue("@Imagen", producto.Imagen ?? "");
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e) { throw e; }
+            finally { cmd.Connection.Close(); }
+        }
 
         public List<entProducto> ListarProducto()
         {
@@ -65,80 +275,7 @@ namespace CapaDatos
             }
             return lista;
         }
-        public Boolean InsertarProducto(entProducto producto)
-        {
-            SqlCommand cmd = null;
-            Boolean inserta = false;
-            try
-            {
-                SqlConnection cn = Conexion.Instancia.Conectar();
-                cmd = new SqlCommand("InsertarProducto", cn);
-                cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@nombre", producto.nombre);
-                cmd.Parameters.AddWithValue("@stock", producto.stock);
-                cmd.Parameters.AddWithValue("@precio", producto.precio);
-                cmd.Parameters.AddWithValue("@nombre_tipo_producto", producto.NombreTipoProducto);
-                cmd.Parameters.AddWithValue("@nombre_marca", producto.NombreMarca);
-                cmd.Parameters.AddWithValue("@nombre_talla", producto.NombreTalla);
-                cmd.Parameters.AddWithValue("@nombre_color", producto.NombreColor);
-                cmd.Parameters.AddWithValue("@nombre_categoria", producto.NombreCategoria);
-
-                cn.Open();
-                int i = cmd.ExecuteNonQuery();
-                if (i > 0)
-                {
-                    inserta = true;
-                }
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            finally
-            {
-                cmd.Connection.Close();
-            }
-            return inserta;
-        }
-
-        public Boolean EditarProducto(entProducto producto)
-        {
-            SqlCommand cmd = null;
-            Boolean edita = false;
-            try
-            {
-                SqlConnection cn = Conexion.Instancia.Conectar();
-                cmd = new SqlCommand("EditarProducto", cn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.AddWithValue("@id_producto", producto.id_producto);
-                cmd.Parameters.AddWithValue("@nombre", producto.nombre);
-                cmd.Parameters.AddWithValue("@stock", producto.stock);
-                cmd.Parameters.AddWithValue("@precio", producto.precio);
-                cmd.Parameters.AddWithValue("@nombre_tipo_producto", producto.NombreTipoProducto);
-                cmd.Parameters.AddWithValue("@nombre_marca", producto.NombreMarca);
-                cmd.Parameters.AddWithValue("@nombre_talla", producto.NombreTalla);
-                cmd.Parameters.AddWithValue("@nombre_color", producto.NombreColor);
-                cmd.Parameters.AddWithValue("@nombre_categoria", producto.NombreCategoria);
-
-                cn.Open();
-                int i = cmd.ExecuteNonQuery();
-                if (i > 0)
-                {
-                    edita = true;
-                }
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            finally
-            {
-                cmd.Connection.Close();
-            }
-            return edita;
-        }
 
         public Boolean EliminarProducto(entProducto Producto)
         {
@@ -170,111 +307,6 @@ namespace CapaDatos
             return elimina;
         }
 
-        public DataTable Obtenertalla()
-        {
-            SqlConnection cn = Conexion.Instancia.Conectar();
-            SqlCommand cmd = new SqlCommand("SELECT Talla FROM Talla", cn);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            return dt;
-        }
-        public DataTable Obtenercolor()
-        {
-            SqlConnection cn = Conexion.Instancia.Conectar();
-            SqlCommand cmd = new SqlCommand("SELECT Nombre FROM Color", cn);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            return dt;
-        }
-        public DataTable Obtenercategoria()
-        {
-            SqlConnection cn = Conexion.Instancia.Conectar();
-            SqlCommand cmd = new SqlCommand("SELECT Nombre FROM Categoria", cn);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            return dt;
-        }
-        public DataTable Obtenermarca()
-        {
-            SqlConnection cn = Conexion.Instancia.Conectar();
-            SqlCommand cmd = new SqlCommand("SELECT Nombre FROM Marca", cn);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            return dt;
-        }
-        public DataTable ObtenerTipoProducto()
-        {
-            SqlConnection cn = Conexion.Instancia.Conectar();
-            SqlCommand cmd = new SqlCommand("SELECT Nombre FROM tipo_producto", cn);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            return dt;
-        }
-        /////////////////////////llenacombobox/////////////////////////
-        public string ObtenerNombreTipoProducto(int id)
-        {
-            using (SqlConnection cn = Conexion.Instancia.Conectar())
-            {
-                SqlCommand cmd = new SqlCommand("SELECT Nombre FROM tipo_producto WHERE id_tipo_producto = @id", cn);
-                cmd.Parameters.AddWithValue("@id", id);
-                cn.Open();
-                object result = cmd.ExecuteScalar();
-                return result != null ? result.ToString() : string.Empty;
-            }
-        }
-
-        public string ObtenerNombreMarca(int id)
-        {
-            using (SqlConnection cn = Conexion.Instancia.Conectar())
-            {
-                SqlCommand cmd = new SqlCommand("SELECT Nombre FROM Marca WHERE id_Marca = @id", cn);
-                cmd.Parameters.AddWithValue("@id", id);
-                cn.Open();
-                object result = cmd.ExecuteScalar();
-                return result != null ? result.ToString() : string.Empty;
-            }
-        }
-
-        public string ObtenerNombreTalla(int id)
-        {
-            using (SqlConnection cn = Conexion.Instancia.Conectar())
-            {
-                SqlCommand cmd = new SqlCommand("SELECT Talla FROM Talla WHERE id_Talla = @id", cn);
-                cmd.Parameters.AddWithValue("@id", id);
-                cn.Open();
-                object result = cmd.ExecuteScalar();
-                return result != null ? result.ToString() : string.Empty;
-            }
-        }
-
-        public string ObtenerNombreColor(int id)
-        {
-            using (SqlConnection cn = Conexion.Instancia.Conectar())
-            {
-                SqlCommand cmd = new SqlCommand("SELECT Nombre FROM Color WHERE id_Color = @id", cn);
-                cmd.Parameters.AddWithValue("@id", id);
-                cn.Open();
-                object result = cmd.ExecuteScalar();
-                return result != null ? result.ToString() : string.Empty;
-            }
-        }
-
-        public string ObtenerNombreCategoria(int id)
-        {
-            using (SqlConnection cn = Conexion.Instancia.Conectar())
-            {
-                SqlCommand cmd = new SqlCommand("SELECT Nombre FROM Categoria WHERE id_Categoria = @id", cn);
-                cmd.Parameters.AddWithValue("@id", id);
-                cn.Open();
-                object result = cmd.ExecuteScalar();
-                return result != null ? result.ToString() : string.Empty;
-            }
-        }
         public List<entProducto> BuscarProductoConNombres(string termino)
         {
             SqlCommand cmd = null;
@@ -314,47 +346,6 @@ namespace CapaDatos
                     cmd.Connection.Close();
             }
             return lista;
-        }
-        public entProducto BuscarProductoPorId(int idProducto)
-        {
-            SqlCommand cmd = null;
-            entProducto producto = null;
-            try
-            {
-                SqlConnection cn = Conexion.Instancia.Conectar();
-                cmd = new SqlCommand("BuscarProductoPorId", cn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@id_producto", idProducto);
-
-                cn.Open();
-                SqlDataReader dr = cmd.ExecuteReader();
-
-                if (dr.Read())
-                {
-                    producto = new entProducto
-                    {
-                        id_producto = Convert.ToInt32(dr["id_producto"]),
-                        nombre = dr["nombre"].ToString(),
-                        stock = Convert.ToInt32(dr["stock"]),
-                        precio = Convert.ToDouble(dr["precio"]),
-                        id_tipo_producto = Convert.ToInt32(dr["id_tipo_producto"]),
-                        id_marca = Convert.ToInt32(dr["id_marca"]),
-                        id_talla = Convert.ToInt32(dr["id_talla"]),
-                        id_color = Convert.ToInt32(dr["id_color"]),
-                        id_categoria = Convert.ToInt32(dr["id_categoria"]),
-                        Imagen = dr["Imagen"].ToString()
-                    };
-                }
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            finally
-            {
-                cmd.Connection.Close();
-            }
-            return producto;
         }
     }
 }

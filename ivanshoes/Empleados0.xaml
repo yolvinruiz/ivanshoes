@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:ivanshoes"
         mc:Ignorable="d"
         Title="Empleados0" Height="750" Width="1200"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" Foreground="{x:Null}">
+    <Window.Background>
+        <ImageBrush ImageSource="/fondo.png"/>
+    </Window.Background>
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/Ivan Shoes (1).png"/>
-        </Grid.Background>
-        <DataGrid x:Name="dgvempleados" d:ItemsSource="{d:SampleData ItemCount=5}" FontSize="18" ColumnWidth="*" RowBackground="#FFFFF0AB" Background="{x:Null}" Margin="0,121,0,0" >
+        <DataGrid x:Name="dgvempleados" d:ItemsSource="{d:SampleData ItemCount=5}" FontSize="18" ColumnWidth="*" RowBackground="#FFFFF0AB" Background="{x:Null}" Margin="12,121,10,0" Height="591" VerticalAlignment="Top" >
             <DataGrid.ColumnHeaderStyle>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="Background" Value="#FF07487B" />
@@ -30,24 +30,106 @@
         <Button x:Name="btnActualizar" Content="Actualizar" HorizontalAlignment="Left" Margin="12,83,0,0" VerticalAlignment="Top" Width="100" FontSize="18" Click="btnActualizar_Click" Foreground="White" Background="#FF09AB0C">
             <Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="1"
-                        CornerRadius="5">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Border x:Name="border"
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="1"
+            CornerRadius="10">
+                        <ContentPresenter x:Name="contentPresenter"
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center"/>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <!-- Animación y color al presionar -->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="border"
+                                      Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                      To="#666666"
+                                      Duration="0:0:0.1"/>
+                                        <ThicknessAnimation Storyboard.TargetName="border"
+                                          Storyboard.TargetProperty="Margin"
+                                          To="2,2,0,0"
+                                          Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="border"
+                                      Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                      
+                                      Duration="0:0:0.1"/>
+                                        <ThicknessAnimation Storyboard.TargetName="border"
+                                          Storyboard.TargetProperty="Margin"
+                                          To="0"
+                                          Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+
+                        <!-- Efecto hover -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" TargetName="border" Value="0.8"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Button.Template>
         </Button>
         <Button x:Name="btnAgregarCliente" Content="➕ Agregar o Modificar" HorizontalAlignment="Left" Margin="917,36,0,0" VerticalAlignment="Top" FontSize="24" Click="btnAgregarCliente_Click" Background="#FFBC11FF" BorderBrush="Black" Foreground="White" Height="46">
             <Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="1"
-                        CornerRadius="20" Width="260">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Border x:Name="border"
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="1"
+            CornerRadius="10">
+                        <ContentPresenter x:Name="contentPresenter"
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center"/>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <!-- Animación y color al presionar -->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="border"
+                                      Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                      To="#666666"
+                                      Duration="0:0:0.1"/>
+                                        <ThicknessAnimation Storyboard.TargetName="border"
+                                          Storyboard.TargetProperty="Margin"
+                                          To="2,2,0,0"
+                                          Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="border"
+                                      Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                      
+                                      Duration="0:0:0.1"/>
+                                        <ThicknessAnimation Storyboard.TargetName="border"
+                                          Storyboard.TargetProperty="Margin"
+                                          To="0"
+                                          Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+
+                        <!-- Efecto hover -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" TargetName="border" Value="0.8"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Button.Template>
         </Button>

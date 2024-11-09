@@ -67,6 +67,7 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("@apellidos", empleado.Apellidos);
                 cmd.Parameters.AddWithValue("@dni", empleado.DNI);
                 cmd.Parameters.AddWithValue("@telefono", empleado.Telefono);
+                cmd.Parameters.AddWithValue("@correo", empleado.correo);
                 cmd.Parameters.AddWithValue("@nombre_cargo", empleado.NombreCargo);
                 cmd.Parameters.AddWithValue("@estado", empleado.Estado);
 
@@ -138,6 +139,7 @@ namespace CapaDatos
                     emp.Apellidos = dr["Apellidos"].ToString();
                     emp.DNI = Convert.ToInt32(dr["DNI"]);
                     emp.Telefono = Convert.ToInt32(dr["Telefono"]);
+                    emp.correo = dr["Correo"].ToString();
                     emp.id_Cargo = Convert.ToInt32(dr["id_cargo"]);
                     emp.Estado = Convert.ToBoolean(dr["Estado"]);
                     lista.Add(emp);
@@ -234,7 +236,8 @@ namespace CapaDatos
                         DNI = Convert.ToInt32(dr["Dni"]),
                         Telefono = Convert.ToInt32(dr["Telefono"]),
                         correo = dr["Correo"].ToString(),
-                        id_Cargo = Convert.ToInt32(dr["id_Cargo"]),
+                        id_Cargo = Convert.ToInt32(dr["id_cargo"]),
+                        NombreCargo = dr["NombreCargo"].ToString(),
                         Estado = Convert.ToBoolean(dr["Estado"])
                     };
                 }
@@ -259,6 +262,36 @@ namespace CapaDatos
                 object result = cmd.ExecuteScalar();
                 return result != null ? result.ToString() : string.Empty;
             }
+        }
+        public int ObtenerIdPorNombre(string nombreCompleto)
+        {
+            int idEmpleado = 0;
+            using (SqlConnection cn = Conexion.Instancia.Conectar())
+            {
+                try
+                {
+                    // Asegurarse de que el nombre esté limpio de espacios extras
+                    nombreCompleto = string.Join(" ", nombreCompleto.Split(new[] { ' ' },
+                        StringSplitOptions.RemoveEmptyEntries));
+
+                    SqlCommand cmd = new SqlCommand("ObtenerIdPorNombreCompleto2", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@nombreCompleto", nombreCompleto);
+
+                    cn.Open();
+
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        idEmpleado = Convert.ToInt32(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error al obtener ID del empleado: " + ex.Message);
+                }
+            }
+            return idEmpleado;
         }
     }
 }

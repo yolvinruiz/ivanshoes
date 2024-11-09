@@ -6,15 +6,19 @@
         xmlns:local="clr-namespace:ivanshoes"
         mc:Ignorable="d"
         Title="Pago" Height="600" Width="600"
-        WindowStartupLocation="CenterScreen" WindowStyle="None">
+        WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Ivan Shoes (1).png"/>
+            <ImageBrush ImageSource="/fondo.png"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Frame x:Name="cambio" Content="" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="cambio" Content="" NavigationUIVisibility="Hidden">
+            <Frame.Background>
+                <ImageBrush ImageSource="/fondo.png"/>
+            </Frame.Background>
+        </Frame>
 
     </Grid>
 </Window>

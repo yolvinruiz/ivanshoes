@@ -11,19 +11,68 @@ namespace CapaLogica
 {
     public class logProducto
     {
-        #region sigleton
-        //Patron Singleton
-        // Variable estática para la instancia
+        #region singleton
         private static readonly logProducto _instancia = new logProducto();
-        //privado para evitar la instanciación directa
         public static logProducto Instancia
         {
-            get
-            {
-                return logProducto._instancia;
-            }
+            get { return logProducto._instancia; }
         }
         #endregion singleton
+
+        public List<KeyValuePair<int, string>> ListarTiposProducto()
+        {
+            return datProducto.Instancia.ListarTiposProducto();
+        }
+        public List<KeyValuePair<int, string>> ListarMarcas()
+        {
+            return datProducto.Instancia.ListarMarcas();
+        }
+
+        public List<KeyValuePair<int, string>> ListarTallas()
+        {
+            return datProducto.Instancia.ListarTallas();
+        }
+
+        public List<KeyValuePair<int, string>> ListarColores()
+        {
+            return datProducto.Instancia.ListarColores();
+        }
+
+        public List<KeyValuePair<int, string>> ListarCategorias()
+        {
+            return datProducto.Instancia.ListarCategorias();
+        }
+
+        public void InsertarProducto(entProducto producto)
+        {
+
+            if (string.IsNullOrEmpty(producto.nombre))
+                throw new Exception("El nombre es obligatorio");
+            if (producto.precio <= 0)
+                throw new Exception("El precio debe ser mayor a 0");
+            if (producto.stock < 0)
+                throw new Exception("El stock no puede ser negativo");
+
+            datProducto.Instancia.InsertarProducto(producto);
+        }
+
+        public entProducto BuscarProductoPorId(int idProducto)
+        {
+            return datProducto.Instancia.BuscarProductoPorId(idProducto);
+        }
+
+        public void ModificarProducto(entProducto producto)
+        {
+
+            if (string.IsNullOrEmpty(producto.nombre))
+                throw new Exception("El nombre es obligatorio");
+            if (producto.precio <= 0)
+                throw new Exception("El precio debe ser mayor a 0");
+            if (producto.stock < 0)
+                throw new Exception("El stock no puede ser negativo");
+
+            datProducto.Instancia.ModificarProducto(producto);
+        }
         public List<entProducto> ListarProducto()
         {
             return datProducto.Instancia.ListarProducto();
@@ -32,74 +81,11 @@ namespace CapaLogica
         {
             datProducto.Instancia.InsertarProducto(mc);
         }
-        public void Editarproducto(entProducto mc)
-        {
-            datProducto.Instancia.EditarProducto(mc);
-        }
-        public void Eliminarproducto(entProducto mc)
-        {
-            datProducto.Instancia.EliminarProducto(mc);
-
-        }
-        ///////////////////llenarcombobox
-        public DataTable LlenarCombotalla()
-        {
-            return datProducto.Instancia.Obtenertalla();
-        }
-
-        public DataTable LlenarCombocolor()
-        {
-            return datProducto.Instancia.Obtenercolor();
-        }
-        public DataTable LlenarCombocategoria()
-        {
-            return datProducto.Instancia.Obtenercategoria();
-        }
-        public DataTable LlenarCombomarca()
-        {
-            return datProducto.Instancia.Obtenermarca();
-        }
-
-        public DataTable LlenarComboTipoProducto()
-        {
-            return datProducto.Instancia.ObtenerTipoProducto();
-        }
-        ///////////////////llenarcombobox
-        ///
-        public string ObtenerNombreTipoProducto(int x)
-        {
-            return datProducto.Instancia.ObtenerNombreTipoProducto(x);
-        }
-        public string ObtenerNombreMarca(int x)
-        {
-            return datProducto.Instancia.ObtenerNombreMarca(x);
-        }
-        public string ObtenerNombreTalla(int x)
-        {
-            return datProducto.Instancia.ObtenerNombreTalla(x);
-        }
-        public string ObtenerNombreColor(int x)
-        {
-            return datProducto.Instancia.ObtenerNombreColor(x);
-        }
-        public string ObtenerNombreCategoria(int x)
-        {
-            return datProducto.Instancia.ObtenerNombreCategoria(x);
-        }
+       
         public List<entProducto> BuscarProductoConNombres(string termino)
         {
             return datProducto.Instancia.BuscarProductoConNombres(termino);
         }
-        public entProducto BuscarProductoPorId(int idProducto)
-        {
-            try
-            {
-                return datProducto.Instancia.BuscarProductoPorId(idProducto);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
+        
     }
 }

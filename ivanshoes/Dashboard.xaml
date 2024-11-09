@@ -10,7 +10,7 @@
       Title="Dashboard">
 
     <ScrollViewer Margin="0,0,0,24">
-        <Grid Height="900">
+        <Grid x:Name="dashboardGrid" Height="1000">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -25,7 +25,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel>
+                <StackPanel Margin="0,0,546,0">
                     <TextBlock Text="Dashboard de Ventas" 
                              FontSize="28" 
                              FontWeight="Bold" Foreground="White"/>
@@ -330,7 +330,8 @@
                     </Grid>
                 </Border>
             </Grid>
-            <Button Content="Actualizar" HorizontalAlignment="Left" Height="20" Margin="884,10,0,0" VerticalAlignment="Top" Width="106" Click="Button_Click"/>
+            <Button Content="Actualizar" HorizontalAlignment="Left" Height="20" Margin="731,39,0,0" VerticalAlignment="Top" Width="125" Click="Button_Click" Background="#FF4CAB22" Foreground="White" FontWeight="Bold"/>
+            <Button x:Name="btnguardarcomoimagen" Content="Guardar como foto" HorizontalAlignment="Left" Margin="592,39,0,0" VerticalAlignment="Top" Width="124" Click="btnguardarcomoimagen_Click" Height="20" Foreground="White" BorderBrush="#FFAF3131" Background="#FF0079FF" FontWeight="Bold"/>
         </Grid>
     </ScrollViewer>
 </Page>

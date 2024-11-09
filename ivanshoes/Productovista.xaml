@@ -7,11 +7,39 @@
         mc:Ignorable="d"
         Title="Productovista" Height="750" Width="1200"
         WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/fondo.png"/>
+    </Window.Background>
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/Ivan Shoes (1).png"/>
-        </Grid.Background>
-        <DataGrid x:Name="dgvProductos" d:ItemsSource="{d:SampleData ItemCount=5}" FontSize="18" ColumnWidth="*" RowBackground="#FFFFF0AB" Background="{x:Null}" Margin="0,121,0,0" >
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button x:Name="btnatributosproduc" Content="Atributos" HorizontalAlignment="Left" Height="35" Margin="730,37,0,0" VerticalAlignment="Top" Width="165" Click="btnatributosproduc_Click" Background="#FF7DB72D" Foreground="White" FontWeight="Bold" FontSize="18" FontFamily="Arial">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="10">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="btnActualizar" Content="Actualizar" HorizontalAlignment="Left" Margin="26,91,0,0" VerticalAlignment="Top" Width="165" FontSize="18" Click="btnActualizar_Click" Foreground="White" Background="#FF09AB0C" FontWeight="Bold" Height="35" FontFamily="Arial">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="5">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <DataGrid x:Name="dgvProductos" d:ItemsSource="{d:SampleData ItemCount=5}" FontSize="18" ColumnWidth="*" RowBackground="#FFFFF0AB" Background="{x:Null}" Margin="26,153,23,45" >
             <DataGrid.ColumnHeaderStyle>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="Background" Value="#FF07487B" />
@@ -25,43 +53,23 @@
                 </Style>
             </DataGrid.ColumnHeaderStyle>
         </DataGrid>
-        <Label Content="Productos" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Foreground="White"/>
-        <Label Content="Listado de productos" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.491,-0.409" FontSize="20" Foreground="White"/>
-        <Button x:Name="btnActualizar" Content="Actualizar" HorizontalAlignment="Left" Margin="12,83,0,0" VerticalAlignment="Top" Width="100" FontSize="18" Click="btnActualizar_Click" Foreground="White" Background="#FF09AB0C" FontWeight="Bold">
+        <Button x:Name="agregarproductos" Content="Agregar o Modificar" HorizontalAlignment="Left" Height="35" Margin="933,37,0,0" VerticalAlignment="Top" Width="220" Click="agregarproductos_Click" Background="#FFFFA400" Foreground="White" FontWeight="Bold" FontSize="18" FontFamily="Arial">
             <Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="1"
-                        CornerRadius="5">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <Button x:Name="agregarproducto" Content="➕ Agregar o Modificar" HorizontalAlignment="Left" Margin="917,36,0,0" VerticalAlignment="Top" FontSize="24" Click="btnAgregarCliente_Click" Background="#FFBC11FF" BorderBrush="Black" Foreground="White" Height="46" FontWeight="Bold">
-            <Button.Template>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="1"
-                        CornerRadius="20" Width="260">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <Button x:Name="btnatributosproduc" Content="Atributos" HorizontalAlignment="Left" Height="46" Margin="745,36,0,0" VerticalAlignment="Top" Width="129" Click="btnatributosproduc_Click" Background="#FF7DB72D" Foreground="White" FontWeight="Bold" FontSize="18">
-        <Button.Template>
-            <ControlTemplate TargetType="{x:Type Button}">
-                <Border Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="1"
                 CornerRadius="10">
-                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Border>
-            </ControlTemplate>
-        </Button.Template>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
         </Button>
+        <Border BorderThickness="1" HorizontalAlignment="Left" Height="39" Margin="26,25,0,0" VerticalAlignment="Top" Width="257">
+            <Label Content="Productos" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" Foreground="White" FontFamily="Arial" Height="38" Width="128" Margin="-1,0,0,0"/>
+        </Border>
+        <Border BorderThickness="1" HorizontalAlignment="Left" Height="28" Margin="10,58,0,0" VerticalAlignment="Top" Width="234">
+            <Label Content="Listado de productos" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-1.491,-0.409" FontSize="20" Foreground="White" FontFamily="Arial" Height="33" Width="196" Margin="15,1,0,0"/>
+        </Border>
     </Grid>
 </Window>

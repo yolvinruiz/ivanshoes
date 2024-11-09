@@ -13,5 +13,7 @@ namespace CapaEntidad
         public string Nombre { get; set; }
         public string Apellidos { get; set; }
         public string Cargo { get; set; }
+        public int DNI { get; set; }
+        public string Contraseña { get; set; }
     }
 }

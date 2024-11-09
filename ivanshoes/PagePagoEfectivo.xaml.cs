@@ -28,6 +28,7 @@ namespace ivanshoes
     /// <summary>
     /// Lógica de interacción para PagePagoEfectivo.xaml
     /// </summary>
+    
     public partial class PagePagoEfectivo : Page
     {
         public string pg;
@@ -229,6 +230,7 @@ namespace ivanshoes
                                 File.WriteAllBytes(saveFileDialog.FileName, pdfBytes);
                                 System.Windows.MessageBox.Show("Documento emitido y guardado exitosamente!",
                                     "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                               
                             }
                         }
                     }
@@ -239,6 +241,7 @@ namespace ivanshoes
 
                     // Limpiar y cerrar
                     btnEmitir.IsEnabled = false;
+                    ServicioActualizacion.Instancia.NotificarActualizacion();
                 }
             }
             catch (Exception ex)

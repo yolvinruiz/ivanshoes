@@ -23,6 +23,17 @@ namespace ivanshoes
         public ConfigurarFondo()
         {
             InitializeComponent();
+            string fondoGuardado = Properties.Settings.Default.FondoPantalla;
+            if (!string.IsNullOrEmpty(fondoGuardado) && File.Exists(fondoGuardado))
+            {
+                try
+                {
+                    ImageBrush brush = new ImageBrush(new BitmapImage(new Uri(fondoGuardado)));
+                    brush.Stretch = Stretch.UniformToFill;
+                    this.Background = brush;
+                }
+                catch { }
+            }
         }
         private void CargarFondoActual()
         {
@@ -83,7 +94,7 @@ namespace ivanshoes
                 foreach (Window window in System.Windows.Application.Current.Windows)
                 {
                     if (window is MainWindow ||
-    window is Administrador) // Ajusta estos nombres según tus ventanas
+                      window is Administrador || window is Clientes || window is Empleado || window is ClientesVista) // Ajusta estos nombres según tus ventanas
                     {
                         try
                         {
@@ -109,14 +120,22 @@ namespace ivanshoes
 
         private void RestaurarDefault_Click(object sender, RoutedEventArgs e)
         {
+
             try
             {
                 // Restaurar al fondo predeterminado
                 Properties.Settings.Default.FondoPantalla = "";
                 Properties.Settings.Default.Save();
 
-                // Actualizar el fondo en la ventana principal
-                ((MainWindow)System.Windows.Application.Current.MainWindow)?.RestaurarFondoDefault();
+                // Restaurar el fondo del contenedor principal
+                if (System.Windows.Application.Current.MainWindow != null)
+                {
+                    var mainGrid = System.Windows.Application.Current.MainWindow.Content as Grid;
+                    if (mainGrid != null)
+                    {
+                        mainGrid.Background = new SolidColorBrush(Colors.White); // O el color que prefieras
+                    }
+                }
 
                 System.Windows.MessageBox.Show("Fondo de pantalla restaurado al predeterminado.",
                     "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);

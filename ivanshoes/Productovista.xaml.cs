@@ -52,15 +52,17 @@ namespace ivanshoes
             listarproducto();
         }
 
-        private void btnAgregarCliente_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void btnatributosproduc_Click(object sender, RoutedEventArgs e)
         {
             AtributosProducto atributosProducto = new AtributosProducto();
             atributosProducto.Show();
+        }
+
+        private void agregarproductos_Click(object sender, RoutedEventArgs e)
+        {
+            AgregarProducto agregarProducto = new AgregarProducto();
+            agregarProducto.Show();
         }
     }
 }

@@ -13,7 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.IO;
 namespace ivanshoes
 {
     /// <summary>
@@ -25,6 +25,17 @@ namespace ivanshoes
         public Clientes()
         {
             InitializeComponent();
+            string fondoGuardado = Properties.Settings.Default.FondoPantalla;
+            if (!string.IsNullOrEmpty(fondoGuardado) && File.Exists(fondoGuardado))
+            {
+                try
+                {
+                    ImageBrush brush = new ImageBrush(new BitmapImage(new Uri(fondoGuardado)));
+                    brush.Stretch = Stretch.UniformToFill;
+                    this.Background = brush;
+                }
+                catch { }
+            }
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -109,7 +120,7 @@ namespace ivanshoes
                 c.Nombre = txtnombrecliente.Text.Trim();
                 c.Apellido = txtapellidoscliente.Text.Trim();
                 c.DNI = Convert.ToInt32(txtdnicliente.Text);
-                c.Telefono = Convert.ToInt32(txttelefonocliente.Text);
+                c.Telefono = Convert.ToInt32(txttelefonocliente.Text);          
                 c.Estado = Convert.ToBoolean(cbtestadocliente.IsChecked == true);
                 logCliente.Instancia.EditarCliente(c);
                 System.Windows.MessageBox.Show("Modificacion exitosa");

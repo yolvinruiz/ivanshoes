@@ -9,7 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
-
+using System.IO;
+using System.Windows.Media.Imaging;
+using DocumentFormat.OpenXml.Wordprocessing;
 namespace ivanshoes
 {
     public partial class Dashboard : Page
@@ -22,8 +24,15 @@ namespace ivanshoes
         {
             InitializeComponent();
             InicializarDashboard();
+            ConfigurarActualizacionAutomatica();
         }
 
+        private void ConfigurarActualizacionAutomatica()
+        {
+            actualizacionTimer = new System.Timers.Timer(5000); //  5 segundos
+            actualizacionTimer.Elapsed += (s, e) => Dispatcher.Invoke(ActualizarDashboard);
+            actualizacionTimer.Start();
+        }
         private void InicializarDashboard()
         {
             CargarCombos();
@@ -233,5 +242,56 @@ namespace ivanshoes
         {
             InicializarDashboard();
         }
+
+        private void btnguardarcomoimagen_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Crear diálogo para guardar archivo
+                SaveFileDialog saveDialog = new SaveFileDialog
+                {
+                    Filter = "Imagen PNG|*.png",
+                    Title = "Guardar Dashboard como Imagen",
+                    FileName = $"Dashboard_{DateTime.Now:yyyyMMdd_HHmmss}"
+                };
+
+                if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    // Obtener el control que quieres capturar (tu grid del dashboard)
+                    FrameworkElement elementToRender = dashboardGrid; // Asegúrate de darle un nombre a tu grid principal
+
+                    // Crear un render de la imagen
+                    RenderTargetBitmap renderBitmap = new RenderTargetBitmap(
+                        (int)elementToRender.ActualWidth,
+                        (int)elementToRender.ActualHeight,
+                        96d,
+                        96d,
+                        PixelFormats.Pbgra32);
+
+                    // Renderizar el elemento
+                    renderBitmap.Render(elementToRender);
+
+                    // Codificar como PNG
+                    PngBitmapEncoder encoder = new PngBitmapEncoder();
+                    encoder.Frames.Add(BitmapFrame.Create(renderBitmap));
+
+                    // Guardar archivo
+                    using (FileStream fs = File.Create(saveDialog.FileName))
+                    {
+                        encoder.Save(fs);
+                    }
+
+                    System.Windows.MessageBox.Show("Dashboard guardado como imagen exitosamente",
+                                  "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show($"Error al guardar la imagen: {ex.Message}",
+                               "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+
     }
 }

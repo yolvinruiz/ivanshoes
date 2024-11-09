@@ -90,10 +90,12 @@ namespace ivanshoes
                 emp.Apellidos = txtapellidoempleado.Text.Trim();
                 emp.DNI = Convert.ToInt32(txtdniempleado.Text.Trim());
                 emp.Telefono = Convert.ToInt32(txttelefonoempleado.Text.Trim());
-                emp.NombreCargo = (string)txtcargoempleado.SelectedItem;
+                emp.NombreCargo = txtcargoempleado.Text;
+                emp.correo = txtcorreoempleado.Text;
                 emp.Estado = cbestadoempleado.IsChecked == true;
 
                 logEmpleado.Instancia.ModificarEmpleado(emp);
+                System.Windows.MessageBox.Show("Empleado agregado correctamente");
             }
             catch (Exception ex)
             {
@@ -103,7 +105,30 @@ namespace ivanshoes
 
         private void btnBuscar_Click(object sender, RoutedEventArgs e)
         {
+            try {
+                entEmpleado empleado = logEmpleado.Instancia.bucarempleadopordni(Convert.ToInt32(txtdnibuscar.Text.Trim()));
+                if (empleado != null)
+                {
+                    idempleado = empleado.ID_Empleado.ToString();
+                    txtdniempleado.Text = empleado.DNI.ToString();
+                    txtnombreempleado.Text = empleado.Nombre;
+                    txtapellidoempleado.Text = empleado.Apellidos;
+                    txttelefonoempleado.Text = empleado.Telefono.ToString();
+                    txtcorreoempleado.Text = empleado.correo;
+                    txtcargoempleado.SelectedItem = empleado.NombreCargo;
+                    cbestadoempleado.IsChecked = empleado.Estado;
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Empleado no encontrado.");
+                }
 
+
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
         }
     }
 }
