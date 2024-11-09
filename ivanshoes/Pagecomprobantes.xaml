@@ -115,33 +115,7 @@
                 <DataGridTextColumn Header="Total" 
                           Binding="{Binding Total, StringFormat=S/{0:N2}}"
                           Width="100"/>
-                <DataGridTemplateColumn Header="XML" Width="60">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="XML" 
-                            Click="VerXML_Click"
-                            Margin="2"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="PDF" Width="60">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="PDF" 
-                            Click="VerPDF_Click"
-                            Margin="2"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="CDR" Width="60">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="CDR" 
-                            Click="VerCDR_Click"
-                            Margin="2"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+               
             </DataGrid.Columns>
         </DataGrid>
         <!-- Botones de acción -->
