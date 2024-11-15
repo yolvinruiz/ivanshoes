@@ -22,6 +22,7 @@ namespace ivanshoes
     {
         public string pg, dniclie, nombreclie;
         public string idv;
+
         public Pago(string idventa,string dnicliente, string nombrecliente, string montototal)
         {
             InitializeComponent();
@@ -29,10 +30,14 @@ namespace ivanshoes
             idv= idventa ;
             dniclie = dnicliente;
             nombreclie = nombrecliente; 
-            
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
             cambio.Navigate(new PagePagoEfectivo(idv, dniclie, nombreclie, pg));
-
-
+        }
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            cambio.Navigate(new pagotarjeta(Convert.ToDecimal(pg), "1021"));
         }
     }
 }
