@@ -40,7 +40,7 @@ namespace ivanshoes
     {
 
         public string idventap;
-        public string dniempleado = "54962548";
+        public string dniempleado;
         private DispatcherTimer searchTimer;
         private const int SEARCH_DELAY = 300; // milisegundos
         public string pago;
@@ -53,6 +53,7 @@ namespace ivanshoes
         public PageVentas(string dniemp)
         {
             InitializeComponent();
+            dniempleado = dniemp;
             CargarProductos();
             searchTimer = new DispatcherTimer();
             searchTimer.Interval = TimeSpan.FromMilliseconds(SEARCH_DELAY);
