@@ -29,7 +29,8 @@ namespace ivanshoes
             pg = montototal;
             idv= idventa ;
             dniclie = dnicliente;
-            nombreclie = nombrecliente; 
+            nombreclie = nombrecliente;
+            cambio.Navigate(new PagePagoEfectivo(idv, dniclie, nombreclie, pg));
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -37,7 +38,7 @@ namespace ivanshoes
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            cambio.Navigate(new pagotarjeta(Convert.ToDecimal(pg), "1021"));
+            cambio.Navigate(new pagotarjeta(idv, dniclie, nombreclie, pg));
         }
     }
 }

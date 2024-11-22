@@ -160,5 +160,7 @@ namespace ivanshoes
             }
             else { System.Windows.MessageBox.Show("Error ingrese el numero de dni correcto"); }
         }
+
+
     }
 }

@@ -102,7 +102,7 @@ namespace ivanshoes
                 // Determinar tipo de documento según RadioButton seleccionado
                 if (rbBoleta.IsChecked == true)
                 {
-                    serie = "BB01";
+                    serie = "BB03";
                     tipoEntidadCliente = "1"; // DNI
                     documento = txtDocumentoCliente.Text;
                     tipoDocumentoCodigo = "03"; // Código para Boleta
@@ -205,11 +205,10 @@ namespace ivanshoes
                         DigestValueon = responseData.data.codigo_hash?.ToString() ?? "",
                         Estado_sunat = responseData.data.respuesta_sunat_codigo,
                         Mensaje_sunat = responseData.data.respuesta_sunat_descripcion,
-                        Xml_filename = responseData.data.xml_base_64,
+                        Xml_filename = responseData.data.ruta_xml, // Cambiado de xml_base_64
                         Pdf_filename = responseData.data.ruta_pdf,
-                        Cdr_filename = responseData.data.cdr_base_64
+                        Cdr_filename = responseData.data.ruta_cdr  // Cambiado de cdr_base_64
                     };
-
                     logBoleta.Instancia.InsertarBoleta(nuevoDocumento);
 
                     // Descargar PDF

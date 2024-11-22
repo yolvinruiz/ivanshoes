@@ -5,18 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ivanshoes"
         mc:Ignorable="d"
-        Title="Pago" Height="600" Width="600"
-        WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow">
-    <Window.Background>
-        <ImageBrush ImageSource="/fondo.png"/>
-    </Window.Background>
+        Title="Pago" Height="700" Width="800"
+        WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow" Background="{x:Null}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Frame x:Name="cambio" Content="" NavigationUIVisibility="Hidden" Margin="0,53,0,0"/>
-        <Button Content="pago efectivo" HorizontalAlignment="Left" Margin="51,16,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-        <Button Content="pago tarjeta" HorizontalAlignment="Left" Margin="260,16,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
+        <Button Content="💸 pago efectivo" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click" Height="48" Width="400" Foreground="White" Background="#FF00A202" FontSize="20" FontFamily="Arial Black"/>
+        <Button Content="💻 pago online" HorizontalAlignment="Left" Margin="400,0,0,0" VerticalAlignment="Top" Click="Button_Click_1" Height="48" Width="400" FontSize="20" FontFamily="Arial Black" Foreground="White" Background="#FF37C4CE"/>
 
     </Grid>
 </Window>

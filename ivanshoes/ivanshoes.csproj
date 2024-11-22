@@ -13,12 +13,14 @@
 
   <ItemGroup>
     <None Remove="cuenta.png" />
+    <None Remove="descarga %288%29.jpeg" />
     <None Remove="empleados.png" />
     <None Remove="fondo.png" />
     <None Remove="fondo2.png" />
     <None Remove="icons8-crowd-80.png" />
     <None Remove="imagen.png" />
     <None Remove="istockphoto-1351989267-612x612.jpg" />
+    <None Remove="pagoefectivofondo.jpeg" />
     <None Remove="tienda-de-ropa.png" />
     <None Remove="trabajador.png" />
   </ItemGroup>
@@ -47,12 +49,14 @@
 
   <ItemGroup>
     <Resource Include="cuenta.png" />
+    <Resource Include="descarga (8).jpeg" />
     <Resource Include="empleados.png" />
     <Resource Include="fondo.png" />
     <Resource Include="fondo2.png" />
     <Resource Include="icons8-crowd-80.png" />
     <Resource Include="imagen.png" />
     <Resource Include="istockphoto-1351989267-612x612.jpg" />
+    <Resource Include="pagoefectivofondo.jpeg" />
     <Resource Include="tienda-de-ropa.png" />
     <Resource Include="trabajador.png" />
   </ItemGroup>

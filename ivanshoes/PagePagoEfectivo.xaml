@@ -8,8 +8,11 @@
       d:DesignHeight="500" d:DesignWidth="600"
       Title="PagePagoEfectivo"
       >
+    <Page.Background>
+        <ImageBrush ImageSource="/pagoefectivofondo.jpeg"/>
+    </Page.Background>
 
-    <Grid Background="#FF70B76E">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -17,10 +20,18 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Border 
-        Background="White" 
         Margin="10,10,10,10"
         CornerRadius="10"
         Padding="20">
+            <Border.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FFD60404" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Border.Background>
+                <SolidColorBrush Color="Black" Opacity="0.2"/>
+            </Border.Background>
 
 
             <StackPanel Margin="-10,-10,-10,-19">
@@ -72,13 +83,12 @@
                 <TextBlock Text="Total:" 
                   FontWeight="Bold"
                   FontSize="18"
-                  Margin="0,0,0,10"/>
+                  Margin="0,0,0,10" Foreground="White"/>
                 <TextBlock x:Name="txtTotal"
                   Text="S/00.00"
                   FontSize="20"
-                  Width="559"/>
-                <TextBlock Text="Nombre del Cliente"
-                  FontWeight="Bold"
+                  Width="559" Foreground="White" FontWeight="Bold"/>
+                <TextBlock Text="Nombre del Cliente" FontWeight="Bold" Foreground="#FFF7F7F7"
                   />
 
                 <!-- Datos del Cliente -->
@@ -90,8 +100,7 @@
                 <!-- DNI/RUC -->
                 <TextBlock x:Name="lblDocumento"
                   Text="DNI del Cliente"
-                  FontWeight="Bold"
-                  Margin="0,0,0,5"/>
+                  Margin="0,0,0,5" FontWeight="Bold" Foreground="White"/>
                 <TextBox x:Name="txtDocumentoCliente"
                  Style="{StaticResource PlaceholderTextBox}"
                  Tag="Ingrese el ruc del cliente"
@@ -101,7 +110,7 @@
                 <!-- Monto Recibido -->
                 <TextBlock Text="Monto Recibido"
                   FontWeight="Bold"
-                  Margin="0,0,0,5"/>
+                  Margin="0,0,0,5" Foreground="White"/>
                 <TextBox x:Name="txtMontoRecibido"
                  Style="{StaticResource PlaceholderTextBox}"
                  Tag="Ingrese el monto"
@@ -112,31 +121,31 @@
                 <!-- Vuelto -->
                 <TextBlock Text="Vuelto:"
                   FontWeight="Bold"
-                  Margin="0,0,0,5"/>
+                  Margin="0,0,0,5" Foreground="White"/>
                 <TextBlock x:Name="txtVuelto"
                   Text="0.00"
                   FontSize="16"
-                  Margin="0,0,0,20" Width="559" HorizontalAlignment="Left"/>
+                  Margin="0,0,0,20" Width="559" HorizontalAlignment="Left" Foreground="White" FontWeight="Bold"/>
 
                 <!-- Tipo de Documento -->
                 <TextBlock Text="Tipo de Documento"
                   FontWeight="Bold"
-                  Margin="0,0,0,10"/>
+                  Margin="0,0,0,10" Foreground="White"/>
                 <StackPanel Margin="0,0,0,20">
                     <RadioButton x:Name="rbBoleta" 
                         Content="Boleta"
                         IsChecked="True"
                         Checked="rbBoleta_Checked"
-                        Margin="0,0,0,5"/>
+                        Margin="0,0,0,5" Foreground="#FFF9F9F9"/>
                     <RadioButton x:Name="rbFactura" 
                         Content="Factura"
                         Checked="rbFactura_Checked"
-                        Margin="0,0,0,5"/>
+                        Margin="0,0,0,5" Foreground="White"/>
                 </StackPanel>
                 <Button x:Name="btnEmitir"
                 Content="Emitir boleta"
                 Height="31"
-                Background="#FF2B8214"
+                Background="#FF57B33E"
                 Foreground="White"
                 BorderThickness="0"
                 Click="btnEmitir_Click" Width="273" FontWeight="Bold">
@@ -149,7 +158,7 @@
 
                 <!-- Botón Emitir -->
             </StackPanel>
-            
+
         </Border>
     </Grid>
 </Page>

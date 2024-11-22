@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using MercadoPago.Config;
+using System.Configuration;
 using System.Data;
 using System.Windows;
 
@@ -30,6 +31,7 @@ namespace ivanshoes
             // Limpiar recursos si es necesario
             Properties.Clear();
             base.OnExit(e);
+            MercadoPagoConfig.AccessToken = "APP_USR-7906504568293219-112019-9528c0c622645a0d91b35dabbb091f29-2107940985";
         }
     }
 
