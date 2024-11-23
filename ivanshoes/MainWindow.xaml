@@ -171,6 +171,5 @@
                      Foreground="#666666"/>
             </StackPanel>
         </Border>
-        <Button Content="base de datos" HorizontalAlignment="Left" Margin="16,10,0,0" VerticalAlignment="Top" Width="90" Click="Button_Click_3" Background="#FFDC1616"/>
     </Grid>
 </Window>

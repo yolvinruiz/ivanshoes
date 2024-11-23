@@ -55,5 +55,11 @@ namespace ivanshoes
             ConfigurarFondo empleados0 = new ConfigurarFondo();
             empleados0.Show();
         }
+
+        private void btnbase_Click(object sender, RoutedEventArgs e)
+        {
+            Configuracionbd configuracionbd = new Configuracionbd();
+            configuracionbd.Show();
+        }
     }
 }
