@@ -1,7 +1,9 @@
-﻿using MercadoPago.Config;
+﻿using CapaLogica;
+using MercadoPago.Config;
 using System.Configuration;
 using System.Data;
 using System.Windows;
+using CapaEntidad;
 
 namespace ivanshoes
 {
@@ -31,7 +33,19 @@ namespace ivanshoes
             // Limpiar recursos si es necesario
             Properties.Clear();
             base.OnExit(e);
-            MercadoPagoConfig.AccessToken = "APP_USR-7906504568293219-112019-9528c0c622645a0d91b35dabbb091f29-2107940985";
+            try
+            {
+                // Asegúrate de guardar el ID del empleado activo en una variable global o de sesión
+                int idEmpleadoActivo = SesionActual.IDEmpleado;
+
+                // Llamar al método de la capa de negocio para cerrar la sesión
+                logLogin.Instancia.CerrarSesion(idEmpleadoActivo);
+            }
+            catch (Exception ex)
+            {
+                // Registrar o manejar el error
+                Console.WriteLine("Error al cerrar la sesión del usuario activo: " + ex.Message);
+            }
         }
     }
 

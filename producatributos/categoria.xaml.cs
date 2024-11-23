@@ -12,7 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using CapaDatos;
+using CapaLogica;
+using CapaEntidad;
 namespace producatributos
 {
     /// <summary>
@@ -23,6 +25,23 @@ namespace producatributos
         public categoria()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            { 
+
+                    entCategoria ca = new entCategoria();
+                    ca.Nombre = txtnombre.Text.Trim();
+                    logCategoria.Instancia.Insertarcategoria(ca);
+                    System.Windows.MessageBox.Show("agregado correctamente.");
+
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show("Error: " + ex.Message);
+            }
         }
     }
 }

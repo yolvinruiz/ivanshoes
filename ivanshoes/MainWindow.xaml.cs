@@ -10,6 +10,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using CapaEntidad;
 
 namespace ivanshoes
 {
@@ -52,63 +53,47 @@ namespace ivanshoes
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            int idEmpleado;
             try
             {
-                if (string.IsNullOrEmpty(txtDNI.Text) || string.IsNullOrEmpty(txtPassword.Password))
+                // Validar ID ingresado
+                if (txtDNI.Text == null)
                 {
-                    System.Windows.MessageBox.Show("Por favor ingrese DNI y contraseña",
-                        "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return;
+                    System.Windows.MessageBox.Show("Por favor, ingresa un dni válido.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-
-                int dni = Convert.ToInt32(txtDNI.Text);
+                if (txtPassword.Password == null)
+                {
+                    System.Windows.MessageBox.Show("Por favor, ingrese una contraseña válida.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                idEmpleado = logEmpleado.Instancia.BuscarIdempleadoPorDNI(Convert.ToInt32(txtDNI.Text));
                 string contraseña = txtPassword.Password;
 
-                var usuario = logUsuario.Instancia.ValidarUsuario(dni, contraseña);
+                // Llamar al método de la capa de negocio
+                string mensaje = logLogin.Instancia.VerificarLogin(idEmpleado, contraseña);
 
-                if (usuario != null)
+                // Mostrar el mensaje en un MessageBox
+                System.Windows.MessageBox.Show(mensaje, "Resultado del Login", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                // Si el mensaje contiene "Bienvenido", redirigir
+                if (mensaje.StartsWith("Bienvenido Administrador"))
                 {
-                    App.Current.Properties["UsuarioActual"] = usuario;
-
-                    Window ventanaNueva;
-                    if (usuario.Cargo.ToUpper() == "VENDEDOR")
-                    {
-                        var empleado = logEmpleado.Instancia.bucarempleadopordni(dni);
-                        ventanaNueva = new Empleado(empleado.Nombre,empleado.Apellidos,empleado.DNI);
-                    }
-                    else if (usuario.Cargo.ToUpper() == "ADMINISTRADOR")
-                    {
-                        ventanaNueva = new Administrador();
-                    }
-                    else
-                    {
-                        System.Windows.MessageBox.Show("Cargo no reconocido",
-                            "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return;
-                    }
-
-                    // Configurar la nueva ventana
-                    ventanaNueva.Closing += (s, args) =>
-                    {
-                        // Crear y mostrar una nueva instancia de login
-                        var newLogin = new MainWindow();
-                        newLogin.Show();
-                    };
-
-                    // Mostrar la nueva ventana y cerrar el login actual
-                    ventanaNueva.Show();
+                    Administrador mainWindow = new Administrador();
+                    mainWindow.Show();
                     this.Close();
+                    SesionActual.IDEmpleado = idEmpleado;
                 }
-                else
+                if (mensaje.StartsWith("Bienvenido Vendedor"))
                 {
-                    System.Windows.MessageBox.Show("DNI o contraseña incorrectos",
-                        "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    var empleado = logEmpleado.Instancia.bucarempleadopordni(Convert.ToInt32(txtDNI.Text));
+                    Empleado mainWindow = new Empleado(empleado.Nombre,empleado.Apellidos,empleado.DNI);
+                    mainWindow.Show();
+                    this.Close();
+                    SesionActual.IDEmpleado = idEmpleado;
                 }
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show($"Error: {ex.Message}",
-                    "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void txtDNI_PreviewTextInput(object sender, TextCompositionEventArgs e)

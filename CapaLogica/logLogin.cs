@@ -17,9 +17,21 @@ namespace CapaLogica
         }
         #endregion singleton
 
-        public bool VerificarLogin(string dni, string contraseña)
+        public string VerificarLogin(int idempleado, string contraseña)
         {
-            return datLogin.Instancia.VerificarLogin(dni, contraseña);
+            return datLogin.Instancia.VerificarLogin(idempleado, contraseña);
         }
+        public void CerrarSesion(int idEmpleado)
+        {
+            try
+            {
+                datLogin.Instancia.CerrarSesion(idEmpleado);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al procesar el cierre de sesión: " + ex.Message);
+            }
+        }
+
     }
 }

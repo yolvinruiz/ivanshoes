@@ -18,36 +18,73 @@ namespace CapaDatos
         }
         #endregion singleton
 
-        public bool VerificarLogin(string dni, string contraseña)
+        public string VerificarLogin(int idEmpleado, string contraseña)
         {
             SqlCommand cmd = null;
-            bool resultado = false;
+            string mensaje = string.Empty;
+
             try
             {
                 SqlConnection cn = Conexion.Instancia.Conectar();
-                cmd = new SqlCommand("VerificarCuenta", cn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@dni", dni);
-                cmd.Parameters.AddWithValue("@contraseña", contraseña);
-                cn.Open();
-                int count = Convert.ToInt32(cmd.ExecuteScalar());
-                if (count > 0)
+
+                cmd = new SqlCommand("LoginCuenta", cn)
                 {
-                    resultado = true;
-                }
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                // Parámetros de entrada
+                cmd.Parameters.AddWithValue("@IDempleado", idEmpleado);
+                cmd.Parameters.AddWithValue("@Contraseña", contraseña);
+
+                // Parámetro de salida
+                SqlParameter mensajeParam = new SqlParameter("@Mensaje", SqlDbType.NVarChar, 50)
+                {
+                    Direction = ParameterDirection.Output
+                };
+                cmd.Parameters.Add(mensajeParam);
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+
+                // Leer el mensaje de salida
+                mensaje = mensajeParam.Value.ToString();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw e;
+                throw new Exception("Error al verificar el login: " + ex.Message);
             }
             finally
             {
-                if (cmd.Connection.State == ConnectionState.Open)
+                if (cmd?.Connection?.State == ConnectionState.Open)
                 {
                     cmd.Connection.Close();
                 }
             }
-            return resultado;
+
+            return mensaje;
         }
+        public void CerrarSesion(int idEmpleado)
+        {
+            try
+            {
+                SqlConnection cn = Conexion.Instancia.Conectar();
+                SqlCommand cmd = new SqlCommand("CerrarSesion", cn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                // Parámetro de entrada
+                cmd.Parameters.AddWithValue("@IDempleado", idEmpleado);
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+                cn.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al cerrar la sesión: " + ex.Message);
+            }
+        }
+
     }
 }

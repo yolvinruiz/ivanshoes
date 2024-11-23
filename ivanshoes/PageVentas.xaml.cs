@@ -416,6 +416,12 @@ namespace ivanshoes
             }
         }
 
+        private void btnlimpiar_Click(object sender, RoutedEventArgs e)
+        {
+            itemsControlCarrito.ItemsSource = null;
+            txtDniCliente.Text = "";
+            txtNombreCliente.Text = "";
+        }
     }
 
 }

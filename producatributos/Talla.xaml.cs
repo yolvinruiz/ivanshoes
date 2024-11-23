@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CapaEntidad;
+using CapaLogica;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,23 @@ namespace producatributos
         public Talla()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                entTalla ca = new entTalla();
+                ca.Talla = txtnombre.Text.Trim();
+                logTalla.Instancia.Insertartalla(ca);
+                System.Windows.MessageBox.Show("agregado correctamente.");
+
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show("Error: " + ex.Message);
+            }
         }
     }
 }

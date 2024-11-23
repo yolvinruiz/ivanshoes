@@ -23,15 +23,15 @@ namespace CapaLogica
         {
             datBoleta.Instancia.InsertarBoleta(boleta);
         }
-        public List<entBoleta> ListarComprobantes(DateTime fechaInicio, DateTime fechaFin)
+        public List<entBoleta> BuscarBoletasPorDni(int dni)
         {
             try
             {
-                return datBoleta.Instancia.ListarComprobantes(fechaInicio, fechaFin);
+                return datBoleta.Instancia.BuscarBoletasPorDni(dni);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error en la capa lógica: " + ex.Message);
+                throw new Exception("Error al procesar la búsqueda de boletas: " + ex.Message);
             }
         }
         public string ObtenerTipoComprobante(string serie)
@@ -43,15 +43,15 @@ namespace CapaLogica
                    serie.StartsWith("FF03") ? "Factura" :
                    "Desconocido";
         }
-        public List<entBoleta> ListarTodasBoletas()
+        public List<entBoleta> ListarTodasLasBoletas()
         {
             try
             {
-                return datBoleta.Instancia.ListarTodasBoletas();
+                return datBoleta.Instancia.ListarTodasLasBoletas();
             }
             catch (Exception ex)
             {
-                throw new Exception("Error en la capa lógica: " + ex.Message);
+                throw new Exception("Error al procesar el listado de boletas: " + ex.Message);
             }
         }
 

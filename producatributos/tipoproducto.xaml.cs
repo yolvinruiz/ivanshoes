@@ -18,11 +18,11 @@ using System.Windows.Shapes;
 namespace producatributos
 {
     /// <summary>
-    /// Lógica de interacción para Color.xaml
+    /// Lógica de interacción para tipoproducto.xaml
     /// </summary>
-    public partial class Color : Page
+    public partial class tipoproducto : Page
     {
-        public Color()
+        public tipoproducto()
         {
             InitializeComponent();
         }
@@ -32,9 +32,10 @@ namespace producatributos
             try
             {
 
-                entColor ca = new entColor();
-                ca.Nombre = txtnombre1.Text.Trim();
-                logColor.Instancia.Insertarcolor(ca);
+                entTipo_producto ca = new entTipo_producto();
+                ca.Nombre = txtnombre.Text.Trim();
+                ca.Descripcion = txtdescripcion.Text.Trim(); 
+                logTipo_producto.Instancia.Insertartipoproducto(ca);
                 System.Windows.MessageBox.Show("agregado correctamente.");
 
             }

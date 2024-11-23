@@ -54,90 +54,92 @@ namespace CapaDatos
             }
             return inserta;
         }
-        public List<entBoleta> ListarComprobantes(DateTime fechaInicio, DateTime fechaFin)
+        public List<entBoleta> BuscarBoletasPorDni(int dni)
         {
-            List<entBoleta> lista = new List<entBoleta>();
-            try
-            {
-                using (SqlConnection cn = Conexion.Instancia.Conectar())
-                {
-                    cn.Open();
-                    using (SqlCommand cmd = new SqlCommand("sp_ListarComprobantes", cn))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@FechaInicio", fechaInicio);
-                        cmd.Parameters.AddWithValue("@FechaFin", fechaFin);
+            List<entBoleta> boletas = new List<entBoleta>();
 
-                        using (SqlDataReader dr = cmd.ExecuteReader())
-                        {
-                            while (dr.Read())
-                            {
-                                entBoleta comprobante = new entBoleta
-                                {
-                                    id_Boleta = Convert.ToInt32(dr["id_Boleta"]),
-                                    id_Venta = Convert.ToInt32(dr["id_Venta"]),
-                                    Serie = dr["Serie"].ToString(),
-                                    Estado_sunat = dr["Estado_sunat"].ToString(),
-                                    Pdf_filename = dr["Pdf_filename"].ToString(),
-                                    Fecha = Convert.ToDateTime(dr["Fecha"]),
-                                    Cliente = dr["Cliente"].ToString(),
-                                    Total = Convert.ToDecimal(dr["Total"]),
-                                    NroDocCliente = dr["NroDocCliente"].ToString()
-                                };
-                                lista.Add(comprobante);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al listar comprobantes: " + ex.Message);
-            }
-            return lista;
-        }
-        public List<entBoleta> ListarTodasBoletas()
-        {
-            List<entBoleta> lista = new List<entBoleta>();
             try
             {
                 using (SqlConnection cn = Conexion.Instancia.Conectar())
                 {
-                    cn.Open();
-                    using (SqlCommand cmd = new SqlCommand("sp_ListarTodasBoletas", cn))
+                    SqlCommand cmd = new SqlCommand("BuscarBoletasPorDNI", cn)
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        CommandType = CommandType.StoredProcedure
+                    };
+                    cmd.Parameters.AddWithValue("@DNI", dni);
+
+                    cn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
                         {
-                            while (dr.Read())
+                            boletas.Add(new entBoleta
                             {
-                                entBoleta boleta = new entBoleta
-                                {
-                                    id_Boleta = Convert.ToInt32(dr["id_Boleta"]),
-                                    id_Venta = Convert.ToInt32(dr["id_Venta"]),
-                                    Serie = dr["Serie"].ToString(),
-                                    DigestValueon = dr["DigestValueon"].ToString(),
-                                    Estado_sunat = dr["Estado_sunat"].ToString(),
-                                    Mensaje_sunat = dr["Mensaje_sunat"].ToString(),
-                                    Xml_filename = dr["Xml_filename"].ToString(),
-                                    Pdf_filename = dr["Pdf_filename"].ToString(),
-                                    Cdr_filename = dr["Cdr_filename"].ToString(),
-                                    // Datos adicionales de la venta y cliente
-                                    Fecha = Convert.ToDateTime(dr["Fecha"]),
-                                    Cliente = dr["Cliente"].ToString(),
-                                    Total = Convert.ToDecimal(dr["Total"])
-                                };
-                                lista.Add(boleta);
-                            }
+                                id_Boleta = reader.GetInt32(reader.GetOrdinal("id_Boleta")),
+                                id_Venta = reader.GetInt32(reader.GetOrdinal("id_Venta")),
+                                Serie = reader.GetString(reader.GetOrdinal("Serie")),
+                                DigestValueon = reader.GetString(reader.GetOrdinal("DigestValueon")),
+                                Estado_sunat = reader.GetString(reader.GetOrdinal("Estado_sunat")),
+                                Mensaje_sunat = reader.GetString(reader.GetOrdinal("Mensaje_sunat")),
+                                Xml_filename = reader.GetString(reader.GetOrdinal("Xml_filename")),
+                                Pdf_filename = reader.GetString(reader.GetOrdinal("Pdf_filename")),
+                                Cdr_filename = reader.GetString(reader.GetOrdinal("Cdr_filename")),
+                                Cliente = reader.GetString(reader.GetOrdinal("Cliente")),
+                                Fecha = reader.GetDateTime(reader.GetOrdinal("Fecha"))
+                            });
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al listar boletas: " + ex.Message);
+                throw new Exception("Error al buscar las boletas: " + ex.Message);
             }
-            return lista;
+
+            return boletas;
+        }
+        public List<entBoleta> ListarTodasLasBoletas()
+        {
+            List<entBoleta> boletas = new List<entBoleta>();
+
+            try
+            {
+                using (SqlConnection cn = Conexion.Instancia.Conectar())
+                {
+                    SqlCommand cmd = new SqlCommand("ListarTodasBoletas", cn)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    cn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            boletas.Add(new entBoleta
+                            {
+                                id_Boleta = reader.GetInt32(reader.GetOrdinal("id_Boleta")),
+                                id_Venta = reader.GetInt32(reader.GetOrdinal("id_Venta")),
+                                Serie = reader.GetString(reader.GetOrdinal("Serie")),
+                                DigestValueon = reader.GetString(reader.GetOrdinal("DigestValueon")),
+                                Estado_sunat = reader.GetString(reader.GetOrdinal("Estado_sunat")),
+                                Mensaje_sunat = reader.GetString(reader.GetOrdinal("Mensaje_sunat")),
+                                Xml_filename = reader.GetString(reader.GetOrdinal("Xml_filename")),
+                                Pdf_filename = reader.GetString(reader.GetOrdinal("Pdf_filename")),
+                                Cdr_filename = reader.GetString(reader.GetOrdinal("Cdr_filename")),
+                                Cliente = reader.GetString(reader.GetOrdinal("Cliente")),
+                                Fecha = reader.GetDateTime(reader.GetOrdinal("Fecha"))
+                            });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar todas las boletas: " + ex.Message);
+            }
+
+            return boletas;
         }
     }
 }

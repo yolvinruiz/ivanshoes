@@ -11,4 +11,9 @@
     <PackageReference Include="ClosedXML" Version="0.104.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CapaEntidad\CapaEntidad.csproj" />
+    <ProjectReference Include="..\CapaLogica\CapaLogica.csproj" />
+  </ItemGroup>
+
 </Project>

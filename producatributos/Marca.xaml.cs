@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CapaEntidad;
+using CapaLogica;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,23 @@ namespace producatributos
         public Marca()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                entMarca ca = new entMarca();
+                ca.Nombre = txtnombre.Text.Trim();
+                logMarca.Instancia.Insertarmarca(ca);
+                System.Windows.MessageBox.Show("agregado correctamente.");
+
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show("Error: " + ex.Message);
+            }
         }
     }
 }

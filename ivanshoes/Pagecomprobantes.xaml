@@ -5,152 +5,197 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ivanshoes"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="900"
+      d:DesignHeight="800" d:DesignWidth="1000"
       Title="Pagecomprobantes">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <!-- TextBox para buscar por DNI -->
 
-        <!-- Título -->
-        <TextBlock Text="Comprobantes de Venta"
-              FontSize="24"
-              FontWeight="Bold"
-              Margin="20,15" Foreground="White"/>
+        <!-- Botón para buscar -->
 
-        <!-- Filtros -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="20,0,20,15">
-            <TextBlock Text="Tipo:" 
-                   VerticalAlignment="Center"
-                   Margin="0,0,10,0"/>
-            <ComboBox x:Name="cmbTipo" 
-                  Width="150" 
-                  Margin="0,0,20,0"
-                  SelectionChanged="CmbTipo_SelectionChanged">
-                <ComboBoxItem Content="Todos"/>
-                <ComboBoxItem Content="Boletas"/>
-                <ComboBoxItem Content="Facturas"/>
-            </ComboBox>
+        <TextBox x:Name="txtDni" Tag="Ingrese dni de cliente" Margin="28,10,0,760" HorizontalAlignment="Left" Width="204" Height="30">
+            <TextBox.Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Background" Value="#F5F5F5"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="BorderBrush" Value="#DDDDDD"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TextBox}">
+                                <Border Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="4">
+                                    <Grid>
+                                        <ScrollViewer x:Name="PART_ContentHost"
+                        Margin="{TemplateBinding Padding}"
+                        VerticalAlignment="Center"/>
+                                        <TextBlock IsHitTestVisible="False"
+                     Text="{TemplateBinding Tag}"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Left"
+                     Margin="10,0,0,0"
+                     Foreground="Gray">
+                                            <TextBlock.Style>
+                                                <Style TargetType="{x:Type TextBlock}">
+                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource Mode=TemplatedParent}}" 
+                                        Value="">
+                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="#FFFDD835"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
 
-            <TextBlock Text="Desde:" 
-                   VerticalAlignment="Center"
-                   Margin="0,0,10,0"/>
-            <DatePicker x:Name="dpFechaInicio" 
-                    Width="120"
-                    Margin="0,0,20,0"/>
+        <!-- Botón para buscar -->
 
-            <TextBlock Text="Hasta:" 
-                   VerticalAlignment="Center"
-                   Margin="0,0,10,0"/>
-            <DatePicker x:Name="dpFechaFin" 
-                    Width="120"
-                    Margin="0,0,20,0"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,73,0,0">
+            <DataGrid x:Name="dataGridBoletas"  Grid.Row="1"
+ Margin="20"
+ AutoGenerateColumns="False"
+ IsReadOnly="True"
+ AlternatingRowBackground="#F5F5F5"
+ GridLinesVisibility="All"
+ BorderBrush="Black"
+ BorderThickness="1" Background="#FFD8CFCF" Foreground="Black" FontSize="18" FontWeight="Bold" Height="610">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID Boleta" Binding="{Binding id_Boleta}" />
+                    <DataGridTextColumn Header="ID Venta" Binding="{Binding id_Venta}" />
+                    <DataGridTextColumn Header="Serie" Binding="{Binding Serie}" />
+                    <DataGridTextColumn Header="Digest Value" Binding="{Binding DigestValueon}" />
+                    <DataGridTextColumn Header="Estado SUNAT" Binding="{Binding Estado_sunat}" />
+                    <DataGridTextColumn Header="Mensaje SUNAT" Binding="{Binding Mensaje_sunat}" />
+                    <DataGridTextColumn Header="XML Filename" Binding="{Binding Xml_filename}" />
+                    <DataGridTextColumn Header="PDF Filename" Binding="{Binding Pdf_filename}" />
+                    <DataGridTextColumn Header="CDR Filename" Binding="{Binding Cdr_filename}" />
+                    <DataGridTextColumn Header="Cliente" Binding="{Binding Cliente}" />
+                    <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+        <Button x:Name="btnBuscar" Content="Buscar" Click="btnBuscar_Click" Margin="294,10,0,760" HorizontalAlignment="Left" Width="90" FontWeight="Bold" Foreground="Black" Background="#FF299620" Height="30" >
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border"
+Background="{TemplateBinding Background}"
+BorderBrush="{TemplateBinding BorderBrush}"
+BorderThickness="1"
+CornerRadius="10">
+                        <ContentPresenter x:Name="contentPresenter"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!-- Animación y color al presionar -->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="border"
+                          Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                          To="#666666"
+                          Duration="0:0:0.1"/>
+                                        <ThicknessAnimation Storyboard.TargetName="border"
+                              Storyboard.TargetProperty="Margin"
+                              To="2,2,0,0"
+                              Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="border"
+                          Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                          
+                          Duration="0:0:0.1"/>
+                                        <ThicknessAnimation Storyboard.TargetName="border"
+                              Storyboard.TargetProperty="Margin"
+                              To="0"
+                              Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
 
-            <Button x:Name="btnbuscar" Content="Buscar"
-                 Width="100"
-                 Height="30"
-                 Click="BuscarComprobantes_Click">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#2196F3"/>
-                        <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="Button">
-                                    <Border Background="{TemplateBinding Background}"
-                                         CornerRadius="5">
-                                        <ContentPresenter HorizontalAlignment="Center"
-                                                     VerticalAlignment="Center"/>
-                                    </Border>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#1976D2"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-        </StackPanel>
+                        <!-- Efecto hover -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" TargetName="border" Value="0.8"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="btnlistar" Content="ver todo" Click="btnlistar_Click" Margin="410,10,0,760" HorizontalAlignment="Left" Width="90" FontWeight="Bold" Foreground="Black" Background="#FFC59A06" Height="30" >
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border"
+Background="{TemplateBinding Background}"
+BorderBrush="{TemplateBinding BorderBrush}"
+BorderThickness="1"
+CornerRadius="10">
+                        <ContentPresenter x:Name="contentPresenter"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!-- Animación y color al presionar -->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="border"
+                          Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                          To="#666666"
+                          Duration="0:0:0.1"/>
+                                        <ThicknessAnimation Storyboard.TargetName="border"
+                              Storyboard.TargetProperty="Margin"
+                              To="2,2,0,0"
+                              Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="border"
+                          Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                          
+                          Duration="0:0:0.1"/>
+                                        <ThicknessAnimation Storyboard.TargetName="border"
+                              Storyboard.TargetProperty="Margin"
+                              To="0"
+                              Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
 
-        <!-- Tabla de Comprobantes -->
-        <DataGrid x:Name="dgComprobantes"
-          Grid.Row="2"
-          Margin="20"
-          AutoGenerateColumns="False"
-          IsReadOnly="True"
-          AlternatingRowBackground="#F5F5F5"
-          RowHeight="35">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="N°" 
-                          Binding="{Binding id_Boleta}"
-                          Width="80"/>
-                <DataGridTextColumn Header="N° Venta" 
-                          Binding="{Binding id_Venta}"
-                          Width="80"/>
-                <DataGridTextColumn Header="Serie" 
-                          Binding="{Binding Serie}"
-                          Width="100"/>
-                <DataGridTextColumn Header="Estado SUNAT" 
-                          Binding="{Binding Estado_sunat}"
-                          Width="120"/>
-                <DataGridTextColumn Header="Mensaje SUNAT" 
-                          Binding="{Binding Mensaje_sunat}"
-                          Width="200"/>
-                <DataGridTextColumn Header="DigestValue" 
-                          Binding="{Binding DigestValueon}"
-                          Width="150"/>
-                <DataGridTextColumn Header="Fecha" 
-                          Binding="{Binding Fecha, StringFormat={}{0:dd/MM/yyyy HH:mm}}"
-                          Width="150"/>
-                <DataGridTextColumn Header="Cliente" 
-                          Binding="{Binding Cliente}"
-                          Width="200"/>
-                <DataGridTextColumn Header="Total" 
-                          Binding="{Binding Total, StringFormat=S/{0:N2}}"
-                          Width="100"/>
-               
-            </DataGrid.Columns>
-        </DataGrid>
-        <!-- Botones de acción -->
-        <StackPanel Grid.Row="3" 
-                 Orientation="Horizontal"
-                 HorizontalAlignment="Right"
-                 Margin="20">
-            <Button Content="Ver Todas las Boletas"
-            Width="150"
-            Height="30"
-            Margin="20,0,0,0"
-            Click="VerTodasBoletas_Click">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#FF7043"/>
-                        <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="Button">
-                                    <Border Background="{TemplateBinding Background}"
-                                    CornerRadius="5">
-                                        <ContentPresenter HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"/>
-                                    </Border>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#F4511E"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-        </StackPanel>
+                        <!-- Efecto hover -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" TargetName="border" Value="0.8"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
     </Grid>
 </Page>

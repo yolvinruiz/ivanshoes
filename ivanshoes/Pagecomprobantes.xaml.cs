@@ -16,6 +16,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using CapaDatos;
+using System.Data.SqlClient;
+using System.Data;
+using System.Collections.ObjectModel;
 
 namespace ivanshoes
 {
@@ -24,96 +28,46 @@ namespace ivanshoes
     /// </summary>
     public partial class Pagecomprobantes : Page
     {
+        public ObservableCollection<entBoleta> Boletas { get; set; } = new ObservableCollection<entBoleta>();
         public Pagecomprobantes()
         {
             InitializeComponent();
-            InicializarControles();
+            dataGridBoletas.ItemsSource = Boletas;
         }
-        private void InicializarControles()
-        {
-            // Establecer fechas por defecto
-            dpFechaInicio.SelectedDate = DateTime.Now.AddDays(-30);
-            dpFechaFin.SelectedDate = DateTime.Now;
-            cmbTipo.SelectedIndex = 0;
 
-            // Cargar datos iniciales
-            CargarComprobantes();
-        }
-        private void CargarComprobantes()
+
+        private void btnBuscar_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var fechaInicio = dpFechaInicio.SelectedDate ?? DateTime.Now.AddDays(-30);
-                var fechaFin = dpFechaFin.SelectedDate ?? DateTime.Now;
-                string tipoSeleccionado = ((ComboBoxItem)cmbTipo.SelectedItem)?.Content.ToString();
+                string dniTexto = txtDni.Text.Trim();
 
-                var comprobantes = logBoleta.Instancia.ListarComprobantes(fechaInicio, fechaFin);
-
-                // Filtrar por tipo si es necesario
-                if (tipoSeleccionado != "Todos")
+                if (int.TryParse(dniTexto, out int dni))
                 {
-                    string serie = tipoSeleccionado == "Boletas" ? "BB01" : "FF03";
-                    comprobantes = comprobantes.Where(c => c.Serie.StartsWith(serie)).ToList();
+                    List<entBoleta> boletas = logBoleta.Instancia.BuscarBoletasPorDni(dni);
+                    dataGridBoletas.ItemsSource = boletas;
                 }
-
-                // Asignar tipo de comprobante basado en la serie
-                foreach (var comp in comprobantes)
+                else
                 {
-                    comp.TipoComprobante = comp.Serie.StartsWith("BB01") ? "Boleta" : "Factura";
+                    System.Windows.MessageBox.Show("Ingrese un DNI válido.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-
-                dgComprobantes.ItemsSource = comprobantes;
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show($"Error al cargar comprobantes: {ex.Message}",
-                              "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBox.Show("Error al buscar las boletas: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        private void BuscarComprobantes_Click(object sender, RoutedEventArgs e)
-        {
-            CargarComprobantes();
-        }
-
-        private void CmbTipo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (IsLoaded)
-                CargarComprobantes();
-        }
-
-
-        private void VerTodasBoletas_Click(object sender, RoutedEventArgs e)
+        private void btnlistar_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                // Deshabilitar filtros
-                dpFechaInicio.SelectedDate = null;
-                dpFechaFin.SelectedDate = null;
-                cmbTipo.SelectedIndex = 0;
-
-                // Obtener todas las boletas
-                var boletas = logBoleta.Instancia.ListarTodasBoletas();
-
-                // Asignar tipo de comprobante basado en la serie
-                foreach (var boleta in boletas)
-                {
-                    boleta.TipoComprobante = boleta.Serie?.StartsWith("BB01") == true ? "Boleta" :
-                                            boleta.Serie?.StartsWith("FF03") == true ? "Factura" :
-                                            "Desconocido";
-                }
-
-                // Mostrar en el DataGrid
-                dgComprobantes.ItemsSource = boletas;
-
-                // Mostrar conteo
-                System.Windows.MessageBox.Show($"Se encontraron {boletas.Count} comprobantes",
-                              "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                List<entBoleta> boletas = logBoleta.Instancia.ListarTodasLasBoletas();
+                dataGridBoletas.ItemsSource = boletas;
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show($"Error al cargar las boletas: {ex.Message}",
-                              "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBox.Show("Error al listar las boletas: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
