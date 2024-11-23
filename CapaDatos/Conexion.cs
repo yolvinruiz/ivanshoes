@@ -19,11 +19,13 @@ namespace CapaDatos
         {
             try
             {
-                string servidor = ConfigurationManager.AppSettings["Servidor"] ?? "DESKTOP-O490LA5";
+                string servidor = ConfigurationManager.AppSettings["Servidor"] ?? "localhost";
                 string baseDatos = ConfigurationManager.AppSettings["BaseDatos"] ?? "bdtiendap";
+                string usuario = ConfigurationManager.AppSettings["Usuario"] ?? "";
+                string contraseña = ConfigurationManager.AppSettings["Contraseña"] ?? "";
 
                 SqlConnection cn = new SqlConnection();
-                cn.ConnectionString = $"Data Source={servidor}; Initial Catalog={baseDatos}; Integrated Security=true";
+                cn.ConnectionString = $"Server=tcp:{servidor},1433; Database={baseDatos}; User ID={usuario}; Password={contraseña}; Encrypt=True; TrustServerCertificate=False; Connection Timeout=30;";
                 return cn;
             }
             catch (Exception ex)

@@ -31,15 +31,19 @@ namespace ivanshoes
         {
             txtServidor.Text = ConfigurationManager.AppSettings["Servidor"] ?? "";
             txtBaseDatos.Text = ConfigurationManager.AppSettings["BaseDatos"] ?? "";
+            txtUsuario.Text = ConfigurationManager.AppSettings["Usuario"] ?? ""; // Para Azure
+            txtContraseña.Password = ConfigurationManager.AppSettings["Contraseña"] ?? ""; // Para Azure
         }
 
         private void ProbarConexion_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                string connectionString = $"Data Source={txtServidor.Text}; " +
-                                        $"Initial Catalog={txtBaseDatos.Text}; " +
-                                        "Integrated Security=true";
+                string connectionString = $"Server=tcp:{txtServidor.Text},1433; " +
+                                          $"Database={txtBaseDatos.Text}; " +
+                                          $"User ID={txtUsuario.Text}; " +
+                                          $"Password={txtContraseña.Password}; " +
+                                          "Encrypt=True; TrustServerCertificate=False; Connection Timeout=30;";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -60,22 +64,25 @@ namespace ivanshoes
             try
             {
                 if (string.IsNullOrWhiteSpace(txtServidor.Text) ||
-                    string.IsNullOrWhiteSpace(txtBaseDatos.Text))
+                    string.IsNullOrWhiteSpace(txtBaseDatos.Text) ||
+                    string.IsNullOrWhiteSpace(txtUsuario.Text) ||
+                    string.IsNullOrWhiteSpace(txtContraseña.Password))
                 {
                     System.Windows.MessageBox.Show("Debe ingresar todos los campos",
                                   "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
-                // Guardar en el archivo de configuración
+                // Abrir el archivo de configuración
                 var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
-                config.AppSettings.Settings.Remove("Servidor");
-                config.AppSettings.Settings.Add("Servidor", txtServidor.Text);
+                // Actualizar los valores
+                config.AppSettings.Settings["Servidor"].Value = txtServidor.Text;
+                config.AppSettings.Settings["BaseDatos"].Value = txtBaseDatos.Text;
+                config.AppSettings.Settings["Usuario"].Value = txtUsuario.Text;
+                config.AppSettings.Settings["Contraseña"].Value = txtContraseña.Password;
 
-                config.AppSettings.Settings.Remove("BaseDatos");
-                config.AppSettings.Settings.Add("BaseDatos", txtBaseDatos.Text);
-
+                // Guardar los cambios
                 config.Save(ConfigurationSaveMode.Modified);
                 ConfigurationManager.RefreshSection("appSettings");
 

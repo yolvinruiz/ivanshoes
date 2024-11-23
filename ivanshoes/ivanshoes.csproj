@@ -12,6 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="basededatos.png" />
     <None Remove="cuenta.png" />
     <None Remove="descarga %288%29.jpeg" />
     <None Remove="empleados.png" />
@@ -48,6 +49,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="basededatos.png" />
     <Resource Include="cuenta.png" />
     <Resource Include="descarga (8).jpeg" />
     <Resource Include="empleados.png" />

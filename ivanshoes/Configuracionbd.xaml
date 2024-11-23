@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ivanshoes"
         mc:Ignorable="d"
-        Title="Configuracionbd" Height="450" Width="800"
+        Title="Configuracionbd" Height="600" Width="800"
         WindowStartupLocation="CenterScreen">
     <Window.Background>
         <ImageBrush ImageSource="/fondo.png"/>
@@ -83,38 +83,11 @@
         </StackPanel>
 
         <!-- Botón Probar Conexión -->
-        <Button Grid.Row="3"
-                Content="Probar Conexión"
-                Margin="305,10,305,10"
-                Click="ProbarConexion_Click">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Background" Value="#2196F3"/>
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}"
-                                        CornerRadius="5">
-                                    <ContentPresenter HorizontalAlignment="Center"
-                                                    VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#1976D2"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
 
         <!-- Botones -->
         <StackPanel Grid.Row="4" 
                     Orientation="Horizontal"
-                    HorizontalAlignment="Left" Margin="550,125,0,0" Width="210">
+                    HorizontalAlignment="Left" Margin="371,125,0,0" Width="389">
             <Button Content="Guardar"
                     Width="100"
                     Height="35"
@@ -171,6 +144,46 @@
                     </Style>
                 </Button.Style>
             </Button>
+            <Button
+                Content="Probar Conexión"
+                Click="ProbarConexion_Click" Height="35" Width="100" Margin="10,0,0,0">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#2196F3"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}"
+                                        CornerRadius="5">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#1976D2"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Margin="0,0,0,15">
+            <TextBlock Text="Usuario:"
+               FontWeight="Medium"
+               Margin="0,0,0,5"/>
+            <TextBox x:Name="txtUsuario" Height="40" />
+        </StackPanel>
+
+        <!-- Contraseña -->
+        <StackPanel Grid.Row="4" Margin="0,0,0,15">
+            <TextBlock Text="Contraseña:"
+               FontWeight="Medium"
+               Margin="0,0,0,5"/>
+            <PasswordBox x:Name="txtContraseña" Height="40" />
         </StackPanel>
     </Grid>
 </Window>
